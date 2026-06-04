@@ -10,20 +10,20 @@ description: >-
 
 **Author:** Next Level Builder
 
-**Package path:** `<pkg-dir>/page/oi-pro-ui/` (e.g. `~/.cursor/skills/oi-skills/page/oi-pro-ui`).
+**Skill path:** `<skill-dir>/` (e.g. `~/.cursor/skills/oi-pro-ui`).
 
-**Scripts:** `<pkg-dir>/page/oi-pro-ui/scripts/search.py`
+**Scripts:** `<skill-dir>/scripts/search.py`
 
 Comprehensive design guide for web and mobile applications. Contains 50+ styles, 161 color palettes, 57 font pairings, 161 product types with reasoning rules, 99 UX guidelines, and 25 chart types across 10 technology stacks. Searchable database with priority-based recommendations.
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-pro-ui` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-pro-ui` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-pro-ui`), then ask what they want to accomplish.
 
 **Triggers:** `oi-pro-ui`, ui-ux-pro-max, design system generator, UX 检索, stack-specific UI guidance.
 
 **Quick start**
-1. Requires **python3** and `<pkg-dir>/page/oi-pro-ui/scripts/search.py`.
+1. Requires **python3** and `<skill-dir>/scripts/search.py`.
 2. Run BM25 search for styles, colors, typography, UX rules, or stack guides before designing.
 3. Apply prioritized recommendations to the user's stack (Tailwind, React, Next.js, …).
 
@@ -390,7 +390,7 @@ Extract key information from user request:
 **Always start with `--design-system`** to get comprehensive recommendations with reasoning:
 
 ```bash
-python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "<product_type> <industry> <keywords>" --design-system [-p "Project Name"]
+python3 <skill-dir>/scripts/search.py "<product_type> <industry> <keywords>" --design-system [-p "Project Name"]
 ```
 
 This command:
@@ -401,7 +401,7 @@ This command:
 
 **Example:**
 ```bash
-python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "beauty spa wellness service" --design-system -p "Serenity Spa"
+python3 <skill-dir>/scripts/search.py "beauty spa wellness service" --design-system -p "Serenity Spa"
 ```
 
 ### Step 2b: Persist Design System (Master + Overrides Pattern)
@@ -409,7 +409,7 @@ python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "beauty spa wellness service"
 To save the design system for **hierarchical retrieval across sessions**, add `--persist`:
 
 ```bash
-python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "<query>" --design-system --persist -p "Project Name"
+python3 <skill-dir>/scripts/search.py "<query>" --design-system --persist -p "Project Name"
 ```
 
 This creates:
@@ -418,7 +418,7 @@ This creates:
 
 **With page-specific override:**
 ```bash
-python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "<query>" --design-system --persist -p "Project Name" --page "dashboard"
+python3 <skill-dir>/scripts/search.py "<query>" --design-system --persist -p "Project Name" --page "dashboard"
 ```
 
 This also creates:
@@ -443,7 +443,7 @@ Now, generate the code...
 After getting the design system, use domain searches to get additional details:
 
 ```bash
-python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "<keyword>" --domain <domain> [-n <max_results>]
+python3 <skill-dir>/scripts/search.py "<keyword>" --domain <domain> [-n <max_results>]
 ```
 
 **When to use detailed searches:**
@@ -468,7 +468,7 @@ python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "<keyword>" --domain <domain>
 Get stack-specific implementation best practices:
 
 ```bash
-python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "<keyword>" --stack html-tailwind
+python3 <skill-dir>/scripts/search.py "<keyword>" --stack html-tailwind
 ```
 
 ---
@@ -516,7 +516,7 @@ python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "<keyword>" --stack html-tail
 ### Step 2: Generate Design System (REQUIRED)
 
 ```bash
-python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "AI search tool modern minimal" --design-system -p "AI Search"
+python3 <skill-dir>/scripts/search.py "AI search tool modern minimal" --design-system -p "AI Search"
 ```
 
 **Output:** Complete design system with pattern, style, colors, typography, effects, and anti-patterns.
@@ -525,16 +525,16 @@ python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "AI search tool modern minima
 
 ```bash
 # Get style options for a modern tool product
-python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "minimalism dark mode" --domain style
+python3 <skill-dir>/scripts/search.py "minimalism dark mode" --domain style
 
 # Get UX best practices for search interaction and loading
-python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "search loading animation" --domain ux
+python3 <skill-dir>/scripts/search.py "search loading animation" --domain ux
 ```
 
 ### Step 4: Stack Guidelines
 
 ```bash
-python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "layout responsive forms" --stack html-tailwind
+python3 <skill-dir>/scripts/search.py "layout responsive forms" --stack html-tailwind
 ```
 
 **Then:** Synthesize design system + detailed searches and implement the design.
@@ -547,10 +547,10 @@ The `--design-system` flag supports two output formats:
 
 ```bash
 # ASCII box (default) - best for terminal display
-python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "fintech crypto" --design-system
+python3 <skill-dir>/scripts/search.py "fintech crypto" --design-system
 
 # Markdown - best for documentation
-python3 <pkg-dir>/page/oi-pro-ui/scripts/search.py "fintech crypto" --design-system -f markdown
+python3 <skill-dir>/scripts/search.py "fintech crypto" --design-system -f markdown
 ```
 
 ---

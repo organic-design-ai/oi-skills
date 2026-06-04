@@ -66,7 +66,7 @@ Use these templates when setting up a new project for the build loop.
 
 ## DESIGN.md Template
 
-Generate this using `<pkg-dir>/page/oi-stitch-ui/styles/design-md/SKILL.md` (`<pkg-dir>/page/oi-stitch-ui/styles/design-md/SKILL.md`) from existing HTML or screenshots, or create manually:
+Generate this using `<skill-dir>/styles/design-md/SKILL.md` (`<skill-dir>/styles/design-md/SKILL.md`) from existing HTML or screenshots, or create manually:
 
 ```markdown
 # Design System: [Project Name]

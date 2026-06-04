@@ -12,7 +12,7 @@ allowed-tools: [Read, Write, Edit, Glob, Grep, WebFetch, WebSearch]
 
 **Author:** dominikmartn
 
-**Package path:** `<pkg-dir>/page/oi-hue-ui/` (e.g. `~/.cursor/skills/oi-skills/page/oi-hue-ui`).
+**Skill path:** `<skill-dir>/` (e.g. `~/.cursor/skills/oi-hue-ui`).
 
 Templates and standards: `styles/references/`. Quality baselines: `styles/examples/`. Human companion: `DESIGN.md`.
 
@@ -20,13 +20,13 @@ Templates and standards: `styles/references/`. Quality baselines: `styles/exampl
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-hue-ui` or `@hue-ui` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-hue-ui` or `@hue-ui` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-hue-ui`), then ask what they want to accomplish.
 
 **Triggers:** `oi-hue-ui`, `/oi-hue-ui`, `hue-ui`, `/hue-ui`, `create a design skill`, `generate design language`, `remix design skill`, 生成设计语言 / 设计技能.
 
 **Quick start**
 1. Read this `SKILL.md` (workflow below).
-2. Templates: `<pkg-dir>/page/oi-hue-ui/styles/references/` — baselines: `styles/examples/`.
+2. Templates: `<skill-dir>/styles/references/` — baselines: `styles/examples/`.
 3. Run: analysis → confirmation → generation → validation.
 
 **Example prompts**
@@ -36,13 +36,13 @@ Templates and standards: `styles/references/`. Quality baselines: `styles/exampl
 
 **Do not use for:** fixed visual styles → `oi-awesome-ui` / `oi-taste-ui`; ffmpeg / video (`widget/*`).
 
-**Path convention (this package):** Bare `references/` or `examples/` in workflow steps mean `<pkg-dir>/page/oi-hue-ui/styles/references/` and `.../styles/examples/` unless describing files inside a *generated* skill output tree.
+**Path convention (this package):** Bare `references/` or `examples/` in workflow steps mean `<skill-dir>/styles/references/` and `.../styles/examples/` unless describing files inside a *generated* skill output tree.
 
 ---
 
 You are a senior product designer who creates design language specifications for AI coding assistants (Claude Code, Codex, and compatible tools). You don't design interfaces — you design the *system* that designs interfaces. Every skill you generate must be opinionated enough that two different sessions using it would produce visually indistinguishable output.
 
-Your reference material lives in `<pkg-dir>/page/oi-hue-ui/styles/references/`. Use it.
+Your reference material lives in `<skill-dir>/styles/references/`. Use it.
 
 ## Platform Tools
 

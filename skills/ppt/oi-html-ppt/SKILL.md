@@ -14,24 +14,24 @@ Author professional HTML presentations as static files. One theme file = one loo
 file = one page type. One animation class = one entry effect. Token-based design system in
 `assets/base.css`.
 
-**Package path**: `<pkg-dir>/ppt/oi-html-ppt/` (e.g. `~/.agents/skills/oi-skills/ppt/oi-html-ppt`).
+**Skill path**: `<skill-dir>/` (e.g. `~/.agents/skills/oi-html-ppt/ppt/oi-html-ppt`).
 
-**Scripts**: `<pkg-dir>/ppt/oi-html-ppt/scripts/new-deck.sh`, `.../render.sh`.
+**Scripts**: `<skill-dir>/scripts/new-deck.sh`, `.../render.sh`.
 
 ---
 
 ## Usage
 
 > **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-html-ppt`
-> without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed
+> without a concrete task), **reply with this section** (replace `<skill-dir>` with the installed
 > package path), then ask what they want to accomplish.
 
 **Triggers:** `oi-html-ppt`, presentation, PPT, slides, deck, keynote, 幻灯片, 演讲稿, 小红书图文.
 
 **Quick start**
-1. Scaffold: `bash <pkg-dir>/ppt/oi-html-ppt/scripts/new-deck.sh my-talk`
+1. Scaffold: `bash <skill-dir>/scripts/new-deck.sh my-talk`
 2. Open `examples/my-talk/index.html` in a browser (← → navigate, `T` theme, `S` presenter).
-3. Optional PNG export: `bash <pkg-dir>/ppt/oi-html-ppt/scripts/render.sh ...`
+3. Optional PNG export: `bash <skill-dir>/scripts/render.sh ...`
 
 **Example prompts**
 - 「做一份技术分享 PPT，tokyo-night 主题，要带演讲者逐字稿」
@@ -128,7 +128,7 @@ Only after those are clear, scaffold the deck and start writing.
 
 1. **Scaffold a new deck.** From the skill directory or your project:
    ```bash
-   bash <pkg-dir>/ppt/oi-html-ppt/scripts/new-deck.sh my-talk
+   bash <skill-dir>/scripts/new-deck.sh my-talk
    open examples/my-talk/index.html
    ```
 2. **Pick a theme.** Open the deck and press `T` to cycle. Or hard-code it:
@@ -150,8 +150,8 @@ Only after those are clear, scaffold the deck and start writing.
    and gallery at `templates/full-decks-index.html`.
 6. **Render to PNG.**
    ```bash
-   <pkg-dir>/ppt/oi-html-ppt/scripts/render.sh templates/theme-showcase.html       # one shot
-   bash <pkg-dir>/ppt/oi-html-ppt/scripts/render.sh examples/my-talk/index.html 12      # 12 slides
+   <skill-dir>/scripts/render.sh templates/theme-showcase.html       # one shot
+   bash <skill-dir>/scripts/render.sh examples/my-talk/index.html 12      # 12 slides
    ```
 
 ## Authoring rules (important)
@@ -230,8 +230,8 @@ oi-html-ppt/
 capture, runtime.js exposes `#/N` deep-links, and render.sh iterates 1..N.
 
 ```bash
-bash <pkg-dir>/ppt/oi-html-ppt/scripts/render.sh templates/single-page/kpi-grid.html        # single page
-bash <pkg-dir>/ppt/oi-html-ppt/scripts/render.sh examples/demo-deck/index.html 8 out-dir    # 8 slides, custom dir
+bash <skill-dir>/scripts/render.sh templates/single-page/kpi-grid.html        # single page
+bash <skill-dir>/scripts/render.sh examples/demo-deck/index.html 8 out-dir    # 8 slides, custom dir
 ```
 
 ## Keyboard cheat sheet

@@ -8,11 +8,11 @@ description: >-
 
 **Author:** Alibaba Cloud Design
 
-Scripts live in this folder: `scripts/`. Use **absolute paths** to `<skill-dir>/widget/my-skill/scripts/` (or your category path).
+Scripts live in this folder: `scripts/`. Use **absolute paths** to `<skill-dir>/scripts/` after install (e.g. `~/.agents/skills/oi-my-skill/scripts/`).
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@my-skill` without a task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@my-skill` without a task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-my-skill`), then ask what they want to accomplish.
 
 **Triggers:** `my-skill`, … (match `skill.yaml` triggers)
 

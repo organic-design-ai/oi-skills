@@ -71,12 +71,12 @@ If the task is mainly visual, this order is mandatory.
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@image-to-code-skill` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@image-to-code-skill` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-taste-ui`), then ask what they want to accomplish.
 
 **Triggers:** **image-to-code-skill**, or parent **oi-taste-ui** for this workflow.
 
 **Quick start**
-1. Parent: `<pkg-dir>/page/oi-taste-ui/SKILL.md`.
+1. Parent: `<skill-dir>/SKILL.md`.
 2. Read and follow this file for implementation or image-only rules.
 3. **Summary:** Elite website image-to-code skill for Codex. For visually important web tasks, it must first generate the design image(s) itself, deeply analyze them, then implement the website to match them as close…
 

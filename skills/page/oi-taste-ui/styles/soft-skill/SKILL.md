@@ -6,12 +6,12 @@ description: Teaches the AI to design like a high-end agency. Defines the exact 
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@soft-skill` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@soft-skill` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-taste-ui`), then ask what they want to accomplish.
 
 **Triggers:** **soft-skill**, or parent **oi-taste-ui** for this workflow.
 
 **Quick start**
-1. Parent: `<pkg-dir>/page/oi-taste-ui/SKILL.md`.
+1. Parent: `<skill-dir>/SKILL.md`.
 2. Read and follow this file for implementation or image-only rules.
 3. **Summary:** Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. Blocks all the common defaults that make…
 

@@ -19,5 +19,5 @@ Use examples as baselines, not copy-paste templates.
 
 ## Repository routing
 
-1. `<pkg-dir>/page/oi-hue-ui/SKILL.md` — read Usage, then run the workflow.
+1. `<skill-dir>/SKILL.md` — read Usage, then run the workflow.
 2. `DESIGN.md` — this file (optional context).

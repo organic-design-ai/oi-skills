@@ -10,7 +10,7 @@ description: >-
 
 **Author:** Google Stitch
 
-**Package path:** `<pkg-dir>/page/oi-stitch-ui/` (e.g. `~/.cursor/skills/oi-skills/page/oi-stitch-ui`).
+**Skill path:** `<skill-dir>/` (e.g. `~/.cursor/skills/oi-stitch-ui`).
 
 **12** workflow styles under `styles/`. Catalog: `styles/index.json`.
 
@@ -20,13 +20,13 @@ Project artifacts live in **`design/`** (e.g. `design/DESIGN.md`, `design/pages/
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-stitch-ui` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-stitch-ui` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-stitch-ui`), then ask what they want to accomplish.
 
 **Triggers:** `oi-stitch-ui`, `design/DESIGN.md`, code-to-design, multi-page build, 设计工作流.
 
 **Quick start**
 1. Choose workflow **slug** from `styles/index.json` (e.g. `generate-design`, `code-to-design`, `stitch-loop`).
-2. Read `<pkg-dir>/page/oi-stitch-ui/styles/<slug>/SKILL.md`.
+2. Read `<skill-dir>/styles/<slug>/SKILL.md`.
 3. Write artifacts under project `design/` (`DESIGN.md`, `pages/`, `next-prompt.md`).
 
 **Example prompts**
@@ -68,7 +68,7 @@ Project artifacts live in **`design/`** (e.g. `design/DESIGN.md`, `design/pages/
 List catalog:
 
 ```bash
-python3 -c "import json; d=json.load(open('<pkg-dir>/page/oi-stitch-ui/styles/index.json')); [print(k,'-',v['summary']) for k,v in sorted(d.items())]"
+python3 -c "import json; d=json.load(open('<skill-dir>/styles/index.json')); [print(k,'-',v['summary']) for k,v in sorted(d.items())]"
 ```
 
 Default for full capture: **`code-to-design`**. Default for new pages: **`generate-design`**.
@@ -79,19 +79,19 @@ Default for full capture: **`code-to-design`**. Default for new pages: **`genera
 
 | File | Path |
 |------|------|
-| Rules | `<pkg-dir>/page/oi-stitch-ui/styles/<slug>/SKILL.md` |
-| References | `<pkg-dir>/page/oi-stitch-ui/styles/<slug>/references/` |
-| Resources | `<pkg-dir>/page/oi-stitch-ui/styles/<slug>/resources/` |
-| Examples | `<pkg-dir>/page/oi-stitch-ui/styles/<slug>/examples/` |
+| Rules | `<skill-dir>/styles/<slug>/SKILL.md` |
+| References | `<skill-dir>/styles/<slug>/references/` |
+| Resources | `<skill-dir>/styles/<slug>/resources/` |
+| Examples | `<skill-dir>/styles/<slug>/examples/` |
 
 Read the style `SKILL.md` end-to-end before running scripts or editing the repo.
 
 **Scripts** (when defined):
 
 ```bash
-bash <pkg-dir>/page/oi-stitch-ui/styles/<slug>/scripts/<script>
-python3 <pkg-dir>/page/oi-stitch-ui/styles/<slug>/scripts/<script>
-npx tsx <pkg-dir>/page/oi-stitch-ui/styles/<slug>/scripts/<script>
+bash <skill-dir>/styles/<slug>/scripts/<script>
+python3 <skill-dir>/styles/<slug>/scripts/<script>
+npx tsx <skill-dir>/styles/<slug>/scripts/<script>
 ```
 
 ---
@@ -130,6 +130,6 @@ npx tsx <pkg-dir>/page/oi-stitch-ui/styles/<slug>/scripts/<script>
 
 | Placeholder | Example |
 |-------------|---------|
-| `<pkg-dir>` | `~/.agents/skills/oi-skills` |
-| Catalog | `<pkg-dir>/page/oi-stitch-ui/styles/index.json` |
-| Style rules | `<pkg-dir>/page/oi-stitch-ui/styles/<slug>/SKILL.md` |
+| `<skill-dir>` | `~/.agents/skills/oi-stitch-ui` |
+| Catalog | `<skill-dir>/styles/index.json` |
+| Style rules | `<skill-dir>/styles/<slug>/SKILL.md` |

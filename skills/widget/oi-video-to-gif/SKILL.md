@@ -12,20 +12,20 @@ description: >-
 
 Convert **local** `.mp4` / `.mov` (and `.m4v` / `.webm`) to animated GIF via **ffmpeg** (palettegen + lanczos, optional transdiff). Optional **crop** (same rules as `oi-video-crop`) runs in the same pass before scaling.
 
-**Package path**: `<pkg-dir>/widget/oi-video-to-gif/` (e.g. `~/.agents/skills/oi-skills/widget/oi-video-to-gif`).
+**Skill path**: `<skill-dir>/` (e.g. `~/.agents/skills/oi-video-to-gif/widget/oi-video-to-gif`).
 
-**Scripts** (absolute paths): `<pkg-dir>/widget/oi-video-to-gif/scripts/check_env.py`, `.../video_to_gif.py`. Foreground only.
+**Scripts** (absolute paths): `<skill-dir>/scripts/check_env.py`, `.../video_to_gif.py`. Foreground only.
 
 ---
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-video-to-gif` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-video-to-gif` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-video-to-gif`), then ask what they want to accomplish.
 
 **Triggers:** `oi-video-to-gif`, mp4/mov to gif, 视频转 GIF, Video2Gif.
 
 **Quick start**
-1. `python3 <pkg-dir>/widget/oi-video-to-gif/scripts/check_env.py --json` → `--install` if needed.
+1. `python3 <skill-dir>/scripts/check_env.py --json` → `--install` if needed.
 2. `--info-only` / `--preview` before encode.
 3. Convert: `--sample-every` (抽帧等级 1=不抽帧), `--frame-delay`, `--scale`, `--loss`; optional crop flags like `oi-video-crop`.
 
@@ -106,7 +106,7 @@ Output width = `round(cropped_or_source_width × scale)` unless `--width` is set
 ## Step 0 — Environment check & auto-install (MANDATORY, first)
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-to-gif/scripts/check_env.py --json
+python3 <skill-dir>/scripts/check_env.py --json
 ```
 
 | `ready` | Action |
@@ -115,13 +115,13 @@ python3 <pkg-dir>/widget/oi-video-to-gif/scripts/check_env.py --json
 | `false` | Run auto-install below; do not wait for a manual menu first |
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-to-gif/scripts/check_env.py --install --json
+python3 <skill-dir>/scripts/check_env.py --install --json
 ```
 
 Or via main script:
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py --check-env --json
+python3 <skill-dir>/scripts/video_to_gif.py --check-env --json
 ```
 
 ---
@@ -137,7 +137,7 @@ Ask for a **local absolute path** (or `~/...`) to a video file or folder. Verify
 Probe and show the conversion plan before encoding:
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
+python3 <skill-dir>/scripts/video_to_gif.py \
   --info-only --json \
   "<VIDEO_PATH>"
 ```
@@ -145,7 +145,7 @@ python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
 With crop, add crop flags and use `--preview` to confirm filter without encoding:
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
+python3 <skill-dir>/scripts/video_to_gif.py \
   --preview --json \
   --axis "CENTER TOP" --crop-height 340 \
   "<VIDEO_PATH>"
@@ -173,7 +173,7 @@ Clarify with the user when not already stated:
 Single file (no crop):
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
+python3 <skill-dir>/scripts/video_to_gif.py \
   --sample-every 2 \
   --scale 1 \
   --loss 0 \
@@ -184,7 +184,7 @@ python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
 Crop + GIF（例：高度裁 340，`CENTER TOP`）:
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
+python3 <skill-dir>/scripts/video_to_gif.py \
   --axis "CENTER TOP" --crop-height 340 \
   --sample-every 2 --scale 0.7 --loss 0 \
   --json \
@@ -194,7 +194,7 @@ python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
 Folder batch:
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
+python3 <skill-dir>/scripts/video_to_gif.py \
   -r -o "<OUTPUT_DIR>" \
   --sample-every 2 --scale 0.7 --loss 0 \
   "<FOLDER_PATH>"
@@ -261,7 +261,7 @@ python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
 不抽帧 + 调速（最后一步 setpts，帧数不变）：
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
+python3 <skill-dir>/scripts/video_to_gif.py \
   --sample-every 1 --frame-delay 0.03 --scale 1 --loss 0 \
   --json ~/Movies/clip.mp4
 ```
@@ -269,7 +269,7 @@ python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
 抽帧 2（默认，不调速）+ 缩小宽度：
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
+python3 <skill-dir>/scripts/video_to_gif.py \
   --sample-every 2 --scale 0.7 --loss 0 \
   --json ~/Movies/clip.mp4
 ```
@@ -277,7 +277,7 @@ python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
 裁切后转 GIF：
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-to-gif/scripts/video_to_gif.py \
+python3 <skill-dir>/scripts/video_to_gif.py \
   --axis "CENTER TOP" --crop-height 340 \
   --sample-every 2 --scale 0.7 --loss 0 \
   --json ~/Movies/vertical.mp4

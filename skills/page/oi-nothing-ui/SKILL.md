@@ -12,7 +12,7 @@ allowed-tools: [Read, Write, Edit, Glob, Grep]
 
 **Author:** dominikmartn
 
-**Package path:** `<pkg-dir>/page/oi-nothing-ui/` (e.g. `~/.cursor/skills/oi-skills/page/oi-nothing-ui`).
+**Skill path:** `<skill-dir>/` (e.g. `~/.cursor/skills/oi-nothing-ui`).
 
 Reference specs: `styles/references/` (`tokens.md`, `components.md`, `platform-mapping.md`).
 
@@ -20,13 +20,13 @@ Reference specs: `styles/references/` (`tokens.md`, `components.md`, `platform-m
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-nothing-ui` or `@nothing-ui` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-nothing-ui` or `@nothing-ui` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-nothing-ui`), then ask what they want to accomplish.
 
 **Triggers:** `oi-nothing-ui`, `/oi-nothing-ui`, `nothing-ui`, `/nothing-ui`, `Nothing style`, `Nothing design`, `/nothing-design`, Nothing 风格 / 设计.
 
 **Quick start**
 1. Read this `SKILL.md` (philosophy, craft rules, workflow below).
-2. Load references as needed: `<pkg-dir>/page/oi-nothing-ui/styles/references/`.
+2. Load references as needed: `<skill-dir>/styles/references/`.
 3. Declare Google Fonts, ask dark/light, sketch three-layer hierarchy, then implement.
 
 **Example prompts**
@@ -211,9 +211,9 @@ Lead section → heaviest treatment. Secondary → different form. Tertiary → 
 
 | File | Path |
 |------|------|
-| Tokens | `<pkg-dir>/page/oi-nothing-ui/styles/references/tokens.md` |
-| Components | `<pkg-dir>/page/oi-nothing-ui/styles/references/components.md` |
-| Platform mapping | `<pkg-dir>/page/oi-nothing-ui/styles/references/platform-mapping.md` |
+| Tokens | `<skill-dir>/styles/references/tokens.md` |
+| Components | `<skill-dir>/styles/references/components.md` |
+| Platform mapping | `<skill-dir>/styles/references/platform-mapping.md` |
 
 ---
 

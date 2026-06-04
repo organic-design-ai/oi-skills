@@ -13,20 +13,20 @@ description: >-
 
 Stitch **local** images (`.png`, `.jpg`, `.jpeg`, `.webp`, `.bmp`, `.gif`, `.tif`) into one animated GIF via **ffmpeg**. Each frame keeps aspect ratio; smaller images are **letterboxed** on a fixed canvas with **black** (`#000000`) padding.
 
-**Package path**: `<pkg-dir>/widget/oi-images-to-gif/` (e.g. `~/.agents/skills/oi-skills/widget/oi-images-to-gif`).
+**Skill path**: `<skill-dir>/` (e.g. `~/.agents/skills/oi-images-to-gif/widget/oi-images-to-gif`).
 
-**Scripts** (absolute paths): `<pkg-dir>/widget/oi-images-to-gif/scripts/check_env.py`, `.../images_to_gif.py`. Foreground only.
+**Scripts** (absolute paths): `<skill-dir>/scripts/check_env.py`, `.../images_to_gif.py`. Foreground only.
 
 ---
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-images-to-gif` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-images-to-gif` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-images-to-gif`), then ask what they want to accomplish.
 
 **Triggers:** `oi-images-to-gif`, images/photos to gif, 多图转 GIF, 图片合成动图.
 
 **Quick start**
-1. `python3 <pkg-dir>/widget/oi-images-to-gif/scripts/check_env.py --json` → `--install` if needed.
+1. `python3 <skill-dir>/scripts/check_env.py --json` → `--install` if needed.
 2. `--info-only` / `--preview` before encode.
 3. Encode: ordered image paths or a folder; `--delay`, `--width`/`--height`, `--scale`.
 4. GIF lands on **Desktop** by default — no need to pass `--output` unless the user specifies a path.
@@ -68,7 +68,7 @@ Stitch **local** images (`.png`, `.jpg`, `.jpeg`, `.webp`, `.bmp`, `.gif`, `.tif
 ## Step 0 — Environment check & auto-install (MANDATORY, first)
 
 ```bash
-python3 <pkg-dir>/widget/oi-images-to-gif/scripts/check_env.py --json
+python3 <skill-dir>/scripts/check_env.py --json
 ```
 
 | `ready` | Action |
@@ -79,7 +79,7 @@ python3 <pkg-dir>/widget/oi-images-to-gif/scripts/check_env.py --json
 Or:
 
 ```bash
-python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py --check-env --json
+python3 <skill-dir>/scripts/images_to_gif.py --check-env --json
 ```
 
 ---
@@ -95,7 +95,7 @@ Supported: `.png`, `.jpg`, `.jpeg`, `.webp`, `.bmp`, `.gif`, `.tif`, `.tiff`.
 ## Step 2 — Plan (recommended)
 
 ```bash
-python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
+python3 <skill-dir>/scripts/images_to_gif.py \
   --info-only --json \
   --delay 1 --scale 1 \
   img1.png img2.jpg img3.png
@@ -104,7 +104,7 @@ python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
 Folder:
 
 ```bash
-python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
+python3 <skill-dir>/scripts/images_to_gif.py \
   --preview --json \
   --delay 0.5 --scale 0.6 \
   "/path/to/frames/"
@@ -129,7 +129,7 @@ Report: frame count, per-image size, canvas, output GIF size, delay, scale, **pl
 Default (Desktop + UUID filename, 1 s per frame):
 
 ```bash
-python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
+python3 <skill-dir>/scripts/images_to_gif.py \
   --delay 1 --scale 1 --loss 0 --json \
   ~/Pictures/a.png ~/Pictures/b.png ~/Pictures/c.png
 ```
@@ -137,7 +137,7 @@ python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
 Fixed canvas, custom path:
 
 ```bash
-python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
+python3 <skill-dir>/scripts/images_to_gif.py \
   --delay 0.5 --width 1280 --height 720 --scale 1 \
   --output ~/Desktop/my-deck.gif --json \
   ~/Pictures/frames/
@@ -146,7 +146,7 @@ python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
 Output directory only (UUID filename inside that folder):
 
 ```bash
-python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
+python3 <skill-dir>/scripts/images_to_gif.py \
   --delay 2 -o ~/Exports --json \
   ~/Pictures/*.png
 ```
@@ -201,14 +201,14 @@ python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
 默认：桌面 + UUID、1 秒、第一张图尺寸：
 
 ```bash
-python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
+python3 <skill-dir>/scripts/images_to_gif.py \
   --json frame_01.png frame_02.png frame_03.png
 ```
 
 0.5 秒间隔 + 整体 60%：
 
 ```bash
-python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
+python3 <skill-dir>/scripts/images_to_gif.py \
   --delay 0.5 --scale 0.6 --json \
   ~/Design/storyboard/
 ```
@@ -216,7 +216,7 @@ python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
 1280×720 画布、2 秒一帧（仍默认桌面输出）：
 
 ```bash
-python3 <pkg-dir>/widget/oi-images-to-gif/scripts/images_to_gif.py \
+python3 <skill-dir>/scripts/images_to_gif.py \
   --width 1280 --height 720 --delay 2 --json \
   ~/Exports/*.png
 ```

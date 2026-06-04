@@ -3,7 +3,7 @@ category: widget
 status: draft
 author: Alibaba Cloud Design
 
-description: One-line English summary for README / list-skills
+description: One-line English summary for README / npx skills --list
 description_zh: 一行中文说明
 
 triggers:

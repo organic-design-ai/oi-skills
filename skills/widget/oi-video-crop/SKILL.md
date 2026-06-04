@@ -11,20 +11,20 @@ description: >-
 
 Crop a **local** video with **ffmpeg** (width / height / both).
 
-**Package path**: `<pkg-dir>/widget/oi-video-crop/` (e.g. `~/.cursor/skills/oi-skills/widget/oi-video-crop`).
+**Skill path**: `<skill-dir>/` (e.g. `~/.cursor/skills/oi-video-crop`).
 
-**Scripts** (absolute paths): `<pkg-dir>/widget/oi-video-crop/scripts/check_env.py`, `.../video_crop.py`. Foreground only.
+**Scripts** (absolute paths): `<skill-dir>/scripts/check_env.py`, `.../video_crop.py`. Foreground only.
 
 ---
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-video-crop` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-video-crop` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-video-crop`), then ask what they want to accomplish.
 
 **Triggers:** `oi-video-crop`, 裁切/裁剪视频, crop width/height, ffmpeg crop, axis.
 
 **Quick start**
-1. `python3 <pkg-dir>/widget/oi-video-crop/scripts/check_env.py --json` → `--install` if needed.
+1. `python3 <skill-dir>/scripts/check_env.py --json` → `--install` if needed.
 2. `--info-only` for source size; `--preview` to confirm crop plan.
 3. Crop with `--input`, `--axis`, `--crop-width` / `--crop-height` (or `--dimension` + `--pixels`).
 
@@ -40,7 +40,7 @@ Crop a **local** video with **ffmpeg** (width / height / both).
 Before asking for a video, run:
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-crop/scripts/check_env.py --json
+python3 <skill-dir>/scripts/check_env.py --json
 ```
 
 | `ready` | Action |
@@ -54,7 +54,7 @@ python3 <pkg-dir>/widget/oi-video-crop/scripts/check_env.py --json
 2. Run in **foreground**:
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-crop/scripts/check_env.py --install --json
+python3 <skill-dir>/scripts/check_env.py --install --json
 ```
 
 This runs the platform’s preferred command (e.g. `brew install ffmpeg` on macOS). Re-check is included; stop when `ready: true`.
@@ -68,7 +68,7 @@ This runs the platform’s preferred command (e.g. `brew install ffmpeg` on macO
 Or check only (no install):
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-crop/scripts/video_crop.py --check-env --json
+python3 <skill-dir>/scripts/video_crop.py --check-env --json
 ```
 
 ---
@@ -84,7 +84,7 @@ Verify file exists.
 ## Step 2 — Current dimensions
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-crop/scripts/video_crop.py --input "<VIDEO_PATH>" --info-only
+python3 <skill-dir>/scripts/video_crop.py --input "<VIDEO_PATH>" --info-only
 ```
 
 Report e.g. **1080×1920** px, plus duration/codec if helpful.
@@ -120,7 +120,7 @@ Report e.g. **1080×1920** px, plus duration/codec if helpful.
 Run **preview** before final crop:
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-crop/scripts/video_crop.py \
+python3 <skill-dir>/scripts/video_crop.py \
   --input "<VIDEO_PATH>" \
   --axis "<AXIS>" \
   --crop-width <W> \
@@ -187,7 +187,7 @@ Ask before crop (unless user already chose):
 ## Step 6 — Execute crop
 
 ```bash
-python3 <pkg-dir>/widget/oi-video-crop/scripts/video_crop.py \
+python3 <skill-dir>/scripts/video_crop.py \
   --input "<VIDEO_PATH>" \
   --axis "<AXIS>" \
   --crop-width <W> \

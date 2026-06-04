@@ -10,7 +10,7 @@ description: >-
 
 **Author:** Leonxlnx
 
-**Package path:** `<pkg-dir>/page/oi-taste-ui/` (e.g. `~/.cursor/skills/oi-skills/page/oi-taste-ui`).
+**Skill path:** `<skill-dir>/` (e.g. `~/.cursor/skills/oi-taste-ui`).
 
 This skill bundles **12** specialized style guides under `styles/`. Catalog: `styles/index.json`.
 
@@ -18,13 +18,13 @@ This skill bundles **12** specialized style guides under `styles/`. Catalog: `st
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-taste-ui` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-taste-ui` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-taste-ui`), then ask what they want to accomplish.
 
 **Triggers:** `oi-taste-ui`, anti-slop, 高级感 / 品味 UI, or a named sub-style slug.
 
 **Quick start**
 1. Pick a **slug** under `styles/` (default: `taste-skill`) — see `styles/index.json`.
-2. Read `<pkg-dir>/page/oi-taste-ui/styles/<slug>/SKILL.md`.
+2. Read `<skill-dir>/styles/<slug>/SKILL.md`.
 3. Apply premium layout, typography, and motion rules when building or reviewing UI.
 
 **Example prompts**
@@ -50,7 +50,7 @@ This skill bundles **12** specialized style guides under `styles/`. Catalog: `st
 2. Otherwise read the catalog:
 
 ```bash
-python3 -c "import json; d=json.load(open('<pkg-dir>/page/oi-taste-ui/styles/index.json')); print('\n'.join(sorted(d)))"
+python3 -c "import json; d=json.load(open('<skill-dir>/styles/index.json')); print('\n'.join(sorted(d)))"
 ```
 
 3. If unclear, default to **`taste-skill`**.
@@ -78,8 +78,8 @@ Read and follow **only** the selected style files:
 
 | File | Path |
 |------|------|
-| Agent rules | `<pkg-dir>/page/oi-taste-ui/styles/<slug>/SKILL.md` |
-| Design intent (optional) | `<pkg-dir>/page/oi-taste-ui/styles/<slug>/DESIGN.md` |
+| Agent rules | `<skill-dir>/styles/<slug>/SKILL.md` |
+| Design intent (optional) | `<skill-dir>/styles/<slug>/DESIGN.md` |
 
 Do **not** mix multiple slugs unless the user explicitly requests it.
 
@@ -131,6 +131,6 @@ For `imagegen-*` or `image-to-code-skill` slugs:
 
 | Placeholder | Example |
 |-------------|---------|
-| `<pkg-dir>` | `~/.agents/skills/oi-skills` |
-| Style catalog | `<pkg-dir>/page/oi-taste-ui/styles/index.json` |
-| Style rules | `<pkg-dir>/page/oi-taste-ui/styles/<slug>/SKILL.md` |
+| `<skill-dir>` | `~/.agents/skills/oi-taste-ui` |
+| Style catalog | `<skill-dir>/styles/index.json` |
+| Style rules | `<skill-dir>/styles/<slug>/SKILL.md` |

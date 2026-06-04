@@ -7,12 +7,12 @@ description: "A radically minimal, blank-canvas interface built as a pure edge-t
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@codex` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@codex` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-awesome-ui`), then ask what they want to accomplish.
 
 **Triggers:** Style name **codex**, or parent **oi-awesome-ui** after slug is chosen.
 
 **Quick start**
-1. Parent: `<pkg-dir>/page/oi-awesome-ui/SKILL.md` — confirm slug **codex**.
+1. Parent: `<skill-dir>/SKILL.md` — confirm slug **codex**.
 2. Read this file + optional `DESIGN.md` in the same folder.
 3. Apply tokens, do/don't, and quality gates in the user's codebase.
 

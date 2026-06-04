@@ -27,7 +27,7 @@ description: >-
 
 提供 React 组件版（基于 `motion`）与无依赖的纯 HTML/CSS 版。
 
-**Package path**: `<pkg-dir>/animation/oi-text-effect/`
+**Skill path**: `<skill-dir>/`
 
 ## File structure
 
@@ -54,7 +54,7 @@ oi-text-effect/
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-text-effect` without a task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-text-effect` without a task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-text-effect`), then ask what they want to accomplish.
 
 **Triggers:** `oi-text-effect`, text effect, text animate, text reveal, blur in text, color sweep, hyper text, scramble text, 3d flip, morphing text, shimmer, typewriter effect, typing animation, 打字机动画, 文字逐字显示, 文字动效, magicui text-animate 等。
 
@@ -122,11 +122,11 @@ oi-text-effect/
 
 1. **尝试打开 Demo 文件**（可能成功也可能失败，都没关系）：
    ```bash
-   open "<pkg-dir>/animation/oi-text-effect/examples/text-effect-showcase.html"
+   open "<skill-dir>/examples/text-effect-showcase.html"
    ```
    注意：部分 IDE 沙箱环境（如 Cursor）无法调起系统浏览器，这是正常的，不要报错给用户。
 
-2. **无论 open 是否成功，都给用户这段友好引导**（根据实际路径替换 `<pkg-dir>`）：
+2. **无论 open 是否成功，都给用户这段友好引导**（根据实际路径替换 `<skill-dir>`）：
 
    > 我帮你准备了一个动效样板页，里面有 23 种文字动效可以直接看效果~
    >
@@ -261,13 +261,13 @@ oi-text-effect/
 
 ## Demo & Examples
 
-- `<pkg-dir>/animation/oi-text-effect/examples/text-effect-showcase.html` — 23 种效果 + Playground 一站式预览
-- `<pkg-dir>/animation/oi-text-effect/examples/TextAnimate.jsx` — 分段进入 React 组件
-- `<pkg-dir>/animation/oi-text-effect/examples/DiaTextReveal.jsx` — 扫光 React 组件
-- `<pkg-dir>/animation/oi-text-effect/examples/HyperText.jsx` — 乱码解密 React 组件
-- `<pkg-dir>/animation/oi-text-effect/examples/Text3DFlip.jsx` — 3D 翻转 React 组件
-- `<pkg-dir>/animation/oi-text-effect/examples/MorphingText.jsx` — 变形 React 组件
-- `<pkg-dir>/animation/oi-text-effect/examples/TextShimmer.jsx` — 流光 React 组件
-- `<pkg-dir>/animation/oi-text-effect/examples/TextType.jsx` — 打字机 React 组件
-- `<pkg-dir>/animation/oi-text-effect/examples/TextShiftWords.jsx` — 词组轮播打字机 React 组件
-- `<pkg-dir>/animation/oi-text-effect/examples/react-demo.jsx` — 全部变体使用示例
+- `<skill-dir>/examples/text-effect-showcase.html` — 23 种效果 + Playground 一站式预览
+- `<skill-dir>/examples/TextAnimate.jsx` — 分段进入 React 组件
+- `<skill-dir>/examples/DiaTextReveal.jsx` — 扫光 React 组件
+- `<skill-dir>/examples/HyperText.jsx` — 乱码解密 React 组件
+- `<skill-dir>/examples/Text3DFlip.jsx` — 3D 翻转 React 组件
+- `<skill-dir>/examples/MorphingText.jsx` — 变形 React 组件
+- `<skill-dir>/examples/TextShimmer.jsx` — 流光 React 组件
+- `<skill-dir>/examples/TextType.jsx` — 打字机 React 组件
+- `<skill-dir>/examples/TextShiftWords.jsx` — 词组轮播打字机 React 组件
+- `<skill-dir>/examples/react-demo.jsx` — 全部变体使用示例

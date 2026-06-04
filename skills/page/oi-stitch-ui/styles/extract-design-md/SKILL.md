@@ -11,12 +11,12 @@ files, without needing to build or render the application.
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@extract-design-md` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@extract-design-md` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-stitch-ui`), then ask what they want to accomplish.
 
 **Triggers:** **extract-design-md**, or parent **oi-stitch-ui** when this workflow matches.
 
 **Quick start**
-1. Parent: `<pkg-dir>/page/oi-stitch-ui/SKILL.md`.
+1. Parent: `<skill-dir>/SKILL.md`.
 2. Follow steps in this file; artifacts live in project **`design/`**.
 3. **Summary:** DESIGN.md from source code
 
@@ -28,7 +28,7 @@ files, without needing to build or render the application.
 
 ## Why This Exists
 
-The `design-md` (`<pkg-dir>/page/oi-stitch-ui/styles/design-md/SKILL.md`) works from rendered HTML. But often you have a codebase
+The `design-md` (`<skill-dir>/styles/design-md/SKILL.md`) works from rendered HTML. But often you have a codebase
 and want to understand its design system before you can even run the app —
 maybe dependencies are missing, the build is broken, or you just want a quick
 audit. This skill reads the source files themselves: stylesheets, component
@@ -102,11 +102,11 @@ Also check for:
 
 Consult the appropriate reference for extraction patterns:
 
-- **React / Next.js / Tailwind** → [references/react-tailwind.md](<pkg-dir>/page/oi-stitch-ui/styles/extract-design-md/references/react-tailwind.md)
-- **Vue / Nuxt** → [references/vue.md](<pkg-dir>/page/oi-stitch-ui/styles/extract-design-md/references/vue.md)
-- **Svelte / SvelteKit** → [references/svelte.md](<pkg-dir>/page/oi-stitch-ui/styles/extract-design-md/references/svelte.md)
-- **Angular** → [references/angular.md](<pkg-dir>/page/oi-stitch-ui/styles/extract-design-md/references/angular.md)
-- **Plain CSS / SASS / Less** → [references/plain-css.md](<pkg-dir>/page/oi-stitch-ui/styles/extract-design-md/references/plain-css.md)
+- **React / Next.js / Tailwind** → [references/react-tailwind.md](<skill-dir>/styles/extract-design-md/references/react-tailwind.md)
+- **Vue / Nuxt** → [references/vue.md](<skill-dir>/styles/extract-design-md/references/vue.md)
+- **Svelte / SvelteKit** → [references/svelte.md](<skill-dir>/styles/extract-design-md/references/svelte.md)
+- **Angular** → [references/angular.md](<skill-dir>/styles/extract-design-md/references/angular.md)
+- **Plain CSS / SASS / Less** → [references/plain-css.md](<skill-dir>/styles/extract-design-md/references/plain-css.md)
 
 These references contain framework-specific patterns for locating colors,
 typography, spacing, and component styles. Read the one that matches before
@@ -278,11 +278,11 @@ Assemble everything into the standard DESIGN.md format. Place it at
 if it doesn't exist).
 
 > [!IMPORTANT]
-> You **MUST** include the YAML frontmatter at the top of the file with `name` and `colors` mapping, exactly as shown in the example at [examples/DESIGN.md](<pkg-dir>/page/oi-stitch-ui/styles/extract-design-md/examples/DESIGN.md). This structured data is required for other skills to parse the design system.
+> You **MUST** include the YAML frontmatter at the top of the file with `name` and `colors` mapping, exactly as shown in the example at [examples/DESIGN.md](<skill-dir>/styles/extract-design-md/examples/DESIGN.md). This structured data is required for other skills to parse the design system.
 >
 > Failure to include this YAML block with at least the core color tokens is a failure to use this skill correctly.
 
-Use the format from the example at [examples/DESIGN.md](<pkg-dir>/page/oi-stitch-ui/styles/extract-design-md/examples/DESIGN.md) as your template. The file must start with the YAML block, followed by the markdown sections:
+Use the format from the example at [examples/DESIGN.md](<skill-dir>/styles/extract-design-md/examples/DESIGN.md) as your template. The file must start with the YAML block, followed by the markdown sections:
 
 ```markdown
 # Design System: [Project Name]
@@ -327,7 +327,7 @@ Use the format from the example at [examples/DESIGN.md](<pkg-dir>/page/oi-stitch
 
 If the user wants tokens applied in the repo:
 
-1. Hand off to `manage-design-system` (`<pkg-dir>/page/oi-stitch-ui/styles/manage-design-system/SKILL.md`)
+1. Hand off to `manage-design-system` (`<skill-dir>/styles/manage-design-system/SKILL.md`)
 2. Map `design/DESIGN.md` to Tailwind/CSS theme files
 
 If the document alone is enough, stop after Phase 3.

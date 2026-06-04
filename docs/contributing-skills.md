@@ -45,14 +45,12 @@ Override only when a specific contributor owns the skill (e.g. `author: Haihang`
 ## Steps
 
 1. Create `skills/<category>/oi-<name>/` with `SKILL.md` + `skill.yaml` (`name:` in frontmatter = folder name, e.g. `oi-my-skill`).
-2. `./scripts/list-skills.sh` — verify it appears in the manifest.
-3. `./scripts/install-to-agent.sh --all -y -g` — default `~/.agents/skills`, or pick `.cursor` / `.qoder` / `.claude` in the TTY menu.
+2. `npx skills add organic-design-ai/oi-skills --list` — verify the package lists your skill (after merge/publish).
+3. Local test (global): `cd .. && npx skills add ./oi-skills --all -y -g`
 4. If you use Claude Code registration, add a row to [templates/AGENTS.snippet.md](./templates/AGENTS.snippet.md) (`<!-- OI_SKILLS -->` block).
 5. Update root [README.md](../README.md) skill table if the skill is user-facing.
 
-Install target: `<agent-dir>/skills/oi-skills/<category>/<name>/` plus package `oi-skills/SKILL.md` (default agent-dir: `.agents`).
-
-Non-interactive install: `OI_SKILLS_AGENT=cursor ./scripts/install-to-agent.sh --global -y` or `./scripts/install-to-agent.sh --args --all -y -g`
+Install target: `<agent-dir>/skills/oi-<name>/` (one folder per skill; catalog in [docs/package/SKILL.md](./package/SKILL.md)).
 
 ## Categories
 

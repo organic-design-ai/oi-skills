@@ -5,7 +5,7 @@ Every skill **must** include a `## Usage` section near the top (after title/intr
 ```markdown
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@<skill-name>` without a task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@<skill-name>` without a task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-my-skill`), then ask what they want to accomplish.
 
 **Triggers:** …
 

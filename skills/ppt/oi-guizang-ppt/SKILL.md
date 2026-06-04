@@ -12,7 +12,7 @@ description: >-
 
 生成**单文件 HTML**横向翻页 PPT。风格 A：电子杂志 × 电子墨水；风格 B：瑞士国际主义。
 
-**Package path**: `<pkg-dir>/ppt/oi-guizang-ppt/` (e.g. `~/.agents/skills/oi-skills/ppt/oi-guizang-ppt`).
+**Skill path**: `<skill-dir>/` (e.g. `~/.agents/skills/oi-guizang-ppt/ppt/oi-guizang-ppt`).
 
 **Assets**: `assets/template.html`, `assets/template-swiss.html`, `references/*`, `scripts/validate-swiss-deck.mjs`.
 
@@ -21,15 +21,15 @@ description: >-
 ## Usage
 
 > **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-guizang-ppt`
-> without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed
+> without a concrete task), **reply with this section** (replace `<skill-dir>` with the installed
 > package path), then ask what they want to accomplish.
 
 **Triggers:** `oi-guizang-ppt`, 杂志风 PPT, 瑞士风, Swiss Style, horizontal swipe deck, 网页 PPT.
 
 **Quick start**
 1. Step 1 澄清：风格 A 或 B、受众、页数、主题色、图片素材。
-2. 拷贝模板：`cp <pkg-dir>/ppt/oi-guizang-ppt/assets/template.html 项目/ppt/index.html`（或 `template-swiss.html`）。
-3. 按 `references/layouts.md` 或 `layouts-swiss.md` 填 slide；风格 B 交付前运行 `node <pkg-dir>/ppt/oi-guizang-ppt/scripts/validate-swiss-deck.mjs index.html`。
+2. 拷贝模板：`cp <skill-dir>/assets/template.html 项目/ppt/index.html`（或 `template-swiss.html`）。
+3. 按 `references/layouts.md` 或 `layouts-swiss.md` 填 slide；风格 B 交付前运行 `node <skill-dir>/scripts/validate-swiss-deck.mjs index.html`。
 
 **Example prompts**
 - 「杂志风分享 PPT，墨水经典主题，15 分钟」
@@ -191,10 +191,10 @@ description: >-
 mkdir -p "项目/XXX/ppt/images"
 
 # 风格 A · 电子杂志风
-cp "<pkg-dir>/ppt/oi-guizang-ppt/assets/template.html" "项目/XXX/ppt/index.html"
+cp "<skill-dir>/assets/template.html" "项目/XXX/ppt/index.html"
 
 # 或 风格 B · 瑞士国际主义风
-cp "<pkg-dir>/ppt/oi-guizang-ppt/assets/template-swiss.html" "项目/XXX/ppt/index.html"
+cp "<skill-dir>/assets/template-swiss.html" "项目/XXX/ppt/index.html"
 ```
 
 两个 `template*.html` 都是**完整可运行**的文件——CSS、WebGL shader、翻页 JS、字体/图标 CDN 全已预设好,只有 `<!-- SLIDES_HERE -->` 占位符等待你填充 slide 内容。
@@ -349,7 +349,7 @@ cp "<pkg-dir>/ppt/oi-guizang-ppt/assets/template-swiss.html" "项目/XXX/ppt/ind
 - 如果用户说"测试模板 / 看看效果 / 多一点版式",必须覆盖:一个封面、一个收尾、至少 1 个对比或时间线(S08/S11/S02)、至少 1 个结构图(S14/S17/S15)、至少 1 个图片版式(S22 或 S15/S16 图片格改造)。
 - 不允许连续 3 页使用同一种主体结构,例如连续三页 `head + grid + card`。
 - 图片页不能偷懒发明新结构。2-3 张图时,用 S15/S16 的原始网格骨架改造成图片格;单张大图用 S22。
-- 开写 HTML 前先列一张 `页码 → data-layout → 选用理由 → 图片槽位` 草稿;交付前运行 `node <pkg-dir>/ppt/oi-guizang-ppt/scripts/validate-swiss-deck.mjs index.html`。
+- 开写 HTML 前先列一张 `页码 → data-layout → 选用理由 → 图片槽位` 草稿;交付前运行 `node <skill-dir>/scripts/validate-swiss-deck.mjs index.html`。
 
 #### 3.2 · 图片比例规范
 

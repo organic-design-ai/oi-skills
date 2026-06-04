@@ -6,16 +6,16 @@ description: Walkthrough videos from design/pages screenshots using Remotion tem
 
 Use images in `design/pages/` or `design/screenshots/`.
 
-Checklist: [<pkg-dir>/page/oi-stitch-ui/styles/remotion/resources/composition-checklist.md](<pkg-dir>/page/oi-stitch-ui/styles/remotion/resources/composition-checklist.md).
-Example: [<pkg-dir>/page/oi-stitch-ui/styles/remotion/examples/WalkthroughComposition.tsx](<pkg-dir>/page/oi-stitch-ui/styles/remotion/examples/WalkthroughComposition.tsx).
+Checklist: [<skill-dir>/styles/remotion/resources/composition-checklist.md](<skill-dir>/styles/remotion/resources/composition-checklist.md).
+Example: [<skill-dir>/styles/remotion/examples/WalkthroughComposition.tsx](<skill-dir>/styles/remotion/examples/WalkthroughComposition.tsx).
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@remotion` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@remotion` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-stitch-ui`), then ask what they want to accomplish.
 
 **Triggers:** **remotion**, or parent **oi-stitch-ui** when this workflow matches.
 
 **Quick start**
-1. Parent: `<pkg-dir>/page/oi-stitch-ui/SKILL.md`.
+1. Parent: `<skill-dir>/SKILL.md`.
 2. Follow steps in this file; artifacts live in project **`design/`**.
 3. **Summary:** Walkthrough video from screenshots
 

@@ -8,12 +8,12 @@ Turn user intent into **implementable UI** in the project codebase. No external 
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@generate-design` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@generate-design` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-stitch-ui`), then ask what they want to accomplish.
 
 **Triggers:** **generate-design**, or parent **oi-stitch-ui** when this workflow matches.
 
 **Quick start**
-1. Parent: `<pkg-dir>/page/oi-stitch-ui/SKILL.md`.
+1. Parent: `<skill-dir>/SKILL.md`.
 2. Follow steps in this file; artifacts live in project **`design/`**.
 3. **Summary:** Prompt + implement UI in codebase
 
@@ -32,9 +32,9 @@ Turn user intent into **implementable UI** in the project codebase. No external 
 ## Steps
 
 1. Read `design/DESIGN.md` if present; else run `manage-design-system` or `taste-design`.
-2. Enhance prompt using [<pkg-dir>/page/oi-stitch-ui/styles/generate-design/references/design-mappings.md](<pkg-dir>/page/oi-stitch-ui/styles/generate-design/references/design-mappings.md) and [<pkg-dir>/page/oi-stitch-ui/styles/generate-design/references/prompt-keywords.md](<pkg-dir>/page/oi-stitch-ui/styles/generate-design/references/prompt-keywords.md).
+2. Enhance prompt using [<skill-dir>/styles/generate-design/references/design-mappings.md](<skill-dir>/styles/generate-design/references/design-mappings.md) and [<skill-dir>/styles/generate-design/references/prompt-keywords.md](<skill-dir>/styles/generate-design/references/prompt-keywords.md).
 3. Implement in the user's framework.
-4. Example: [<pkg-dir>/page/oi-stitch-ui/styles/generate-design/examples/enhanced-prompt.md](<pkg-dir>/page/oi-stitch-ui/styles/generate-design/examples/enhanced-prompt.md).
+4. Example: [<skill-dir>/styles/generate-design/examples/enhanced-prompt.md](<skill-dir>/styles/generate-design/examples/enhanced-prompt.md).
 
 ## PAGE STRUCTURE template
 

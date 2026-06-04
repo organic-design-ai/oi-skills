@@ -9,7 +9,7 @@ description: >-
 
 **Author:** Bergside
 
-**Package path:** `<pkg-dir>/page/oi-awesome-ui/` (e.g. `~/.cursor/skills/oi-skills/page/oi-awesome-ui`).
+**Skill path:** `<skill-dir>/` (e.g. `~/.cursor/skills/oi-awesome-ui`).
 
 This skill bundles **62** self-contained style guides. Each style has agent instructions (`SKILL.md`) and a human companion (`DESIGN.md`). Catalog: `styles/index.json`.
 
@@ -17,13 +17,13 @@ This skill bundles **62** self-contained style guides. Each style has agent inst
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-awesome-ui` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-awesome-ui` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-awesome-ui`), then ask what they want to accomplish.
 
 **Triggers:** `oi-awesome-ui`, named visual style (glassmorphism, minimal, bento, …), 设计风格 / 设计系统风格.
 
 **Quick start**
 1. Map user intent to a **slug** (kebab-case) or list catalog: `page/oi-awesome-ui/styles/index.json`.
-2. Read `<pkg-dir>/page/oi-awesome-ui/styles/<slug>/SKILL.md` (+ optional `DESIGN.md`).
+2. Read `<skill-dir>/styles/<slug>/SKILL.md` (+ optional `DESIGN.md`).
 3. Implement UI in the user's stack using that style's tokens and rules.
 
 **Example prompts**
@@ -49,7 +49,7 @@ This skill bundles **62** self-contained style guides. Each style has agent inst
 2. Otherwise, read the catalog:
 
 ```bash
-python3 -c "import json; d=json.load(open('<pkg-dir>/page/oi-awesome-ui/styles/index.json')); print('\n'.join(sorted(d)))"
+python3 -c "import json; d=json.load(open('<skill-dir>/styles/index.json')); print('\n'.join(sorted(d)))"
 ```
 
 3. Offer **2–3** slugs that fit the product (SaaS → `clean`, `professional`, `shadcn`; creative → `artistic`, `expressive`; luxury → `luxury`, `elegant`).
@@ -65,8 +65,8 @@ Read and follow **only** the selected style files:
 
 | File | Path |
 |------|------|
-| Agent rules | `<pkg-dir>/page/oi-awesome-ui/styles/<slug>/SKILL.md` |
-| Design intent (optional) | `<pkg-dir>/page/oi-awesome-ui/styles/<slug>/DESIGN.md` |
+| Agent rules | `<skill-dir>/styles/<slug>/SKILL.md` |
+| Design intent (optional) | `<skill-dir>/styles/<slug>/DESIGN.md` |
 
 **Rules:**
 
@@ -99,6 +99,6 @@ Read and follow **only** the selected style files:
 
 | Placeholder | Example |
 |-------------|---------|
-| `<pkg-dir>` | `~/.agents/skills/oi-skills` |
-| Style catalog | `<pkg-dir>/page/oi-awesome-ui/styles/index.json` |
-| Style rules | `<pkg-dir>/page/oi-awesome-ui/styles/<slug>/SKILL.md` |
+| `<skill-dir>` | `~/.agents/skills/oi-awesome-ui` |
+| Style catalog | `<skill-dir>/styles/index.json` |
+| Style rules | `<skill-dir>/styles/<slug>/SKILL.md` |

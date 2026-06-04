@@ -8,12 +8,12 @@ Extract a self-contained static HTML file from any web application.
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@extract-static-html` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@extract-static-html` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-stitch-ui`), then ask what they want to accomplish.
 
 **Triggers:** **extract-static-html**, or parent **oi-stitch-ui** when this workflow matches.
 
 **Quick start**
-1. Parent: `<pkg-dir>/page/oi-stitch-ui/SKILL.md`.
+1. Parent: `<skill-dir>/SKILL.md`.
 2. Follow steps in this file; artifacts live in project **`design/`**.
 3. **Summary:** Static HTML from running app
 
@@ -67,7 +67,7 @@ Launches headless Chrome, captures the fully rendered DOM, and produces a self-c
 
 2.  **Run the Snapshot Script**:
     ```bash
-    npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/snapshot.ts \
+    npx tsx <skill-dir>/styles/extract-static-html/scripts/snapshot.ts \
       --url http://localhost:5173 \
       --output design/home.html \
       --wait 2000
@@ -75,11 +75,11 @@ Launches headless Chrome, captures the fully rendered DOM, and produces a self-c
 
 3.  **Multiple pages** — run once per route:
     ```bash
-    npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/snapshot.ts \
+    npx tsx <skill-dir>/styles/extract-static-html/scripts/snapshot.ts \
       --url http://localhost:5173 --output design/home.html --wait 2000
-    npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/snapshot.ts \
+    npx tsx <skill-dir>/styles/extract-static-html/scripts/snapshot.ts \
       --url http://localhost:5173/pricing --output design/pricing.html --wait 2000
-    npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/snapshot.ts \
+    npx tsx <skill-dir>/styles/extract-static-html/scripts/snapshot.ts \
       --url http://localhost:5173/dashboard --output design/dashboard.html --wait 2000 --html-class dark
     ```
 
@@ -163,7 +163,7 @@ Use when you need to **interact with the page** (click buttons, fill forms, navi
 ### Quick Reference
 
 ```bash
-npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/extract_inline_html.ts \
+npx tsx <skill-dir>/styles/extract-static-html/scripts/extract_inline_html.ts \
   --index-css src/css/App.css \
   --extra-css index.html \
   --outdir design \
@@ -186,6 +186,6 @@ npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/extract_i
 
 Inline local images:
 ```bash
-npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/post_process.ts \
+npx tsx <skill-dir>/styles/extract-static-html/scripts/post_process.ts \
   design/Page.html --base-dir <app-directory>
 ```
