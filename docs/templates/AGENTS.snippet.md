@@ -18,7 +18,7 @@ Each skill installs separately under `{skill-dir}/oi-<name>/` (e.g. `~/.agents/s
 | oi-guizang-ppt | oi-guizang-ppt, magazine ppt, swiss style ppt, horizontal swipe deck, 杂志风 ppt, 瑞士风 ppt, 网页 ppt | `{skill-dir}/oi-guizang-ppt/SKILL.md` |
 | oi-text-effect | oi-text-effect, text effect, text animate, typewriter effect, typing animation, 文字动效, 打字机动画, 文字逐字显示 | `{skill-dir}/oi-text-effect/SKILL.md` |
 | oi-nameslink-ui | oi-nameslink-ui, nameslink-ui, nameslink style, nameslink design, Nameslink style, Nameslink design, Nameslink 风格, Nameslink 设计系统 | `{skill-dir}/oi-nameslink-ui/SKILL.md` |
-| oi-qwencloud-ui | oi-qwencloud-ui, qwencloud-ui, qwen cloud style, qwen cloud design, Qwen Cloud style, Qwen Cloud design, 千问云风格, Qwen Cloud 设计系统 | `{skill-dir}/oi-qwencloud-ui/SKILL.md` |
+| oi-qwencloud-ui | oi-qwencloud-ui, qwencloud-ui, qwen cloud ui, qwen cloud style, qwen cloud design, qwencloud style, qwencloud design, Qwen Cloud style, Qwen Cloud design, QwenCloud style, QwenCloud design, Qwen Cloud 风格, Qwen Cloud 设计系统 | `{skill-dir}/oi-qwencloud-ui/SKILL.md` |
 
 > `{skill-dir}` = e.g. `~/.agents/skills`, `~/.cursor/skills`, or `~/.claude/skills`.
 

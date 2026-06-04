@@ -13,11 +13,16 @@ description_zh: >-
 triggers:
   - oi-qwencloud-ui
   - qwencloud-ui
+  - qwen cloud ui
   - qwen cloud style
   - qwen cloud design
   - Qwen Cloud style
   - Qwen Cloud design
-  - 千问云风格
+  - qwencloud style
+  - qwencloud design
+  - QwenCloud style
+  - QwenCloud design
+  - Qwen Cloud 风格
   - Qwen Cloud 设计系统
 
 requires: []

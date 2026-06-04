@@ -42,7 +42,7 @@ Reference specs: `references/` (`tokens.md`, `components.md`, `icons.md`, `asset
 
 > **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-qwencloud-ui` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-qwencloud-ui`), then ask what they want to accomplish.
 
-**Triggers:** `oi-qwencloud-ui`, `qwencloud-ui`, Qwen Cloud style, Qwen Cloud design, 千问云 / Qwen Cloud 风格.
+**Triggers:** `oi-qwencloud-ui`, `qwencloud-ui`, qwen cloud ui, qwen cloud / qwencloud / Qwen Cloud / QwenCloud style & design, Qwen Cloud 风格 / 设计系统.
 
 **Quick start**
 1. Read this `SKILL.md` (philosophy, workflow, anti-patterns).
