@@ -1,6 +1,6 @@
 # Qwen Cloud — Components
 
-Tokens: `references/tokens.md` (`--pt-*`). Icons/images: **manifest only** — `references/assets.md`.
+Tokens: `references/tokens.md` (`--pt-*`). Page-level composition (page shell, hero variants, section headers, grid tables, sidebar/reader patterns, sub-block vocabulary): **`references/layouts.md`** — read it before placing any component. Icons/images: `references/assets.md`.
 
 ## Principles
 
@@ -17,6 +17,8 @@ Grid: 3 × 2. Assets: `flower_01` – `flower_06`.
 - One floral per page, full-bleed behind headline
 
 Mobile: 1 column.
+
+> Pick the appropriate **hero variant (A–H)** from `layouts.md` §2 before composing — the floral grid only applies to hero variants B and showcase blocks.
 
 ---
 
@@ -99,21 +101,14 @@ Quote · headline · body · name + title (bottom-right).
 
 ## Page chrome
 
-**Hero:** `neutral-100` bg, flat. Title 72/76; one `.grad` word.
+Page-level composition lives in **`layouts.md`** — page shell, container utilities (`.layout-max-wide` / `.layout-max-inner`), hero variants A–H, section header patterns A/B/C, grid table, filter rail, reader column, sub-block vocabulary, and the layout review checklist (§13).
 
-**Nav:** sticky, light frosted bar. No bottom border.
+Quick pointers when assembling a page:
 
-**Sections:** `.numbered` / `.numbered.is-tinted` alternate — tint is a subtle bg step, not a bordered box.
-
-**Theme toggle:** `sun-outlined` · `moon-outlined`.
-
----
-
-## Responsive
-
-1024px breakpoint. Desktop gutter 140px; mobile 10px. Grids collapse to 1 column.
-
-Max width 1920px.
+- **Nav:** sticky, frosted, no bottom border. Height 84 px desktop / 62 px mobile (`--pt-nav-backdrop-offset`).
+- **Section background steps:** alternate `neutral-50` ↔ `neutral-100` for visual rhythm — not bordered boxes.
+- **Theme toggle:** `sun-outlined` · `moon-outlined`.
+- **Breakpoint:** 1024 px; grids collapse to `1fr`; gutters 36 → 20 px (utilities handle it).
 
 ---
 
@@ -121,4 +116,4 @@ Max width 1920px.
 
 **Images:** CDN `Images.json` — `card_1–4.jpg` · `flower_01–06.jpg` (`assets.md`)
 
-**Icons:** CDN `Icons.json` — 48 outlined SVGs (`icons.md`)
+**Icons:** CDN `Icons.json` — 48 outlined SVGs; Tabler outlined as fallback for missing glyphs (`icons.md`)

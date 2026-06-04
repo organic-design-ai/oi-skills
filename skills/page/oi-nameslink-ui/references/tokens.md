@@ -186,3 +186,96 @@ Production: iconfont `5164327`. Brand kit: 67 CDN SVGs — see `icons.md` / `ass
 ## 9. Logo
 
 Wordmark uses `currentColor`. Nib uses `--pt-gradient-1` only. Do not flatten the nib to a solid.
+
+---
+
+## 10. Dark / Light mode
+
+Both modes are first-class. Token blocks live in `nameslink/src/css/token.css:2-94`. Mode is set on `<html data-prefers-color='light'|'dark'>`.
+
+```css
+html[data-prefers-color='dark']  { /* …tokens… */ }
+html[data-prefers-color='light'] { /* …tokens… */ }
+:root { /* mode-independent tokens (radius, spacing, gradients, fonts) */ }
+```
+
+### What inverts vs what stays constant
+
+| Group | Light | Dark | Behavior |
+|-------|-------|------|----------|
+| Neutral 50 | `#ffffff` (card surface) | `#000000` (card surface) | **Ladder inverts** — 50 stays "card surface" in both modes; hex flips |
+| Neutral 100 | `#f7f7f9` (canvas) | `#0d0d0e` (canvas) | Same — role preserved (Nameslink uses 100 as canvas, 50 as card; the opposite of most kits) |
+| Neutral 950 | `#000000` (ink) | `#ffffff` (ink) | Role preserved, hex flips |
+| Primary 50–950 | identical hex in both modes | identical | **Brand purple ramp is mode-constant** — `primary-50: #edefff` stays lavender wash in dark too |
+| `--pt-color-line1` | `#e9eaee` (light hairline) | `#1e1e20` (dark hairline) | Auto-inverts |
+
+### CTA inversion — the signature move
+
+| Token | Light | Dark |
+|-------|-------|------|
+| `--pt-cta-color-fill` | `neutral-950` (black) | `primary-550` (purple) |
+| `--pt-cta-color-fill-hover` | `primary-650` (purple) | `primary-650` (deeper purple) |
+| `--pt-cta-color-font-fill` | `neutral-50` (white) | `neutral-950` (white) |
+| `--pt-cta-secondary-color-fill` | `neutral-950` | `neutral-400` |
+| `--pt-cta-secondary-color-fill-hover` | `primary-150` (lavender wash) | `primary-850` (very dark purple) |
+| `--pt-cta-secondary-color-font-fill` | `primary-550` | `neutral-800` |
+
+**Light primary CTA:** black at rest → purple on hover. **Dark primary CTA:** purple at rest → deeper purple on hover. The "purple-on-interaction" feel is preserved across modes.
+
+### Shadow tokens differ per mode
+
+| Token | Light | Dark |
+|-------|-------|------|
+| `--pt-shadow-light` | `0 8px 24px rgba(83,91,107,0.04)` | `0 8px 24px rgba(0,0,0,0.22)` |
+| `--pt-shadow-normal` | `0 16px 40px rgba(83,91,107,0.10)` | `0 16px 40px rgba(0,0,0,0.38)` |
+
+Dark mode shadows are ~5× stronger (higher α) to remain visible against a near-black canvas. Don't use a single shadow value across modes.
+
+### Floor-bg specifics that flip per mode
+
+These are surface choices the audit found, not tokens — but they need explicit per-mode handling:
+
+| Surface | Light | Dark |
+|---------|-------|------|
+| Services floor bg | `bg-primary-50` (lavender wash, `#edefff`) | `bg-neutral-50` (no lavender on dark — would clash) |
+| Steps "lavender" card | `bg-primary-50` | `bg-primary-450` (`#7039f9` — bright purple card) |
+| Steps lavender card primary CTA | `bg-neutral-950 text-neutral-50` (black on lavender) | `bg-func-black text-func-white` (black on bright-purple — explicit override) |
+| Nav dropdown link color | `--pt-nav-dropdown-link-color: #0d0d0e` | `#ffffff` (explicit token override) |
+
+### Mode-constant tokens (do not depend on mode)
+
+These live in `:root` and resolve identically in both modes:
+
+- All radii (`--pt-radius-3xs … 2xl … full`)
+- All gradients (`--pt-gradient-1/2/3/nav-link/home-search-border/home-search-placeholder/card-bg`)
+- Type tokens (sizes + line-heights)
+- Layout widths (`--pt-layout-max-width`, `--pt-layout-max-inner`, `--pt-layout-max-read-box`)
+- Motion (`--pt-motion-fast: 0.25s`)
+- Footer height (`--pt-footer-bottom-height`)
+
+### Imagery per mode
+
+- **Hero JPG per mode:** `light_hero_1–3.jpg` ↔ `dark_hero_1–3.jpg` — pick the one matching `data-prefers-color`. The brand kit ships both light and dark posters specifically so heroes look right in both modes without overlay tricks.
+- **`card_bg.jpg`** (plan-pro background art) is mode-constant — works on both light and dark plan cards.
+- Inside-card photos / mini-card `img_01–03.jpg` are mode-constant.
+
+### Surface mapping (both modes)
+
+| Plane | `neutral-*` step | Used for |
+|-------|-----------------|----------|
+| Canvas | 100 | `.page` body; default floor bg |
+| Card surface | 50 | Borderless content cards (hero, services, plan, quick-nav, dock, steps) |
+| Subtle surface | 150 | Pill segmented track, chip bg, dropdown item hover |
+| Accent wash (light only) | `primary-50` | Services floor; mode-pill rack |
+
+The card surface uses `neutral-50` and the canvas uses `neutral-100` — that's the inverse of most kits. The visual rhythm (canvas → step up to card surface) survives in dark because the ramp flips correctly.
+
+### Implementation rules
+
+1. **Always implement both modes.** Ask which mode if not specified; verify in both before considering it done.
+2. **Use tokens, not raw hex.** Every `--pt-color-*` resolves correctly in both modes automatically. The few raw hexes in the codebase (mobile profile chip border `#E6E8EB`, user-menu trigger `#6940FF`) are tech debt — prefer tokens.
+3. **Don't hard-code light-mode literals in dark-mode overrides.** Trust the cascade.
+4. **Test contrast in both modes.** A `bg-primary-50` + `text-primary-550` chip must read in dark — primary-50 stays lavender (`#edefff`) and primary-550 stays brand purple, so contrast holds.
+5. **Borders use `--pt-color-line1` or the line tokens** which auto-invert. Don't reach for raw `neutral-200`.
+6. **Heading-on-canvas rule (`layouts.md` §2) holds in both modes.** Canvas means `neutral-100` — `#f7f7f9` in light, `#0d0d0e` in dark. The rule never overlays a giant heading on imagery in either mode.
+7. **For `prefers-color-scheme: dark` system preference:** mirror the `data-prefers-color='dark'` attribute on `<html>` to match. The brand kit doesn't expose a `@media (prefers-color-scheme)` block — the attribute is the single source of truth.

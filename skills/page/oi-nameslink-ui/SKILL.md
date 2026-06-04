@@ -12,11 +12,24 @@ description: >-
 
 **Skill path:** `<skill-dir>/` (e.g. `~/.cursor/skills/oi-nameslink-ui`).
 
-Reference specs: `references/` (`tokens.md`, `components.md`, `icons.md`, `assets.md`). Brand kit on CDN — see `assets.md`.
+Reference specs: `references/` (`tokens.md`, `components.md`, `layouts.md`, `icons.md`, `assets.md`). Brand kit on CDN — see `assets.md`.
 
 ---
 
 ## 核心约束（Agent 必守）
+
+### ★ 头号铁律 — 大标题永远不要压在视觉元素上
+
+**Playfair heading + subtitle are their own clean paragraph on canvas (`--pt-color-neutral-100`). The poster/photo/gradient lives in a SEPARATE rounded card below or beside. Two paragraphs, never one box.**
+
+- ❌ Wrong: `<div class="hero-card" style="background-image: poster.jpg"><h1>Playfair 64</h1></div>` — heading sitting over the poster
+- ✅ Right: `<HomeHeroHead>` (h1 + typewriter) on `bg-neutral-100`, **then** a separate `<HeroCard className="bg-neutral-50 rounded-[20px]">` below holding the absolute poster + trust strip + glass search
+- The same rule applies to every `home-section-title` (Playfair 40/54) — title sits on the floor's bg plane, cards/photos live in a row beneath
+- No `text-shadow`, no dark overlay "for legibility" — if a heading needs help reading, it's in the wrong place
+- Upper bound for text on imagery: **title-sm 20 px** (dock prompts, trust strip emphasis). Anything ≥36 px belongs on canvas
+- Imagery = photos, videos, flower/abstract/liquid renders, animated gradients. Stepped neutrals (`neutral-100`, `primary-50`, `gradient-card-bg`) are NOT imagery — headings on those are fine
+
+Full rule + DO/DON'T diagrams: `references/layouts.md` §2.
 
 ### 视觉气质：简洁 · 平白 · 弱描边 · 淡阴影
 
@@ -46,7 +59,7 @@ Reference specs: `references/` (`tokens.md`, `components.md`, `icons.md`, `asset
 
 **Quick start**
 1. Read this `SKILL.md` (philosophy, workflow, anti-patterns).
-2. Load specs on demand: `<skill-dir>/references/tokens.md`, `components.md`, `icons.md`, `assets.md`.
+2. Load specs on demand: `<skill-dir>/references/tokens.md`, `components.md`, `layouts.md`, `icons.md`, `assets.md`.
 3. Declare fonts (Inter, Playfair Display, Roboto Mono), ask light/dark, then implement with `--pt-*` tokens.
 
 **Example prompts**
@@ -106,9 +119,15 @@ Copy `--pt-*` values verbatim from `references/tokens.md`. Do not invent paralle
 
 ### 2.3 Layout
 
-- Grid base **4px**; desktop gutters **70px**, ≤1024px **20px**
-- Max width `min(100vw - 140px, 1920px)`
-- Section rhythm: wide vertical gaps (80–280px), not boxed sections
+Page-level composition lives in `references/layouts.md`. Highlights:
+
+- **Three container layers** (§1): outer `.layout-max-wide` (50-px gutter desktop, framed visuals) → inner `.layout-max-inner` (default for headings/grids/copy) → reader cap 768 px (long-form). Mobile gutters drop to 20 px.
+- **Heading-on-canvas rule (★ §2)** — Playfair H1 + subtitle live as their own clean paragraph on `neutral-100`; the rounded hero card with the poster lives BELOW with ≥32 px whitespace between. Never overlay big headings on imagery.
+- **Floor vertical rhythm:** `mt-20 / [120] / [140] / [170] / [280]`; tablet collapses to `mt-[70px]` / `[100px]`.
+- **Section title pattern (§4.1):** Playfair 40/54, `mb-15` (10 mobile).
+- **Card system (§5):** **borderless by default** — `bg-neutral-50 + rounded-[10/20/28]` with no border, no shadow unless interactive. Borders appear only on faq + why-choose list rules, mobile profile chip, tag outline variants, tertiary CTA.
+- **CTA inversion:** light primary = near-black at rest → purple hover; dark primary = purple → deeper purple.
+- **Breakpoint:** 1024 px; quick-nav uses container queries (only place).
 
 ### 2.4 Icons & assets (CDN)
 
@@ -140,34 +159,39 @@ All brand assets live on CDN — **not** in `<skill-dir>`. See `references/asset
 
 ## 4. Workflow
 
-1. **Declare fonts** — Inter, Playfair, Roboto Mono
+1. **Declare fonts** — Inter, Playfair (Roboto Mono not used in this codebase)
 2. **Ask mode** — light or dark (`data-prefers-color`)
-3. **Load tokens** — `references/tokens.md`
-4. **Compose** — `references/components.md` for buttons, cards, search, nav, plans
-5. **Manifests** — fetch `Icons.json` + `Images.json`; bind all icons/photos to manifest `href` / URLs (required)
-6. **Guideline** — open `Guideline.html` for visual QA on unfamiliar sections
-7. **Review** — checklist below
+3. **Load tokens** — `references/tokens.md` (includes Dark/Light mode section)
+4. **Pick layout** — `references/layouts.md`: container layer (§1) → hero arrangement (§2 — heading-on-canvas!) → floor (§4) → section header pattern (§4.3) → card archetype (§5)
+5. **Compose components** — `references/components.md` for buttons, cards, search, nav, plans
+6. **Manifests** — fetch `Icons.json` + `Images.json`; bind all icons/photos to manifest `href` / URLs (required); pick per-mode hero (`light_hero_*` / `dark_hero_*`)
+7. **Guideline** — open `Guideline.html` for visual QA on unfamiliar sections
+8. **Review** — checklist below + `layouts.md` §14
 
 ---
 
 ## 5. Reference files
 
-| File | Path |
-|------|------|
-| Tokens | `<skill-dir>/references/tokens.md` |
-| Components | `<skill-dir>/references/components.md` |
-| Icons | `<skill-dir>/references/icons.md` |
-| CDN assets | `<skill-dir>/references/assets.md` |
+| File | Path | Scope |
+|------|------|-------|
+| Tokens | `<skill-dir>/references/tokens.md` | Color, type, radius, motion, layout tokens + Dark/Light mode adaptation |
+| Components | `<skill-dir>/references/components.md` | Buttons, cards, glass-search, nav, plans, tags |
+| Layouts | `<skill-dir>/references/layouts.md` | Container layers, ★ heading-on-canvas rule, hero, floors, card archetypes, sub-blocks, CTAs |
+| Icons | `<skill-dir>/references/icons.md` | CDN SVG + iconfont rules |
+| CDN assets | `<skill-dir>/references/assets.md` | Image / icon manifest URLs |
 
 ---
 
 ## 6. Review checklist
 
-- [ ] `--pt-*` tokens used; CTA inversion matches mode
-- [ ] Flat cards — no shadow; borders only on tertiary/outline cases
-- [ ] ≤1 gradient text treatment per screen (plus logo nib)
-- [ ] Playfair limited to floors + plan price
+- [ ] **★ Heading on canvas, never on imagery** — title paragraph + visual paragraph are two separate boxes (`layouts.md` §2)
+- [ ] `--pt-*` tokens used; CTA inversion matches mode (light black→purple, dark purple→deeper purple)
+- [ ] Both light + dark verified — `data-prefers-color` set; per-mode hero JPG (`light_hero_*` / `dark_hero_*`)
+- [ ] Cards are borderless by default (`bg-neutral-50` + `rounded-[10/20/28]`); borders only on the listed list-rule cases (`layouts.md` §5.2)
+- [ ] ≤1 gradient text treatment per visible floor (plus logo nib)
+- [ ] Playfair scope: hero h1, section titles, plan/dock price, FAQ Q-label — never on body, cards, or nav
 - [ ] Hero/cards use JPG URLs from `Images.json` only (one hero per page)
 - [ ] Icons from `Icons.json` `href` only; `currentColor`, outlined, single kit per control
 - [ ] 简洁平白：弱描边、无重阴影、无渐变铺底
+- [ ] Page passes the layout checklist in `layouts.md` §14
 - [ ] `prefers-reduced-motion` respected

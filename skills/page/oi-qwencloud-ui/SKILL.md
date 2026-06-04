@@ -12,11 +12,23 @@ description: >-
 
 **Skill path:** `<skill-dir>/` (e.g. `~/.cursor/skills/oi-qwencloud-ui`).
 
-Reference specs: `references/` (`tokens.md`, `components.md`, `icons.md`, `assets.md`). Brand kit on CDN — see `assets.md`.
+Reference specs: `references/` (`tokens.md`, `components.md`, `layouts.md`, `icons.md`, `assets.md`). Brand kit on CDN — see `assets.md`.
 
 ---
 
 ## 核心约束（Agent 必守）
+
+### ★ 头号铁律 — 大标题永远不要压在视觉元素上
+
+**Title + subtitle are their own clean paragraph on white (`--pt-color-neutral-50`). The image/video/flower/gradient is a SEPARATE panel below or beside. Two paragraphs, never one box.**
+
+- ❌ Wrong: `<div class="hero-panel" style="background-image: flower.jpg"><h1>AI 驱动的…</h1></div>` — heading sitting over the flower
+- ✅ Right: `<header><h1>Ship the next</h1><p>subtitle</p><CTAs/></header>` on `neutral-50`, **then** a separate `<div class="hero-panel">image/video</div>` below with 48–64 px whitespace between
+- No `text-shadow`, no dark overlay "for legibility" — if a heading needs help reading, it's in the wrong place; move it up to the canvas paragraph
+- Upper bound for text on imagery: **title-lg 28 px** (small metric chips, captions). Anything ≥36 px belongs in the title paragraph on canvas
+- Only exception: era closing-CTA hero (`layouts.md` §2.5) — has an art-directed quiet video backdrop and centered 72 px h2. Don't generalize this to other heroes
+
+Full rule + DO/DON'T diagrams: `references/layouts.md` §2.
 
 ### 视觉气质：简洁 · 平白 · 弱描边 · 淡阴影
 
@@ -46,7 +58,7 @@ Reference specs: `references/` (`tokens.md`, `components.md`, `icons.md`, `asset
 
 **Quick start**
 1. Read this `SKILL.md` (philosophy, workflow, anti-patterns).
-2. Load specs: `<skill-dir>/references/tokens.md`, `components.md`, `icons.md`, `assets.md`.
+2. Load specs: `<skill-dir>/references/tokens.md`, `components.md`, `layouts.md`, `icons.md`, `assets.md`.
 3. Declare Inter + Roboto Mono, ask light/dark, implement with `--pt-*` tokens.
 
 **Example prompts**
@@ -90,7 +102,7 @@ Roboto Mono: see `references/tokens.md` § Typography.
 
 ### 2.1 Token namespace
 
-Use `--pt-*` from `references/tokens.md` verbatim. Spacing base: **2px** (`--pt-spacing-N` = N × 2px).
+Use `--pt-*` from `references/tokens.md` verbatim. **Spacing is literal px on a 2-px rhythm** — there is no `--pt-spacing-N` ladder. Pick from: `4 · 6 · 8 · 10 · 12 · 14 · 16 · 18 · 20 · 24 · 28 · 32 · 36 · 40 · 44 · 48 · 56 · 64 · 72 · 96 · 122 · 138`. See `references/layouts.md` §10.
 
 ### 2.2 Signature patterns
 
@@ -107,9 +119,17 @@ Use `--pt-*` from `references/tokens.md` verbatim. Spacing base: **2px** (`--pt-
 
 ### 2.3 Layout
 
-- Radius: cards/hero `24px` (`--pt-radius-md`); pills `999`
-- Max width `min(100vw - 140px, 1920px)`; inner `min(100vw - 280px, 1780px)`
-- Breakpoint **1024px**; mobile gutters **10px**
+Page-level composition lives in `references/layouts.md`. Highlights:
+
+- **Three container layers** (§1): `.layout-max-wide` (outer, ~140 px viewport gutter, for framed visuals) → `.layout-max-inner-wrap > .layout-max-inner` (inner, ~280 px gutter, **default** for headings/grids/copy) → reader (768 px cap, for prose). Never bypass.
+- **Heading on white, never on imagery** (§2): giant H1/H2 sits on `--pt-color-neutral-50` (canvas) or `--pt-color-neutral-100` (tinted floor). Photos/videos sit in their *own* framed panel below or beside. Only exception: era closing CTA (§2.3).
+- **9 hero variants A–I** (§3); **3 floor-head patterns A/B/C** + asymmetric D (§5); grid table at §7 — pull a row, don't invent.
+- **Card system** (§11): two equally first-class flavors — bordered (hairline `--pt-color-line-100` on canvas) and **borderless** (bg-step separation when sitting on a stepped panel). Decision tree §11.4. Eight internal recipes §11.2. Ten clean-flat signals §11.3.
+- **Radius vocabulary (5):** `full · xs · sm · md · lg` → 999 / 12 / 18 / 24 / 36 (§15).
+- **Section rhythm:** top-of-floor `96 / 122 / 138`; heading→body `48 / 60 / 64` (§1.5).
+- **Sticky offset:** `calc(var(--pt-nav-backdrop-offset) + 12px)` for rails; nav is 84 px desktop / 62 px mobile.
+- **Data-page interaction** (§17): models toolbar shares `height: 40 + radius-full` across all controls; search uses gradient mask-composite focus rim; popovers are borderless + `--pt-shadow-light`.
+- **Breakpoint:** 1024 px; mobile gutters 20 px (utilities handle it); grids collapse to `1fr`.
 
 ### 2.4 Icons & assets (CDN)
 
@@ -122,7 +142,7 @@ All brand assets live on CDN — **not** in `<skill-dir>`. See `references/asset
 | Images | `…/qwencloud/Images.json` → absolute JPG URLs |
 | Logo | Inline in Guideline |
 
-**Mandatory:** every icon and JPG from `Icons.json` / `Images.json` — no substitutes. React: `@ali/qwen-cloud-icons` when available; static HTML: CDN `href` from manifest. See `references/icons.md`.
+**Mandatory:** every JPG from `Images.json` — no substitutes. Icons: prefer `Icons.json` / `@ali/qwen-cloud-icons`; when a needed glyph is **not** in the 48-icon manifest, fall back to **Tabler outlined** (`stroke: 1.5`, `currentColor`). One kit per screen — manifest **or** Tabler, never mixed. See `references/icons.md`.
 
 **Dark mode icons in static HTML:** `filter: invert(1)` on `.qc-icon-img` where guideline specifies.
 
@@ -131,13 +151,16 @@ All brand assets live on CDN — **not** in `<skill-dir>`. See `references/asset
 ## 3. Anti-patterns
 
 - No purple glyph fill on icons (`currentColor` only)
-- No stock/placeholder images or icons outside `Images.json` / `Icons.json`
+- No stock/placeholder images; no icons outside `Icons.json` or Tabler-outlined fallback
 - No heavy shadow on cards; new work stays flat — 淡阴影 token only when Guideline requires legibility
 - No gradient button or card backgrounds
 - No multiple gradient words per screen
 - No badges + chips on the same card
 - No bounce easing; opacity/color only
-- Do not mix Lucide with this kit on the same screen
+- Do not mix icon kits on the same screen (manifest **or** Tabler, never both, never with Lucide/Heroicons/Feather)
+- No orphan spacing — values must land on the 2-px rhythm (`layouts.md` §9)
+- No invented column counts/gaps — pull from `layouts.md` §4 grid table
+- No new radius values outside the 5-token vocabulary (`layouts.md` §8)
 
 ---
 
@@ -146,21 +169,23 @@ All brand assets live on CDN — **not** in `<skill-dir>`. See `references/asset
 1. **Declare fonts** — Inter, Roboto Mono
 2. **Ask mode** — light or dark
 3. **Load tokens** — `references/tokens.md`
-4. **Compose** — `references/components.md` (hero, buttons, model card, pricing, forms, customer card)
-5. **Manifests** — fetch `Icons.json` + `Images.json`; bind all icons/photos to manifest URLs (required)
-6. **Guideline** — open `Guideline.html` for visual QA on unfamiliar sections
-7. **Review** — checklist below
+4. **Pick layout** — `references/layouts.md`: page shell (§1) → hero variant (§2) → section header pattern (§3) → grid from the §4 table → filter/reader if needed (§5–6)
+5. **Compose components** — `references/components.md` (buttons, model card, pricing, forms, customer card, sub-blocks)
+6. **Manifests** — fetch `Icons.json` + `Images.json`; bind all photos to manifest URLs (required); icons from manifest or Tabler fallback
+7. **Guideline** — open `Guideline.html` for visual QA on unfamiliar sections
+8. **Review** — checklist below + `layouts.md` §18
 
 ---
 
 ## 5. Reference files
 
-| File | Path |
-|------|------|
-| Tokens | `<skill-dir>/references/tokens.md` |
-| Components | `<skill-dir>/references/components.md` |
-| Icons | `<skill-dir>/references/icons.md` |
-| CDN assets | `<skill-dir>/references/assets.md` |
+| File | Path | Scope |
+|------|------|-------|
+| Tokens | `<skill-dir>/references/tokens.md` | Color, type, radius, motion, width tokens (`--pt-*`) |
+| Components | `<skill-dir>/references/components.md` | Buttons, cards, pricing, forms, customer card |
+| Layouts | `<skill-dir>/references/layouts.md` | Container layers, heading-on-white rule, heroes A–I, floor taxonomy, headers A/B/C, grids, sub-blocks, typography, card archetypes (bordered/borderless/featured-rim/media/tile/composite/form/overlay), data-page interaction |
+| Icons | `<skill-dir>/references/icons.md` | Manifest + Tabler fallback rules |
+| CDN assets | `<skill-dir>/references/assets.md` | Image / icon manifest URLs |
 
 ---
 
@@ -170,8 +195,12 @@ All brand assets live on CDN — **not** in `<skill-dir>`. See `references/asset
 - [ ] ≤1 gradient text word per screen (plus allowed tier border rim)
 - [ ] Cards and hero frames flat — no decorative shadow
 - [ ] Model primary vs secondary card backgrounds distinct
-- [ ] 48-icon kit only; `arrow-up-outlined` on primary CTA
+- [ ] `arrow-up-outlined` on primary CTA
 - [ ] `flower_*` / `card_*` URLs from `Images.json` only; one floral hero per page
-- [ ] Icons from `Icons.json` / `@ali/qwen-cloud-icons` only
+- [ ] Icons from `Icons.json` / `@ali/qwen-cloud-icons` first; Tabler outlined only as fallback
 - [ ] 简洁平白：弱描边、无重阴影、无渐变按钮/卡片底
-- [ ] Spacing uses `--pt-spacing-*` / margin-padding aliases
+- [ ] Spacing values land on the 2-px rhythm; grids/radii pull from `layouts.md` vocabulary
+- [ ] Heading sits on canvas/tinted floor — **never** on imagery (only exception: era closing CTA per `layouts.md` §2.3)
+- [ ] Card chosen via the §11.4 decision tree (bordered vs borderless; A–H archetypes); padding + radius from §11.5
+- [ ] Data-page (if applicable) passes the `layouts.md` §17.14 interaction-layer checklist
+- [ ] Page passes the layout checklist in `layouts.md` §18

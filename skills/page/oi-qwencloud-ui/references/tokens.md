@@ -75,43 +75,76 @@ Decoration accents (`--pt-color-accent-mint` etc.): stat dots only.
 
 ## Typography
 
+### Font families
+
 | Token | Role |
 |-------|------|
 | `--pt-font-base` | Inter + system sans |
 | `--pt-font-mono` | Roboto Mono — labels, pricing |
 | `--pt-font-code` | Consolas stack |
+| `--pt-font-{thin,light,regular,medium,semibold,bold}` | Weighted Inter families |
 
-Tracking: tight `-0.02em` (headings) · normal `0` · loose `0.02em` (body).
+### Tracking
+`--pt-letter-spacing-tight` `-0.02em` (headings) · `--pt-letter-spacing-normal` `0` (titles) · `--pt-letter-spacing-loose` `0.02em` (body, caption).
 
-Scale (size / line-height): heading-2xl 72/76 · heading-md 44/50 · title-lg 28/34 · title-md 24/30 · body-lg 18/24 · body-md 16/22 · body-sm 14/20 · caption-md 12/16
+### Size scale (size / line-height; px)
+| Token | Size | Use |
+|-------|-----:|-----|
+| `--pt-heading-font-size-3xl` | 96 | Hero display (rare) |
+| `--pt-heading-font-size-2xl` | 72 | Marketing hero h1 |
+| `--pt-heading-font-size-xl` | 64 | Tagline split hero (home) |
+| `--pt-heading-font-size-lg` | 60 | Centered intro hero (coding-plan, skills-detail) |
+| `--pt-heading-font-size-md` | 44 | Section heads, marketplace hero |
+| `--pt-heading-font-size-sm` | 36 | Legal page title, docs hero, compact h1 |
+| `--pt-title-font-size-lg` | 28 | Sub-section title |
+| `--pt-title-font-size-md` | 24 | Card title, legal subtitle |
+| `--pt-title-font-size-sm` | 20 | Legal sub-subtitle |
+| `--pt-body-font-size-lg` | 18 | Hero/section subtitle |
+| `--pt-body-font-size-md` | 16 | Body |
+| `--pt-body-font-size-sm` | 14 | Card meta, filter pills |
+| `--pt-body-font-size-xs` | 13 | Caption mono labels |
 
-Fluid: `--pt-heading-font-size-fluid-md`, `--pt-title-font-size-fluid-md` for responsive section titles.
+Each size has a matching `--pt-{heading|title|body}-line-height-*` and `--pt-{heading|title|body}-letter-spacing-*`.
+
+### Fluid
+`--pt-heading-font-size-fluid-md: clamp(36px, 8vw, 52px)` · `--pt-title-font-size-fluid-md: clamp(28px, 6vw, 40px)`. Use for responsive section titles.
 
 ---
 
 ## Spacing
 
-2 px base. `--pt-spacing-N` = N × 2 px (e.g. `12` = 24 px).
+**No spacing tokens.** This kit writes spacing as literal px on a 2-px rhythm. Pick from the working set:
 
-Common: `8` 16 px · `12` 24 px · `16` 32 px · `24` 48 px
+`4 · 6 · 8 · 10 · 12 · 14 · 16 · 18 · 20 · 24 · 28 · 32 · 36 · 40 · 44 · 48 · 56 · 64 · 72 · 96 · 122`
 
-Aliases (prefer these):
+Typical defaults (full table in `layouts.md` §9):
 
-| | sm | md | lg |
-|---|----|----|-----|
-| `--pt-margin-*` | 24 | 36 | 48 |
-| `--pt-padding-*` | 14 | 18 | 24 |
-| `--pt-gap-*` | 12 | 14 | 18 |
+| Context | px |
+|---------|---:|
+| Chip / inline gap | 8 |
+| Card inner row gap | 12 / 14 |
+| Grid card gap | 24 (default) · 18 (dense) · 36 (loose 4-col) |
+| Card padding | 24 / 28 / 32 |
+| Panel padding (gradient-card) | 60 44 desktop · 32 20 mobile |
+| Heading → grid | 48 / 60 |
+| Section → next section | 96 / 122 / 138 |
+| Outer page gutter | 36 desktop · 20 mobile (utilities) |
 
 ---
 
 ## Radius
 
+Working set (use these five):
+
 | Token | px | Typical use |
-|-------|----|-------------|
-| `--pt-radius-md` | 24 | Cards, hero frames |
-| `--pt-radius-xs` | 12 | Inner panels |
-| `--pt-radius-full` | 999 | Buttons, inputs, tags |
+|-------|---:|-------------|
+| `--pt-radius-full` | 999 | Buttons, inputs, tags, FABs, dots |
+| `--pt-radius-xs` | 12 | Inner panels, tool tiles, command boxes, notices |
+| `--pt-radius-sm` | 18 | Mid cards (marketplace, compare, pricing offer) |
+| `--pt-radius-md` | 24 | Standard cards, hero frames, gradient panels |
+| `--pt-radius-lg` | 36 | Full-bleed heroes, signup brand panel, era CTA |
+
+Also defined but rarely used: `--pt-radius-xl` 42 · `--pt-radius-2xl` 48 · `--pt-radius-2xs` 8 · `--pt-radius-3xs` 6 · `--pt-radius-4xs` 2. Don't reach for these unless the Guideline calls for them.
 
 Soft corners, not sharp. Pill for all CTAs.
 
@@ -135,9 +168,18 @@ Shadows exist as tokens but guideline runs flat (`none`). If depth is needed, st
 
 ## Layout
 
-`--pt-layout-limit-width` 1920px · max-width `min(100vw - 140px, 1920px)` · inner `min(100vw - 280px, 1780px)` · read box 640px
+| Token | Value | Use |
+|-------|-------|-----|
+| `--pt-layout-limit-width` | 1920px | Absolute cap |
+| `--pt-layout-max-width` | `min(100vw - 140px, 1920px)` | Outer / full-bleed (`.layout-max-wide`) |
+| `--pt-layout-max-inner` | `min(100vw - 280px, 1780px)` | Inner content (`.layout-max-inner`) |
+| `--pt-layout-max-read-box` | 768px | Reader column (legal, docs body, skills-detail) |
+| `--pt-nav-backdrop-offset` | 84px desktop · 62px mobile | Sticky offset for rails/heads |
+| `--pt-bulletin-height` / `--pt-bulletin-padding` | 306 / 70 (24 mobile) | Bulletin block only |
 
-Breakpoint: 1024px. Mobile gutters 10px.
+Breakpoint: 1024px. Mobile gutters 20 px via the container utilities.
+
+Full page-composition spec — including hero variants A–H, section header patterns A/B/C, the grid table, sidebar widths, reader column, and sub-block vocabulary — lives in `layouts.md`.
 
 ---
 
@@ -155,3 +197,75 @@ See `assets.md`.
 ## Icons
 
 48 SVGs on CDN. Manifest: https://acd-assets.alicdn.com/acd_work/skills/qwencloud/Icons.json — see `icons.md`.
+
+---
+
+## Dark / Light mode
+
+Both modes are first-class. Token blocks live in `qwencloud-v1/src/css/token.scss:4-145`. Mode is set on `<html data-prefers-color='light'|'dark'>`.
+
+```scss
+html[data-prefers-color='dark']  { /* …tokens… */ }
+html[data-prefers-color='light'] { /* …tokens… */ }
+```
+
+### What inverts vs what stays constant
+
+| Group | Light | Dark | Behavior |
+|-------|-------|------|----------|
+| Neutral 50 | `#ffffff` (canvas) | `#09090a` (near-black canvas) | **Ladder inverts** — 50 is canvas in both modes; 950 is ink in both modes; the hex flips |
+| Neutral 950 | `#0b0c0f` (ink) | `#f9fafc` (near-white ink) | Same — role preserved, hex flips |
+| Primary 550 (accent) | `#653aff` | `#714ffc` | Slightly different hex; both are the brand purple |
+| Primary 650 (hover) | `#5229e6` | `#653aff` | Different |
+| Line 100 | → `neutral-200` | → `neutral-250` | Both stay desaturated; auto-inverts via the neutral ramp |
+| Supporting bg (red/orange/green/blue/purple) | very light tint (`#fff2f0`, `#ecfaed`, …) | very dark tint (`#360002`, `#001f06`, …) | Bg inverts; the `-tint` color (used for text/icon) stays the same hue |
+
+### CTA inversion — the signature move
+
+| Token | Light | Dark |
+|-------|-------|------|
+| `--pt-cta-color-fill` | `neutral-950` (black) | `primary-550` (purple) |
+| `--pt-cta-color-fill-hover` | `primary-550` (purple) | `primary-650` (deeper purple) |
+| `--pt-cta-color-font-fill` | `primary-50` | `primary-50` |
+| `--pt-cta-secondary-color-fill` | `primary-50` (lavender wash) | `neutral-400` |
+| `--pt-cta-secondary-color-fill-hover` | `primary-150` | `primary-850` (very dark purple) |
+| `--pt-cta-secondary-color-font-fill` | `primary-550` | `neutral-800` |
+
+**Light primary CTA:** black at rest → purple on hover. **Dark primary CTA:** purple at rest → deeper purple on hover. The "purple-on-interaction" feel is preserved across modes.
+
+### Shadow tokens differ per mode
+
+| Token | Light | Dark |
+|-------|-------|------|
+| `--pt-shadow-light` | `0 8px 24px rgba(83,91,107,0.06)` | `0 8px 24px rgba(0,0,0,0.28)` |
+| `--pt-shadow-normal` | `0 16px 40px rgba(83,91,107,0.10)` | `0 16px 40px rgba(0,0,0,0.38)` |
+
+Dark mode shadows are stronger (higher α). Don't use a single shadow value across modes.
+
+### Component colors that flip explicitly
+
+- `--pt-color-models-compare-bar-bg`: light `rgba(13,15,18,0.92)` (dark glass) → dark `rgba(255,255,255,0.92)` (light glass). The compare bar always contrasts with the page canvas.
+
+### Imagery per mode
+
+- Use the **same** `flower_*.jpg` poster in both modes. Test legibility — most floral hero JPGs work in both because the heading is NOT on top of them (§2 rule).
+- **Icon dark-mode inversion:** static HTML icons from `Icons.json` use `filter: invert(1)` on `.qc-icon-img` when in dark mode (the manifest SVGs were authored on a light background). React `@ali/qwen-cloud-icons` components auto-handle this.
+- **Primary CTA arrow icon** also inverts via `filter: invert(1)` so the white-on-black light CTA becomes black-on-purple in dark.
+
+### Surface mapping in both modes
+
+| Plane | Light (`neutral-*`) | Dark (`neutral-*`) | Use |
+|-------|---------------------|---------------------|-----|
+| Canvas | 50 `#ffffff` | 50 `#09090a` | `.page` body |
+| Tinted floor | 100 `#f9fafd` | 100 `#0f1115` | Every 2nd/3rd floor |
+| Subtle surface | 150 `#f2f4f8` | 150 `#16191d` | Pill track, chips, disabled input |
+| Card wash | gradient-card-bg | (auto-inverts via neutrals) | Tinted card-as-floor panel |
+
+### Implementation rules
+
+1. **Always implement both modes.** When asked to build a page, ask which mode if not specified; verify the design in both before considering it done.
+2. **Use tokens, not raw hex.** Every `--pt-color-*` resolves correctly in both modes automatically.
+3. **Don't hard-code light-mode literals in dark-mode overrides.** Trust the cascade.
+4. **Test contrast in both modes.** The same component (e.g. soft `primary-50` bg + `primary-550` text) must pass legibility in both.
+5. **Borders use line tokens** (`--pt-color-line-100/200/300`), which auto-invert via the neutral ramp. Don't reach for raw `neutral-200`.
+6. **Heading-on-canvas rule (§2 of `layouts.md`) holds in both modes.** Canvas just means "neutral 50" — it's white in light, near-black in dark. The rule never overlays a giant heading on imagery in either mode.
