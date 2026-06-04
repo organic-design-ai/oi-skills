@@ -1,0 +1,29 @@
+# Metadata for this skill only (not installed to agents). Used by repo scripts + docs.
+name: oi-qwencloud-ui
+category: page
+status: stable
+author: Alibaba Cloud Design
+
+description: >-
+  Qwen Cloud brand UI — simple flat surfaces, weak borders, light shadow; icons/photos from
+  CDN Icons.json / Images.json only. TRIGGER when user asks for Qwen Cloud or oi-qwencloud-ui.
+description_zh: >-
+  Qwen Cloud 品牌 UI：简洁平白、弱描边、淡阴影；配图与图标必须从 CDN Icons.json / Images.json 抽取
+
+triggers:
+  - oi-qwencloud-ui
+  - qwencloud-ui
+  - qwen cloud style
+  - qwen cloud design
+  - Qwen Cloud style
+  - Qwen Cloud design
+  - 通义云风格
+  - Qwen Cloud 设计系统
+
+requires: []
+
+usage: >-
+  `oi-qwencloud-ui` — read SKILL.md; load references/{tokens,components,icons,assets}.md;
+  brand kit on CDN (Guideline.html, Icons.json, Images.json) per references/assets.md.
+usage_zh: >-
+  用户问 usage/怎么用 时，朗读 SKILL.md 的 Usage 小节；仅在被点名 Qwen Cloud 风格时使用。

@@ -1,6 +1,7 @@
 ### IDE ###
 .idea/
 .vscode/
+.agents/
 *.iml
 
 ### Mac OS ###
@@ -11,6 +12,7 @@
 venv/
 __pycache__/
 *.pyc
+skills-lock.json
 
 ### Agent / local configs ###
 **/.cursor

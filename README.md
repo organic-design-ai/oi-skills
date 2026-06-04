@@ -8,41 +8,37 @@
 
 ## Install
 
-**Users** (run in your target project directory)
+Run in your target project directory.
+
+### 1. Install all skills
 
 ```bash
 npx skills add organic-design-ai/oi-skills --all -y
 ```
 
-**Claude Code**
+For specific agent:
 
 ```bash
-npx skills add organic-design-ai/oi-skills --skill '*' -y -a claude-code
+npx skills add organic-design-ai/oi-skills --all -y -a claude-code
+npx skills add organic-design-ai/oi-skills --all -y -a cursor
+npx skills add organic-design-ai/oi-skills --all -y -a qoder
 ```
 
-Install path: `.claude/skills/oi-*`
-
-**Qoder**
+### 2. Install one skill (`oi-qwencloud-ui`)
 
 ```bash
-npx skills add organic-design-ai/oi-skills --skill '*' -y -a qoder
+npx skills add organic-design-ai/oi-skills --skill oi-qwencloud-ui -y
+npx skills add organic-design-ai/oi-skills --skill oi-qwencloud-ui -y -a claude-code
+npx skills add organic-design-ai/oi-skills --skill oi-qwencloud-ui -y -a cursor
+npx skills add organic-design-ai/oi-skills --skill oi-qwencloud-ui -y -a qoder
 ```
 
-Install path: `.qoder/skills/oi-*`
+Replace `oi-qwencloud-ui` with any other `oi-*` skill name.
 
-**Cursor**
-
-```bash
-npx skills add organic-design-ai/oi-skills --skill '*' -y -a cursor
-```
-
-Install path: `.agents/skills/oi-*` (or `.cursor/skills/oi-*`)
-
-**Local dev & test**
+### 3. Local dev installation
 
 ```bash
-cd /path/to/your-project
-npx skills add ../oi-skills --all -y
+npx skills add ../oi-skills --all -y -g
 ```
 
 ## Authors
@@ -51,13 +47,15 @@ npx skills add ../oi-skills --all -y
 
 | Oi Skill | Author |
 |----------|--------|
+| `oi-qwencloud-ui` | Alibaba Cloud Design |
+| `oi-nameslink-ui` | Alibaba Cloud Design |
 | `oi-video-crop` | Alibaba Cloud Design |
 | `oi-video-to-gif` | Alibaba Cloud Design |
 | `oi-images-to-gif` | Alibaba Cloud Design |
 
 ### Open-source integrations
 
-| Oi Skill | Creators |
+| Oi Skill | Open Source |
 |----------|----------|
 | `oi-hue-ui` | [dominikmartn/hue](https://github.com/dominikmartn/hue) |
 | `oi-guizang-ppt` | [op7418/guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill) |

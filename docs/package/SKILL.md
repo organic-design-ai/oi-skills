@@ -10,7 +10,7 @@ description: >-
 **Author:** Alibaba Cloud Design
 
 > **Not installed:** There is no root `SKILL.md` in this repo. `npx skills add` discovers
-> the 12 skills under `skills/` and installs each to `{agent-dir}/skills/oi-<name>/`
+> the 14 skills under `skills/` and installs each to `{agent-dir}/skills/oi-<name>/`
 > (same layout as [qwencloud/qwencloud-ai](https://github.com/qwencloud/qwencloud-ai)).
 
 Install all (global):
@@ -35,6 +35,8 @@ npx skills add organic-design-ai/oi-skills --all -y -g
 | `oi-html-ppt` | `~/.agents/skills/oi-html-ppt/SKILL.md` |
 | `oi-guizang-ppt` | `~/.agents/skills/oi-guizang-ppt/SKILL.md` |
 | `oi-text-effect` | `~/.agents/skills/oi-text-effect/SKILL.md` |
+| `oi-nameslink-ui` | `~/.agents/skills/oi-nameslink-ui/SKILL.md` |
+| `oi-qwencloud-ui` | `~/.agents/skills/oi-qwencloud-ui/SKILL.md` |
 
 **Triggers:** `oi-skills`, `Oi Skills`, `设计技能`, or vague design/media task — infer the child skill from intent (see [AGENTS.snippet.md](../templates/AGENTS.snippet.md)).
 

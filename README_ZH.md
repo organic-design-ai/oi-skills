@@ -8,56 +8,54 @@
 
 ## 安装
 
-**用户**（在目标项目目录执行）
+在目标项目目录执行。
+
+### 1. 整仓安装
 
 ```bash
 npx skills add organic-design-ai/oi-skills --all -y
 ```
 
-**Claude Code**
+给具体的工具安装:
 
 ```bash
-npx skills add organic-design-ai/oi-skills --skill '*' -y -a claude-code
+npx skills add organic-design-ai/oi-skills --all -y -a claude-code
+npx skills add organic-design-ai/oi-skills --all -y -a cursor
+npx skills add organic-design-ai/oi-skills --all -y -a qoder
 ```
 
-安装路径：`.claude/skills/oi-*`
-
-**Qoder**
+### 2. 单个 Skill 安装（以 `oi-qwencloud-ui` 为例）
 
 ```bash
-npx skills add organic-design-ai/oi-skills --skill '*' -y -a qoder
+npx skills add organic-design-ai/oi-skills --skill oi-qwencloud-ui -y
+npx skills add organic-design-ai/oi-skills --skill oi-qwencloud-ui -y -a claude-code
+npx skills add organic-design-ai/oi-skills --skill oi-qwencloud-ui -y -a cursor
+npx skills add organic-design-ai/oi-skills --skill oi-qwencloud-ui -y -a qoder
 ```
 
-安装路径：`.qoder/skills/oi-*`
+将 `oi-qwencloud-ui` 换成其他 `oi-*` skill 名即可。
 
-**Cursor**
-
-```bash
-npx skills add organic-design-ai/oi-skills --skill '*' -y -a cursor
-```
-
-安装路径：`.agents/skills/oi-*`（或 `.cursor/skills/oi-*`）
-
-**本地开发与测试**
+### 3. 本地开发安装
 
 ```bash
-cd /path/to/your-project
-npx skills add ../oi-skills --all -y
+npx skills add ../oi-skills --all -y -g
 ```
 
 ## 作者与贡献
 
 ### Alibaba Cloud Design（原创）
 
-| Oi Skill | 作者 |
+| Oi Skill | 原创作者 |
 |----------|------|
+| `oi-qwencloud-ui` | Alibaba Cloud Design |
+| `oi-nameslink-ui` | Alibaba Cloud Design |
 | `oi-video-crop` | Alibaba Cloud Design |
 | `oi-video-to-gif` | Alibaba Cloud Design |
 | `oi-images-to-gif` | Alibaba Cloud Design |
 
 ### 开源集成
 
-| Oi Skill | 原作者项目 |
+| Oi Skill | 开源原作者项目 |
 |----------|------------|
 | `oi-hue-ui` | [dominikmartn/hue](https://github.com/dominikmartn/hue) |
 | `oi-guizang-ppt` | [op7418/guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill) |
