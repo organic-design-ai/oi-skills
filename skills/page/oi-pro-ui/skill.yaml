@@ -1,0 +1,26 @@
+# Metadata for this skill only (not installed to agents). Used by repo scripts + docs.
+name: oi-pro-ui
+category: page
+status: stable
+author: Alibaba Cloud Design
+
+description: UI/UX BM25 search and design-system generator (styles, colors, typography, UX rules)
+description_zh: UI/UX 设计智能，BM25 检索与 Python 设计系统生成
+
+triggers:
+  - oi-pro-ui
+  - ui-ux-pro-max
+  - UI UX pro
+  - design system generator
+  - landing page UX
+  - 专业 UI
+  - 设计系统生成
+  - UX 检索
+
+requires:
+  - python>=3.9
+
+usage: >-
+  `oi-pro-ui`, BM25 UI/UX search + stack guides; needs python3 search.py.
+usage_zh: >-
+  用户问 usage/怎么用 时，朗读 SKILL.md 的 Usage 小节。

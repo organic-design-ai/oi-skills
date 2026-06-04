@@ -1,0 +1,31 @@
+{
+  "projectName": "Demo App",
+  "videoConfig": {
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "durationInSeconds": 20
+  },
+  "screens": [
+    {
+      "id": "1",
+      "title": "Home Screen",
+      "description": "Main interface",
+      "imagePath": "design/pages/home.png",
+      "width": 1200,
+      "height": 800,
+      "duration": 5,
+      "transitionType": "fade"
+    },
+    {
+      "id": "2",
+      "title": "Detail View",
+      "description": "Secondary screen",
+      "imagePath": "design/pages/detail.png",
+      "width": 1200,
+      "height": 800,
+      "duration": 4,
+      "transitionType": "slide"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+### IDE ###
+.idea/
+.vscode/
+*.iml
+
+### Mac OS ###
+.DS_Store
+
+### Python ###
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+### Agent / local configs ###
+**/.cursor
+**/.agents
+output/
+tmp/
+
+### Media scratch ###
+*.mp4.tmp

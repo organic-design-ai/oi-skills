@@ -1,0 +1,374 @@
+{
+  "agentic": {
+    "slug": "agentic",
+    "name": "Agentic",
+    "skillPath": "styles/agentic/SKILL.md",
+    "designPath": "styles/agentic/DESIGN.md"
+  },
+  "artistic": {
+    "slug": "artistic",
+    "name": "Artistic",
+    "skillPath": "styles/artistic/SKILL.md",
+    "designPath": "styles/artistic/DESIGN.md"
+  },
+  "bold": {
+    "slug": "bold",
+    "name": "Bold",
+    "skillPath": "styles/bold/SKILL.md",
+    "designPath": "styles/bold/DESIGN.md"
+  },
+  "brutalism": {
+    "slug": "brutalism",
+    "name": "Brutalism",
+    "skillPath": "styles/brutalism/SKILL.md",
+    "designPath": "styles/brutalism/DESIGN.md"
+  },
+  "cafe": {
+    "slug": "cafe",
+    "name": "Cafe",
+    "skillPath": "styles/cafe/SKILL.md",
+    "designPath": "styles/cafe/DESIGN.md"
+  },
+  "claymorphism": {
+    "slug": "claymorphism",
+    "name": "Claymorphism",
+    "skillPath": "styles/claymorphism/SKILL.md",
+    "designPath": "styles/claymorphism/DESIGN.md"
+  },
+  "clean": {
+    "slug": "clean",
+    "name": "Clean",
+    "skillPath": "styles/clean/SKILL.md",
+    "designPath": "styles/clean/DESIGN.md"
+  },
+  "colorful": {
+    "slug": "colorful",
+    "name": "Colorful",
+    "skillPath": "styles/colorful/SKILL.md",
+    "designPath": "styles/colorful/DESIGN.md"
+  },
+  "contemporary": {
+    "slug": "contemporary",
+    "name": "Contemporary",
+    "skillPath": "styles/contemporary/SKILL.md",
+    "designPath": "styles/contemporary/DESIGN.md"
+  },
+  "corporate": {
+    "slug": "corporate",
+    "name": "Corporate",
+    "skillPath": "styles/corporate/SKILL.md",
+    "designPath": "styles/corporate/DESIGN.md"
+  },
+  "cosmic": {
+    "slug": "cosmic",
+    "name": "Cosmic",
+    "skillPath": "styles/cosmic/SKILL.md",
+    "designPath": "styles/cosmic/DESIGN.md"
+  },
+  "creative": {
+    "slug": "creative",
+    "name": "Creative",
+    "skillPath": "styles/creative/SKILL.md",
+    "designPath": "styles/creative/DESIGN.md"
+  },
+  "doodle": {
+    "slug": "doodle",
+    "name": "Doodle",
+    "skillPath": "styles/doodle/SKILL.md",
+    "designPath": "styles/doodle/DESIGN.md"
+  },
+  "dramatic": {
+    "slug": "dramatic",
+    "name": "Dramatic",
+    "skillPath": "styles/dramatic/SKILL.md",
+    "designPath": "styles/dramatic/DESIGN.md"
+  },
+  "editorial": {
+    "slug": "editorial",
+    "name": "Editorial",
+    "skillPath": "styles/editorial/SKILL.md",
+    "designPath": "styles/editorial/DESIGN.md"
+  },
+  "elegant": {
+    "slug": "elegant",
+    "name": "Elegant",
+    "skillPath": "styles/elegant/SKILL.md",
+    "designPath": "styles/elegant/DESIGN.md"
+  },
+  "energetic": {
+    "slug": "energetic",
+    "name": "Energetic",
+    "skillPath": "styles/energetic/SKILL.md",
+    "designPath": "styles/energetic/DESIGN.md"
+  },
+  "enterprise": {
+    "slug": "enterprise",
+    "name": "Enterprise",
+    "skillPath": "styles/enterprise/SKILL.md",
+    "designPath": "styles/enterprise/DESIGN.md"
+  },
+  "expressive": {
+    "slug": "expressive",
+    "name": "Expressive",
+    "skillPath": "styles/expressive/SKILL.md",
+    "designPath": "styles/expressive/DESIGN.md"
+  },
+  "fantasy": {
+    "slug": "fantasy",
+    "name": "Fantasy",
+    "skillPath": "styles/fantasy/SKILL.md",
+    "designPath": "styles/fantasy/DESIGN.md"
+  },
+  "flat": {
+    "slug": "flat",
+    "name": "Flat",
+    "skillPath": "styles/flat/SKILL.md",
+    "designPath": "styles/flat/DESIGN.md"
+  },
+  "futuristic": {
+    "slug": "futuristic",
+    "name": "Futuristic",
+    "skillPath": "styles/futuristic/SKILL.md",
+    "designPath": "styles/futuristic/DESIGN.md"
+  },
+  "glassmorphism": {
+    "slug": "glassmorphism",
+    "name": "Glassmorphism",
+    "skillPath": "styles/glassmorphism/SKILL.md",
+    "designPath": "styles/glassmorphism/DESIGN.md"
+  },
+  "gradient": {
+    "slug": "gradient",
+    "name": "Gradient",
+    "skillPath": "styles/gradient/SKILL.md",
+    "designPath": "styles/gradient/DESIGN.md"
+  },
+  "luxury": {
+    "slug": "luxury",
+    "name": "Luxury",
+    "skillPath": "styles/luxury/SKILL.md",
+    "designPath": "styles/luxury/DESIGN.md"
+  },
+  "material": {
+    "slug": "material",
+    "name": "Material",
+    "skillPath": "styles/material/SKILL.md",
+    "designPath": "styles/material/DESIGN.md"
+  },
+  "minimal": {
+    "slug": "minimal",
+    "name": "Minimal",
+    "skillPath": "styles/minimal/SKILL.md",
+    "designPath": "styles/minimal/DESIGN.md"
+  },
+  "modern": {
+    "slug": "modern",
+    "name": "Modern",
+    "skillPath": "styles/modern/SKILL.md",
+    "designPath": "styles/modern/DESIGN.md"
+  },
+  "mono": {
+    "slug": "mono",
+    "name": "Mono",
+    "skillPath": "styles/mono/SKILL.md",
+    "designPath": "styles/mono/DESIGN.md"
+  },
+  "neobrutalism": {
+    "slug": "neobrutalism",
+    "name": "Neobrutalism",
+    "skillPath": "styles/neobrutalism/SKILL.md",
+    "designPath": "styles/neobrutalism/DESIGN.md"
+  },
+  "neon": {
+    "slug": "neon",
+    "name": "Neon",
+    "skillPath": "styles/neon/SKILL.md",
+    "designPath": "styles/neon/DESIGN.md"
+  },
+  "neumorphism": {
+    "slug": "neumorphism",
+    "name": "Neumorphism",
+    "skillPath": "styles/neumorphism/SKILL.md",
+    "designPath": "styles/neumorphism/DESIGN.md"
+  },
+  "pacman": {
+    "slug": "pacman",
+    "name": "Pacman",
+    "skillPath": "styles/pacman/SKILL.md",
+    "designPath": "styles/pacman/DESIGN.md"
+  },
+  "paper": {
+    "slug": "paper",
+    "name": "Paper",
+    "skillPath": "styles/paper/SKILL.md",
+    "designPath": "styles/paper/DESIGN.md"
+  },
+  "premium": {
+    "slug": "premium",
+    "name": "Premium",
+    "skillPath": "styles/premium/SKILL.md",
+    "designPath": "styles/premium/DESIGN.md"
+  },
+  "professional": {
+    "slug": "professional",
+    "name": "Professional",
+    "skillPath": "styles/professional/SKILL.md",
+    "designPath": "styles/professional/DESIGN.md"
+  },
+  "publication": {
+    "slug": "publication",
+    "name": "Publication",
+    "skillPath": "styles/publication/SKILL.md",
+    "designPath": "styles/publication/DESIGN.md"
+  },
+  "refined": {
+    "slug": "refined",
+    "name": "Refined",
+    "skillPath": "styles/refined/SKILL.md",
+    "designPath": "styles/refined/DESIGN.md"
+  },
+  "retro": {
+    "slug": "retro",
+    "name": "Retro",
+    "skillPath": "styles/retro/SKILL.md",
+    "designPath": "styles/retro/DESIGN.md"
+  },
+  "shadcn": {
+    "slug": "shadcn",
+    "name": "Shadcn",
+    "skillPath": "styles/shadcn/SKILL.md",
+    "designPath": "styles/shadcn/DESIGN.md"
+  },
+  "simple": {
+    "slug": "simple",
+    "name": "Simple",
+    "skillPath": "styles/simple/SKILL.md",
+    "designPath": "styles/simple/DESIGN.md"
+  },
+  "skeumorphism": {
+    "slug": "skeumorphism",
+    "name": "Skeumorphism",
+    "skillPath": "styles/skeumorphism/SKILL.md",
+    "designPath": "styles/skeumorphism/DESIGN.md"
+  },
+  "sleek": {
+    "slug": "sleek",
+    "name": "Sleek",
+    "skillPath": "styles/sleek/SKILL.md",
+    "designPath": "styles/sleek/DESIGN.md"
+  },
+  "spacious": {
+    "slug": "spacious",
+    "name": "Spacious",
+    "skillPath": "styles/spacious/SKILL.md",
+    "designPath": "styles/spacious/DESIGN.md"
+  },
+  "storytelling": {
+    "slug": "storytelling",
+    "name": "Storytelling",
+    "skillPath": "styles/storytelling/SKILL.md",
+    "designPath": "styles/storytelling/DESIGN.md"
+  },
+  "tetris": {
+    "slug": "tetris",
+    "name": "Tetris",
+    "skillPath": "styles/tetris/SKILL.md",
+    "designPath": "styles/tetris/DESIGN.md"
+  },
+  "vibrant": {
+    "slug": "vibrant",
+    "name": "Vibrant",
+    "skillPath": "styles/vibrant/SKILL.md",
+    "designPath": "styles/vibrant/DESIGN.md"
+  },
+  "vintage": {
+    "slug": "vintage",
+    "name": "Vintage",
+    "skillPath": "styles/vintage/SKILL.md",
+    "designPath": "styles/vintage/DESIGN.md"
+  },
+  "levels": {
+    "slug": "levels",
+    "name": "Levels",
+    "skillPath": "styles/levels/SKILL.md",
+    "designPath": "styles/levels/DESIGN.md"
+  },
+  "bento": {
+    "slug": "bento",
+    "name": "Bento",
+    "skillPath": "styles/bento/SKILL.md",
+    "designPath": "styles/bento/DESIGN.md"
+  },
+  "lingo": {
+    "slug": "lingo",
+    "name": "Lingo",
+    "skillPath": "styles/lingo/SKILL.md",
+    "designPath": "styles/lingo/DESIGN.md"
+  },
+  "dashboard": {
+    "slug": "dashboard",
+    "name": "Dashboard",
+    "skillPath": "styles/dashboard/SKILL.md",
+    "designPath": "styles/dashboard/DESIGN.md"
+  },
+  "application": {
+    "slug": "application",
+    "name": "Application",
+    "skillPath": "styles/application/SKILL.md",
+    "designPath": "styles/application/DESIGN.md"
+  },
+  "ant": {
+    "slug": "ant",
+    "name": "Ant",
+    "skillPath": "styles/ant/SKILL.md",
+    "designPath": "styles/ant/DESIGN.md"
+  },
+  "claude": {
+    "slug": "claude",
+    "name": "Claude",
+    "skillPath": "styles/claude/SKILL.md",
+    "designPath": "styles/claude/DESIGN.md"
+  },
+  "codex": {
+    "slug": "codex",
+    "name": "Codex",
+    "skillPath": "styles/codex/SKILL.md",
+    "designPath": "styles/codex/DESIGN.md"
+  },
+  "fiction": {
+    "slug": "fiction",
+    "name": "Fiction",
+    "skillPath": "styles/fiction/SKILL.md",
+    "designPath": "styles/fiction/DESIGN.md"
+  },
+  "impeccable": {
+    "slug": "impeccable",
+    "name": "Impeccable",
+    "skillPath": "styles/impeccable/SKILL.md",
+    "designPath": "styles/impeccable/DESIGN.md"
+  },
+  "matrix": {
+    "slug": "matrix",
+    "name": "Matrix",
+    "skillPath": "styles/matrix/SKILL.md",
+    "designPath": "styles/matrix/DESIGN.md"
+  },
+  "riso": {
+    "slug": "riso",
+    "name": "Riso",
+    "skillPath": "styles/riso/SKILL.md",
+    "designPath": "styles/riso/DESIGN.md"
+  },
+  "sega": {
+    "slug": "sega",
+    "name": "Sega",
+    "skillPath": "styles/sega/SKILL.md",
+    "designPath": "styles/sega/DESIGN.md"
+  },
+  "terracotta": {
+    "slug": "terracotta",
+    "name": "Terracotta",
+    "skillPath": "styles/terracotta/SKILL.md",
+    "designPath": "styles/terracotta/DESIGN.md"
+  }
+}

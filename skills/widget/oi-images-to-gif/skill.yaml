@@ -1,0 +1,31 @@
+# Metadata for this skill only (not installed to agents). Used by repo scripts + docs.
+name: oi-images-to-gif
+category: widget
+status: stable
+author: Alibaba Cloud Design
+
+description: >-
+  Combine local images into GIF; default output ~/Desktop/oi-images-to-gif-<uuid>.gif
+description_zh: >-
+  多张本地图片合成 GIF；默认输出到桌面，文件名为 oi-images-to-gif-<uuid>.gif
+
+triggers:
+  - oi-images-to-gif
+  - images to gif
+  - pictures to gif
+  - photos to gif
+  - image sequence gif
+  - 图片转 gif
+  - 多图转 gif
+  - 照片合成 gif
+  - 图片合成动图
+
+requires:
+  - python>=3.9
+  - ffmpeg
+  - ffprobe
+
+usage: >-
+  `oi-images-to-gif`, images/photos to gif, 多图转 GIF; see SKILL.md Usage for CLI.
+usage_zh: >-
+  用户问 usage/怎么用 时，朗读 SKILL.md 的 Usage 小节。

@@ -1,0 +1,33 @@
+# Metadata for this skill only (not installed to agents). Used by repo scripts + docs.
+name: oi-nothing-ui
+category: page
+status: stable
+author: dominikmartn
+
+description: >-
+  Nothing-inspired monochromatic UI/UX system — Swiss typography, industrial craft,
+  dark/light modes, token-driven components. TRIGGER only when user asks for Nothing
+  style or oi-nothing-ui. NOT for generic UI tasks.
+description_zh: >-
+  Nothing 风格单色 UI/UX 设计系统（字体层级、工业感、深浅色、组件与平台映射）
+
+triggers:
+  - oi-nothing-ui
+  - /oi-nothing-ui
+  - nothing-ui
+  - /nothing-ui
+  - nothing style
+  - nothing design
+  - /nothing-design
+  - Nothing style
+  - Nothing design
+  - Nothing 风格
+  - Nothing 设计
+
+requires: []
+
+usage: >-
+  `oi-nothing-ui` — read SKILL.md; declare fonts, pick dark/light, apply three-layer
+  hierarchy; specs in styles/references/{tokens,components,platform-mapping}.md.
+usage_zh: >-
+  用户问 usage/怎么用 时，朗读 SKILL.md 的 Usage 小节；仅在被点名 Nothing 风格时使用。

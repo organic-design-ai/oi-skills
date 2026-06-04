@@ -1,0 +1,26 @@
+# Metadata for this skill only (not installed to agents). Used by repo scripts + docs.
+name: oi-taste-ui
+category: page
+status: stable
+author: Alibaba Cloud Design
+
+description: Premium anti-slop frontend taste with dials and 12 styles under styles/
+description_zh: 高质感前端品味，含拨盘与 12 套 styles/ 子风格（极简、改版、图像生成等）
+
+triggers:
+  - oi-taste-ui
+  - taste skill
+  - design taste
+  - anti-slop
+  - premium frontend
+  - high-end UI
+  - 品味 UI
+  - 反 AI 味
+  - 高级感界面
+
+requires: []
+
+usage: >-
+  `oi-taste-ui`, premium anti-slop UI; pick one of 12 style slugs.
+usage_zh: >-
+  用户问 usage/怎么用 时，朗读 SKILL.md 的 Usage 小节。

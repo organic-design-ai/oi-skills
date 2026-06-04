@@ -1,0 +1,191 @@
+---
+name: extract-static-html
+description: Extract self-contained static HTML from a running web app; inline CSS and images.
+---
+# Extract Static HTML
+
+Extract a self-contained static HTML file from any web application.
+
+## Usage
+
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@extract-static-html` without a concrete task), **reply with this section** (replace `<pkg-dir>` with the installed package path, e.g. `~/.agents/skills/oi-skills`), then ask what they want to accomplish.
+
+**Triggers:** **extract-static-html**, or parent **oi-stitch-ui** when this workflow matches.
+
+**Quick start**
+1. Parent: `<pkg-dir>/page/oi-stitch-ui/SKILL.md`.
+2. Follow steps in this file; artifacts live in project **`design/`**.
+3. **Summary:** Static HTML from running app
+
+**Example prompts**
+- 「oi-stitch-ui extract-static-html 跑一遍」
+- 「按 extract-static-html 更新 design/DESIGN.md」
+
+**Do not use for:** unrelated stitch slugs; video widgets.
+
+## Which Strategy to Use
+
+You MUST ask the user to choose which strategy to use before proceeding. Present the options clearly, **recommend Strategy A** as the preferred default, and **provide a brief pros/cons summary** for each option to help them make an informed decision.
+
+| | Strategy A (Puppeteer) | Strategy B (Browser Subagent) |
+| :--- | :--- | :--- |
+| **When** | App runs locally, no auth wall | Need to interact with page first (click, fill forms) |
+| **Fidelity** | **Highest — computed styles resolved** | High — rendered DOM |
+| **Setup** | **Zero — no mock needed** | Zero — no mock needed |
+| **Framework** | **Any** | Any |
+| **Output** | **Writes to file — no size limit** | May truncate in agent context |
+
+> [!WARNING]
+> **Checkpoint — User Confirmation Required.**
+> You **MUST** ask the user which strategy they prefer before proceeding.
+> Present the comparison table above, recommend Strategy A as the default, and
+> wait for explicit approval. Do **NOT** make the decision yourself or proceed
+> until the user confirms.
+
+***
+
+## Strategy A: Puppeteer Snapshot (Recommended)
+
+Launches headless Chrome, captures the fully rendered DOM, and produces a self-contained HTML file with all CSS inlined and images as base64. Works with **any framework** — no MockPage.jsx needed.
+
+### Prerequisites
+
+- App running locally (e.g., `npm run dev`)
+- Node.js with `puppeteer` available (check: `node -e "require('puppeteer')"`)
+
+### Workflow
+
+1.  **Start the App** and note the port.
+
+    > [!WARNING]
+    > **Checkpoint — User Confirmation Required.**
+    > After starting the local server, you **MUST** pause and ask the user for
+    > confirmation before running the snapshot script or launching a browser
+    > subagent. Report the URL and port to the user so they can verify the app
+    > is running and rendering correctly. Do **NOT** proceed to the snapshot
+    > step until the user confirms.
+
+2.  **Run the Snapshot Script**:
+    ```bash
+    npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/snapshot.ts \
+      --url http://localhost:5173 \
+      --output design/home.html \
+      --wait 2000
+    ```
+
+3.  **Multiple pages** — run once per route:
+    ```bash
+    npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/snapshot.ts \
+      --url http://localhost:5173 --output design/home.html --wait 2000
+    npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/snapshot.ts \
+      --url http://localhost:5173/pricing --output design/pricing.html --wait 2000
+    npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/snapshot.ts \
+      --url http://localhost:5173/dashboard --output design/dashboard.html --wait 2000 --html-class dark
+    ```
+
+### Script Flags
+
+| Flag | Default | Description |
+| :--- | :--- | :--- |
+| `--url` | *(required)* | URL to capture |
+| `--output` | *(required)* | Output file path |
+| `--wait` | `1000` | Extra wait (ms) after network idle. Increase for lazy-loading apps. |
+| `--viewport` | `1280x800` | Viewport size as `WIDTHxHEIGHT` |
+| `--html-class` | — | Class(es) for `<html>` element (e.g., `dark`) |
+| `--remove-fixed` | `false` | Remove fixed/sticky elements (cookie banners, chat widgets) |
+| `--full-height` | `false` | Resize viewport to full scroll height |
+| `--title` | — | Override page title |
+
+### What It Does Automatically
+
+- Inlines all `<link rel="stylesheet">` → `<style>` blocks
+- Converts `<img>` `src` **and `srcset`** → base64 data URIs (skips fonts)
+- Inlines `<source srcset>` URLs as base64
+- Removes failed/dead `srcset` entries so the browser falls back to the inlined `src`
+- Removes `<script>` tags, Vite overlay, Next.js dev indicators
+- Resolves relative CSS `url()` paths before inlining
+
+### Framework Notes
+
+| Framework | Notes |
+| :--- | :--- |
+| **React + Vite** | Works out of the box. `--wait 1000`. |
+| **Next.js** | `--wait 3000` for SSR hydration. URL: `http://localhost:3000`. `<img srcset>` from `/_next/image` is auto-inlined as base64. |
+| **Vue / Nuxt** | Works out of the box. |
+| **Svelte / SvelteKit** | Works out of the box. |
+| **Storybook** | Use story URL: `--url http://localhost:6006/?path=/story/...` |
+| **SSR (Webpack)** | May need longer `--wait`. |
+
+### Troubleshooting
+
+| Issue | Solution |
+| :--- | :--- |
+| Images missing | Increase `--wait` |
+| Images show as broken after server stops | Verify `srcset` was inlined — check log for "Inlined N images". If `srcset` URLs failed, they are auto-removed so `src` (inlined) is used. |
+| Next.js `/_next/image` not inlined | Ensure the dev server is running when snapshot runs — the script fetches optimized images from the running server. |
+| Dark mode not applied | `--html-class dark` |
+| Cookie banner in output | `--remove-fixed` |
+| Page requires login | Use the Static Fallback (appendix below) |
+| `Cannot find module 'puppeteer'` | `npm install -g puppeteer` |
+
+***
+
+## Strategy B: Browser Subagent Capture
+
+Use when you need to **interact with the page** (click buttons, fill forms, navigate tabs) before capturing. The browser subagent gives you full control but output may truncate for large pages.
+
+### Workflow
+
+1.  **Start the App** locally.
+2.  **Navigate** using a browser subagent.
+3.  **Interact** as needed (click, scroll, fill forms).
+4.  **Extract DOM**: `document.documentElement.outerHTML`
+
+    > [!WARNING]
+    > Large pages may truncate. To handle this:
+    > - Remove `<style>` tags before extraction: `document.querySelectorAll('style').forEach(el => el.remove())`
+    > - Re-add styles statically (Tailwind CDN link, source CSS)
+5.  **Save** to file.
+
+***
+
+## Appendix: Static Fallback (MockPage.jsx)
+
+> [!NOTE]
+> This method is a **last resort** for when the app cannot run locally (broken deps, missing backend, auth walls with no bypass). It requires manually flattening React components into a single JSX file. **Prefer Strategy A whenever possible.**
+
+### When to Use
+
+- App can't run locally at all
+- Page requires auth with no mock/bypass
+- You need a specific UI state that's impossible to reach by navigation (error screens, empty states)
+
+### Quick Reference
+
+```bash
+npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/extract_inline_html.ts \
+  --index-css src/css/App.css \
+  --extra-css index.html \
+  --outdir design \
+  --page src/MockPage.jsx:Page.html:"Page Title"
+```
+
+**Key flags**: `--no-tailwind` (non-Tailwind apps), `--html-class dark` (dark mode), `--css-files` (extra CSS files).
+
+**Auto-detection**: Tailwind config is auto-detected. `@apply` directives automatically use `<style type="text/tailwindcss">`.
+
+### MockPage.jsx Rules
+
+1. **Include the full layout** — header, sidebar, footer (read `App.js` first)
+2. **Flatten all conditionals** — pick one state, remove all ternaries and `&&` guards
+3. **Hardcode all data** — replace `{variable}` with concrete values, unroll `.map()` loops
+4. **Preserve logos** — use `<img>` with local paths (post-process will inline them)
+5. **Remove floating elements** — cookie banners, chat widgets, feedback buttons
+
+### Post-Processing
+
+Inline local images:
+```bash
+npx tsx <pkg-dir>/page/oi-stitch-ui/styles/extract-static-html/scripts/post_process.ts \
+  design/Page.html --base-dir <app-directory>
+```

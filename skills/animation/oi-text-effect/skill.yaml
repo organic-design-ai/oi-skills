@@ -1,0 +1,69 @@
+# Metadata for this skill only (not installed to agents). Used by repo scripts + docs.
+name: oi-text-effect
+version: 1.3.0
+category: animation
+status: stable
+author: Alibaba Cloud Design
+
+description: Drop-in text effects for React/HTML (16 presets across 7 categories — 10 entrance + 1 color-sweep + 1 scramble + 1 3D flip + 1 morph + 1 shimmer + 1 typewriter) based on magicui
+description_zh: 基于 magicui 的文字动效，16 种预设 7 大类（10 进入 + 1 彩色扫光 + 1 乱码解密 + 1 3D翻转 + 1 变形 + 1 流光 + 1 打字机），React 与纯 HTML 双版本
+
+triggers:
+  - oi-text-effect
+  - text effect
+  - text effects
+  - oi-text-animate
+  - text animate
+  - text reveal
+  - headline reveal
+  - blur in text
+  - slide in text
+  - scale in text
+  - color sweep
+  - gradient reveal
+  - dia text reveal
+  - hyper text
+  - scramble text
+  - decrypt text
+  - 乱码解密
+  - 字符扰动
+  - text 3d flip
+  - 3d flip
+  - 3d text
+  - text flip
+  - 文字翻转
+  - 3D翻转文字
+  - morphing text
+  - text morph
+  - liquid text
+  - 文字变形
+  - 液态文字
+  - shimmer
+  - text shimmer
+  - loading text
+  - 文字流光
+  - 加载流光
+  - magicui text-animate
+  - 文字进入动效
+  - 标题逐字进入
+  - 段落渐入
+  - 文字分段动效
+  - 彩色扫光
+  - 渐变色带
+  - oi-text-type
+  - text type
+  - typewriter effect
+  - typing animation
+  - dynamic text
+  - 打字机动画
+  - 打字效果
+  - 文字逐字显示
+  - 文字轮播动效
+  - 文字动效
+
+requires: []
+
+usage: >-
+  `oi-text-effect` — 16 text effect presets across 7 categories (entrance, sweep, scramble, flip, morph, shimmer, typewriter) for React and vanilla HTML. Say the effect name to generate a preview, or say "text effect" to browse all variants in the showcase page.
+usage_zh: >-
+  `oi-text-effect` — 7 大类 16 种文字动效预设（分段进入、扫光、乱码解密、3D翻转、变形、流光、打字机），支持 React 与纯 HTML。说出效果名即可生成预览，或说「文字动效」浏览样板页 `text-effect-showcase.html`。

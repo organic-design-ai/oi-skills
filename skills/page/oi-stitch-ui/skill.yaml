@@ -1,0 +1,24 @@
+name: oi-stitch-ui
+category: page
+status: stable
+author: Alibaba Cloud Design
+
+description: Local design workflows — DESIGN.md, HTML capture, prompts, React/shadcn, 12 styles
+description_zh: 本地设计工作流 — DESIGN.md、HTML 快照、提示词、React/shadcn 等 12 套子风格
+
+triggers:
+  - oi-stitch-ui
+  - design/DESIGN.md
+  - code-to-design
+  - extract-design-md
+  - enhance-prompt
+  - multi-page build loop
+  - 设计工作流
+  - 提取设计系统
+
+requires: []
+
+usage: >-
+  `oi-stitch-ui`, design/ workflows (DESIGN.md, HTML, React, multi-page).
+usage_zh: >-
+  用户问 usage/怎么用 时，朗读 SKILL.md 的 Usage 小节。

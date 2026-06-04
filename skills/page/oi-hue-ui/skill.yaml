@@ -1,0 +1,32 @@
+# Metadata for this skill only (not installed to agents). Used by repo scripts + docs.
+name: oi-hue-ui
+category: page
+status: beta
+author: Alibaba Cloud Design
+
+description: Generate or remix design-language skills from brand signals (URL, name, screenshots, codebase)
+description_zh: 从品牌信号生成或改造设计语言 skill（网址、截图、代码库等）
+
+triggers:
+  - oi-hue-ui
+  - /oi-hue-ui
+  - hue-ui
+  - /hue-ui
+  - use hue-ui
+  - use oi-hue-ui
+  - create a design skill
+  - generate design language
+  - design skill from screenshot
+  - remix design skill
+  - 生成设计技能
+  - 生成设计语言
+  - 用hue-ui
+
+requires:
+  - web-fetch-or-search
+
+usage: >-
+  `oi-hue-ui` — read SKILL.md; generate or remix design-language skills; templates in
+  styles/references/, baselines in styles/examples/.
+usage_zh: >-
+  用户问 usage/怎么用 时，朗读 SKILL.md 的 Usage 小节。

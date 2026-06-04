@@ -1,0 +1,89 @@
+{
+  "code-to-design": {
+    "slug": "code-to-design",
+    "name": "code-to-design",
+    "group": "design",
+    "summary": "Local design/ \u2014 HTML + DESIGN.md",
+    "skillPath": "styles/code-to-design/SKILL.md"
+  },
+  "generate-design": {
+    "slug": "generate-design",
+    "name": "generate-design",
+    "group": "design",
+    "summary": "Prompt + implement UI in codebase",
+    "skillPath": "styles/generate-design/SKILL.md"
+  },
+  "manage-design-system": {
+    "slug": "manage-design-system",
+    "name": "manage-design-system",
+    "group": "design",
+    "summary": "design/DESIGN.md and theme tokens",
+    "skillPath": "styles/manage-design-system/SKILL.md"
+  },
+  "extract-design-md": {
+    "slug": "extract-design-md",
+    "name": "extract-design-md",
+    "group": "design",
+    "summary": "DESIGN.md from source code",
+    "skillPath": "styles/extract-design-md/SKILL.md",
+    "designPath": "styles/extract-design-md/examples/DESIGN.md"
+  },
+  "extract-static-html": {
+    "slug": "extract-static-html",
+    "name": "extract-static-html",
+    "group": "design",
+    "summary": "Static HTML from running app",
+    "skillPath": "styles/extract-static-html/SKILL.md"
+  },
+  "react-components": {
+    "slug": "react-components",
+    "name": "react-components",
+    "group": "build",
+    "summary": "HTML \u2192 React components",
+    "skillPath": "styles/react-components/SKILL.md"
+  },
+  "remotion": {
+    "slug": "remotion",
+    "name": "remotion",
+    "group": "build",
+    "summary": "Walkthrough video from screenshots",
+    "skillPath": "styles/remotion/SKILL.md"
+  },
+  "shadcn-ui": {
+    "slug": "shadcn-ui",
+    "name": "shadcn-ui",
+    "group": "build",
+    "summary": "shadcn/ui patterns",
+    "skillPath": "styles/shadcn-ui/SKILL.md"
+  },
+  "design-md": {
+    "slug": "design-md",
+    "name": "design-md",
+    "group": "utilities",
+    "summary": "DESIGN.md from HTML/images",
+    "skillPath": "styles/design-md/SKILL.md",
+    "designPath": "styles/design-md/examples/DESIGN.md"
+  },
+  "enhance-prompt": {
+    "slug": "enhance-prompt",
+    "name": "enhance-prompt",
+    "group": "utilities",
+    "summary": "Polish UI prompts",
+    "skillPath": "styles/enhance-prompt/SKILL.md"
+  },
+  "stitch-loop": {
+    "slug": "stitch-loop",
+    "name": "stitch-loop",
+    "group": "utilities",
+    "summary": "Multi-page baton loop",
+    "skillPath": "styles/stitch-loop/SKILL.md"
+  },
+  "taste-design": {
+    "slug": "taste-design",
+    "name": "taste-design",
+    "group": "utilities",
+    "summary": "Premium DESIGN.md spec",
+    "skillPath": "styles/taste-design/SKILL.md",
+    "designPath": "styles/taste-design/resources/DESIGN.md"
+  }
+}

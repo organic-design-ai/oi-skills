@@ -1,0 +1,2127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Oi · Text Effect — A Type Specimen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gelasio:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Ubuntu+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* =========================================================
+         Editorial · token set (from oi-awesome-ui/styles/editorial)
+         ========================================================= */
+      :root {
+        --paper: #fafaf7;      /* warm off-white "paper" */
+        --paper-edge: #f1f1f1; /* secondary surface */
+        --ink: #111111;        /* primary */
+        --ink-2: #1f1f1f;
+        --ink-3: #4a4a4a;
+        --ink-4: #8a8a85;      /* muted captions */
+        --rule: #1a1a1a;       /* hairline ink */
+        --rule-soft: #d9d6cf;
+        --accent: #b13b1b;     /* terracotta — used sparingly */
+        --measure: 64ch;
+
+        --t-display: 64px;
+        --t-h1: 40px;
+        --t-h2: 32px;
+        --t-body: 18px;
+        --t-small: 14px;
+        --t-caption: 12px;
+
+        --s-1: 8px;
+        --s-2: 16px;
+        --s-3: 24px;
+        --s-4: 32px;
+        --s-5: 48px;
+        --s-6: 64px;
+        --s-7: 96px;
+      }
+
+      * { box-sizing: border-box; }
+      html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Gelasio", "Source Serif Pro", Georgia, "Times New Roman", serif;
+        font-size: var(--t-body);
+        line-height: 1.55;
+        font-feature-settings: "kern", "liga", "onum";
+      }
+
+      .mono, .caps {
+        font-family: "Ubuntu Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      }
+      .caps {
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: var(--t-caption);
+        color: var(--ink-3);
+      }
+
+      /* ----- Page frame ----- */
+      .page {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: var(--s-5) 56px var(--s-7);
+      }
+
+      /* ----- Masthead (sits as a folio strip directly above the playground rule) ----- */
+      header.masthead {
+        padding: 0 0 var(--s-1);
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: var(--s-3);
+      }
+      .masthead .version {
+        font-family: "Ubuntu Mono", monospace;
+        font-size: var(--t-caption);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-4);
+      }
+      .masthead .version .num { color: var(--accent); }
+      .masthead .name {
+        font-family: "Ubuntu Mono", monospace;
+        font-size: var(--t-caption);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-3);
+      }
+
+      /* ----- Section heading (between playground & specimens) ----- */
+      .section-heading {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: var(--s-3);
+        align-items: center;
+        padding: var(--s-5) 0 var(--s-3);
+      }
+      .section-heading .hr { height: 0; border-top: 0.5px solid var(--rule); }
+
+      /* ----- Playground ----- */
+      section.playground {
+        margin-top: 0;
+        padding: var(--s-4) 0 var(--s-5);
+        border-top: 0.5px solid var(--rule);
+        border-bottom: 0.5px solid var(--rule);
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: var(--s-5);
+      }
+
+      .pg-controls { display: flex; flex-direction: column; gap: var(--s-3); }
+      .pg-field { display: flex; flex-direction: column; gap: 6px; }
+      .pg-field .label {
+        font-family: "Ubuntu Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: var(--t-caption);
+        color: var(--ink-3);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .pg-field .label .v {
+        font-family: "Gelasio", serif;
+        font-style: italic;
+        text-transform: none;
+        letter-spacing: 0;
+        color: var(--accent);
+        font-size: var(--t-small);
+      }
+
+      /* native select restyled as an editorial caption */
+      .pg-select {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        border-bottom: 0.5px solid var(--rule);
+        padding: 6px 18px 6px 0;
+        font-family: "Gelasio", serif;
+        font-size: 18px;
+        color: var(--ink);
+        cursor: pointer;
+        background-image: linear-gradient(45deg, transparent 50%, var(--ink-3) 50%),
+                          linear-gradient(135deg, var(--ink-3) 50%, transparent 50%);
+        background-position: calc(100% - 8px) 14px, calc(100% - 4px) 14px;
+        background-size: 4px 4px;
+        background-repeat: no-repeat;
+      }
+      .pg-select:focus { outline: none; border-bottom-color: var(--accent); }
+      input.pg-input {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        border-bottom: 0.5px solid var(--rule);
+        padding: 6px 0;
+        font-family: "Ubuntu Mono", monospace;
+        font-size: 13px;
+        color: var(--ink);
+        width: 100%;
+      }
+      input.pg-input:focus { outline: none; border-bottom-color: var(--accent); }
+
+      /* segmented control */
+      .pg-segmented {
+        display: flex;
+        width: 100%;
+        border: 0.5px solid var(--rule);
+      }
+      .pg-segmented button {
+        flex: 1 1 0;
+        appearance: none;
+        background: transparent;
+        border: 0;
+        border-right: 0.5px solid var(--rule);
+        padding: 6px 10px;
+        font-family: "Ubuntu Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-3);
+        cursor: pointer;
+        text-align: center;
+      }
+      .pg-segmented button:last-child { border-right: 0; }
+      .pg-segmented button[aria-pressed="true"] {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      /* slider */
+      .pg-range {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 0.5px;
+        background: var(--rule);
+        outline: none;
+      }
+      .pg-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 14px; height: 14px;
+        background: var(--ink);
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid var(--paper);
+        box-shadow: 0 0 0 0.5px var(--ink);
+      }
+      .pg-range::-moz-range-thumb {
+        width: 12px; height: 12px;
+        background: var(--ink);
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid var(--paper);
+        box-shadow: 0 0 0 0.5px var(--ink);
+      }
+
+      /* toggle (once) */
+      .pg-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--s-1);
+        cursor: pointer;
+        user-select: none;
+      }
+      .pg-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+      .pg-toggle .track {
+        width: 36px; height: 16px;
+        border: 0.5px solid var(--rule);
+        position: relative;
+        transition: background 120ms ease;
+      }
+      .pg-toggle .track::after {
+        content: ""; position: absolute;
+        left: 2px; top: 50%;
+        width: 10px; height: 10px;
+        background: var(--ink);
+        transform: translateY(-50%);
+        transition: transform 120ms ease, background 120ms ease;
+      }
+      .pg-toggle input:checked + .track { background: var(--ink); }
+      .pg-toggle input:checked + .track::after { transform: translate(18px, -50%); background: var(--paper); }
+      .pg-toggle .state {
+        font-family: "Ubuntu Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-3);
+        min-width: 24px;
+      }
+
+      .pg-actions {
+        display: flex;
+        gap: var(--s-1);
+        margin-top: var(--s-2);
+        padding-top: var(--s-2);
+        border-top: 0.5px solid var(--rule-soft);
+      }
+      .pg-actions button {
+        flex: 1;
+        appearance: none;
+        background: transparent;
+        border: 0.5px solid var(--rule);
+        color: var(--ink);
+        padding: 8px 10px;
+        font-family: "Ubuntu Mono", monospace;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        cursor: pointer;
+        transition: background 120ms ease, color 120ms ease;
+      }
+      .pg-actions button:hover { background: var(--ink); color: var(--paper); }
+      .pg-actions button.accent { border-color: var(--accent); color: var(--accent); }
+      .pg-actions button.accent:hover { background: var(--accent); color: var(--paper); }
+      .pg-actions button.copied { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+
+      /* preview column */
+      .pg-preview {
+        position: relative;
+        min-height: 200px;
+        padding: var(--s-3) var(--s-3) var(--s-3) var(--s-4);
+        border-left: 0.5px solid var(--rule-soft);
+        display: flex;
+        align-items: center;
+      }
+      .pg-preview .badge {
+        position: absolute;
+        top: 0; left: var(--s-4);
+        font-family: "Gelasio", serif;
+        font-style: italic;
+        color: var(--accent);
+        font-size: var(--t-small);
+      }
+      .pg-preview .stage { width: 100%; cursor: pointer; }
+      .pg-preview .stage > * {
+        font-family: "Gelasio", serif;
+        font-weight: 500;
+        font-size: clamp(28px, 4vw, 52px);
+        line-height: 1.15;
+        letter-spacing: -0.015em;
+        margin: 0;
+      }
+      .pg-preview .stage p { font-weight: 400; }
+      .pg-preview .stage h3 { font-size: clamp(22px, 2.8vw, 32px); }
+      .pg-preview .stage span { display: inline-block; }
+
+      /* ----- Specimens ----- */
+      .specimens {
+        display: grid;
+        gap: var(--s-5);
+      }
+      article.specimen {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: var(--s-4);
+        padding: var(--s-4) 0;
+        border-top: 0.5px solid var(--rule-soft);
+      }
+      article.specimen:first-child { border-top: 0.5px solid var(--rule); }
+
+      .specimen .meta-col { display: flex; flex-direction: column; gap: var(--s-1); }
+      .specimen .folio {
+        font-family: "Gelasio", serif;
+        font-style: italic;
+        color: var(--accent);
+        font-size: var(--t-small);
+      }
+      .specimen .name {
+        font-family: "Gelasio", serif;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 1.15;
+      }
+      .specimen .params { display: flex; flex-direction: column; gap: 2px; color: var(--ink-3); }
+      .specimen .params span { font-size: var(--t-caption); }
+      .specimen .params .k { color: var(--ink-4); }
+
+      .specimen .demo-col {
+        min-height: 96px;
+        display: flex;
+        align-items: center;
+      }
+      .demo {
+        font-family: "Gelasio", serif;
+        font-size: clamp(28px, 3.4vw, 44px);
+        line-height: 1.15;
+        letter-spacing: -0.015em;
+        font-weight: 500;
+        color: var(--ink);
+      }
+      .demo.italic { font-style: italic; }
+      .demo.lines { font-size: clamp(18px, 1.5vw, 22px); line-height: 1.55; font-style: italic; color: var(--ink-2); }
+
+      /* ----- Colophon ----- */
+      .colophon {
+        margin-top: var(--s-6);
+        padding-top: var(--s-3);
+        border-top: 0.5px solid var(--rule);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: var(--s-4);
+        font-size: var(--t-small);
+        color: var(--ink-3);
+      }
+      .colophon h4 {
+        margin: 0 0 var(--s-1);
+        font-family: "Ubuntu Mono", monospace;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: var(--t-caption);
+        color: var(--ink);
+      }
+      .colophon p { margin: 0 0 var(--s-1); }
+      .colophon code {
+        font-family: "Ubuntu Mono", monospace;
+        background: var(--paper-edge);
+        padding: 1px 6px;
+        font-size: 12px;
+      }
+
+      /* =========================================================
+         Animation engine (unchanged behaviour — restyled wrapper)
+         ========================================================= */
+      .oi-ta { display: inline; white-space: pre-wrap; }
+      .oi-ta .seg {
+        display: inline-block;
+        white-space: pre;
+        opacity: 0;
+        animation-duration: var(--ta-duration, 700ms);
+        animation-delay: calc(var(--i, 0) * var(--ta-step, 40ms) + var(--ta-delay, 0ms));
+        animation-fill-mode: both;
+        animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform, filter;
+      }
+      .oi-ta[data-by="line"] .seg { display: block; }
+
+      .oi-ta[data-anim="fadeIn"]     .seg { animation-name: oi-fadeIn; }
+      .oi-ta[data-anim="blurIn"]     .seg { animation-name: oi-blurIn; }
+      .oi-ta[data-anim="blurInUp"]   .seg { animation-name: oi-blurInUp; }
+      .oi-ta[data-anim="blurInDown"] .seg { animation-name: oi-blurInDown; }
+      .oi-ta[data-anim="slideUp"]    .seg { animation-name: oi-slideUp; }
+      .oi-ta[data-anim="slideDown"]  .seg { animation-name: oi-slideDown; }
+      .oi-ta[data-anim="slideLeft"]  .seg { animation-name: oi-slideLeft; }
+      .oi-ta[data-anim="slideRight"] .seg { animation-name: oi-slideRight; }
+      .oi-ta[data-anim="scaleUp"]    .seg { animation-name: oi-scaleUp; }
+      .oi-ta[data-anim="scaleDown"]  .seg { animation-name: oi-scaleDown; }
+
+      /* ----- colorSweep (Dia Text Reveal) ----- */
+      [data-anim="colorSweep"] {
+        display: inline-block;
+        background: linear-gradient(90deg,
+          var(--sweep-text-color, var(--ink)) 0%,
+          var(--sweep-text-color, var(--ink)) 35%,
+          var(--sweep-c1, #c679c4) 38%,
+          var(--sweep-c2, #fa3d1d) 42%,
+          var(--sweep-c3, #ffb005) 46%,
+          var(--sweep-c4, #e1e1fe) 52%,
+          var(--sweep-c5, #0358f7) 56%,
+          var(--sweep-text-color, var(--ink)) 60%,
+          var(--sweep-text-color, var(--ink)) 100%
+        );
+        background-size: 300% 100%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: oi-colorSweep var(--ta-duration, 700ms) var(--ta-delay, 0ms) cubic-bezier(0.4, 0, 0.2, 1) both;
+      }
+
+      @keyframes oi-fadeIn     { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes oi-blurIn     { from { opacity: 0; filter: blur(10px); } to { opacity: 1; filter: blur(0); } }
+      @keyframes oi-blurInUp   { from { opacity: 0; filter: blur(10px); transform: translateY(20px); } to { opacity: 1; filter: blur(0); transform: translateY(0); } }
+      @keyframes oi-blurInDown { from { opacity: 0; filter: blur(10px); transform: translateY(-20px); } to { opacity: 1; filter: blur(0); transform: translateY(0); } }
+      @keyframes oi-slideUp    { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes oi-slideDown  { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes oi-slideLeft  { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+      @keyframes oi-slideRight { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+      @keyframes oi-scaleUp    { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+      @keyframes oi-scaleDown  { from { opacity: 0; transform: scale(1.5); } to { opacity: 1; transform: scale(1); } }
+      @keyframes oi-colorSweep { from { background-position: 100% 0; } to { background-position: 0% 0; } }
+
+      /* ----- text3dFlip ----- */
+      .oi-flip {
+        display: inline-flex;
+        flex-wrap: wrap;
+        cursor: pointer;
+        perspective: 600px;
+      }
+      .oi-flip .flip-char {
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+        height: 1.2em;
+      }
+      .oi-flip .flip-char .flip-inner {
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1.05);
+        transition-delay: var(--flip-delay, 0ms);
+      }
+      .oi-flip .flip-char .front,
+      .oi-flip .flip-char .back {
+        display: block;
+        height: 1.2em;
+        line-height: 1.2em;
+      }
+
+      .oi-flip.flipped[data-dir="top"] .flip-char .flip-inner,
+      .oi-flip[data-dir="top"]:hover .flip-char .flip-inner {
+        transform: translateY(-50%) rotateX(8deg);
+      }
+      .oi-flip.flipped[data-dir="bottom"] .flip-char .flip-inner,
+      .oi-flip[data-dir="bottom"]:hover .flip-char .flip-inner {
+        transform: translateY(50%) rotateX(-8deg);
+      }
+      .oi-flip.flipped[data-dir="left"] .flip-char .flip-inner,
+      .oi-flip[data-dir="left"]:hover .flip-char .flip-inner {
+        transform: translateY(-50%) rotateY(-8deg);
+      }
+      .oi-flip.flipped[data-dir="right"] .flip-char .flip-inner,
+      .oi-flip[data-dir="right"]:hover .flip-char .flip-inner {
+        transform: translateY(-50%) rotateY(8deg);
+      }
+
+      /* ----- Morphing Text ----- */
+      .oi-morph {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 1.2em;
+        filter: url(#morph-threshold) blur(0.6px);
+      }
+      .oi-morph .morph-text {
+        position: absolute;
+        left: 0; top: 0;
+        display: inline-block;
+        width: 100%;
+      }
+
+      /* ----- Typewriter ----- */
+      [data-anim="textType"] {
+        line-height: 1.4;
+        padding-bottom: 0.1em;
+        display: inline;
+        white-space: pre-wrap;
+      }
+      .tw-cursor {
+        font-weight: 100;
+        animation: tw-blink 0.5s step-end infinite;
+      }
+      @keyframes tw-blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+
+      /* ----- Text Shift Words (interval typewriter + underline) ----- */
+      [data-anim="textShiftWords"] {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: max-content;
+        max-width: 100%;
+        vertical-align: bottom;
+        min-height: calc(1.5em + 0.25rem + var(--shift-underline-h, 2px));
+        line-height: 1.5;
+      }
+      [data-anim="textShiftWords"] .shift-text {
+        display: block;
+        min-height: 1.5em;
+        white-space: nowrap;
+      }
+      [data-anim="textShiftWords"] .shift-underline {
+        margin-top: 0.25rem;
+        display: block;
+        height: 0;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        border: 0;
+        border-bottom: var(--shift-underline-h, 2px) solid transparent;
+        border-image: var(
+          --shift-underline-gradient,
+          linear-gradient(270deg, #11ce37 10%, #633eff 53%, #b06dfd 98%)
+        ) 1;
+      }
+      [data-anim="textShiftWords"][data-underline="false"] .shift-underline {
+        display: none;
+      }
+
+      /* ----- Shimmer ----- */
+      [data-anim="shimmer"] {
+        background: linear-gradient(
+          90deg,
+          var(--shimmer-base, #6b7280) 0%,
+          var(--shimmer-base, #6b7280) 35%,
+          var(--shimmer-hi, #e5e7eb) 50%,
+          var(--shimmer-base, #6b7280) 65%,
+          var(--shimmer-base, #6b7280) 100%
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: oi-shimmer var(--ta-duration, 2000ms) linear infinite;
+      }
+      @keyframes oi-shimmer {
+        from { background-position: 100% 0; }
+        to   { background-position: -100% 0; }
+      }
+
+      /* ----- Responsive ----- */
+      @media (max-width: 820px) {
+        .page { padding: var(--s-4) 24px var(--s-6); }
+        article.specimen { grid-template-columns: 1fr; gap: var(--s-2); }
+        .colophon { grid-template-columns: 1fr; }
+        section.playground { grid-template-columns: 1fr; gap: var(--s-3); }
+        .pg-preview { border-left: 0; border-top: 0.5px solid var(--rule-soft); padding-left: 0; padding-top: var(--s-4); }
+        .pg-preview .badge { left: 0; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .oi-ta .seg { animation-duration: 1ms !important; animation-delay: 0ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <!-- ============== MASTHEAD ============== -->
+      <header class="masthead">
+        <div class="version">v<span class="num">1.3.0</span></div>
+        <div class="name">oi-text-effect</div>
+      </header>
+
+      <!-- ============== PLAYGROUND ============== -->
+      <section class="playground" aria-label="Live playground">
+        <div class="pg-controls">
+          <div class="pg-field">
+            <div class="label"><span>Animation</span></div>
+            <select class="pg-select" id="pg-animation">
+              <option value="fadeIn">fadeIn</option>
+              <option value="blurIn">blurIn</option>
+              <option value="blurInUp" selected>blurInUp</option>
+              <option value="blurInDown">blurInDown</option>
+              <option value="slideUp">slideUp</option>
+              <option value="slideDown">slideDown</option>
+              <option value="slideLeft">slideLeft</option>
+              <option value="slideRight">slideRight</option>
+              <option value="scaleUp">scaleUp</option>
+              <option value="scaleDown">scaleDown</option>
+              <option value="colorSweep">colorSweep</option>
+              <option value="hyperText">hyperText</option>
+              <option value="text3dFlip">text3dFlip</option>
+              <option value="morphingText">morphingText</option>
+              <option value="shimmer">shimmer</option>
+              <option value="textType">textType</option>
+              <option value="textShiftWords">textShiftWords</option>
+            </select>
+          </div>
+
+          <div class="pg-field">
+            <div class="label"><span>Split &nbsp;·&nbsp; <code style="font-family:'Ubuntu Mono',monospace;">by</code></span></div>
+            <div class="pg-segmented" id="pg-by" role="group">
+              <button type="button" data-v="text">Text</button>
+              <button type="button" data-v="word">Word</button>
+              <button type="button" data-v="character" aria-pressed="true">Char</button>
+              <button type="button" data-v="line">Line</button>
+            </div>
+          </div>
+
+          <!-- sweep-only: color palette -->
+          <div class="pg-field" id="pg-colors-field" style="display:none">
+            <div class="label"><span>Color Palette</span></div>
+            <div class="pg-segmented" id="pg-colors" role="group">
+              <button type="button" data-v="rainbow" aria-pressed="true">Rainbow</button>
+              <button type="button" data-v="warm">Warm</button>
+              <button type="button" data-v="cool">Cool</button>
+            </div>
+            <div id="pg-color-bar" style="height:6px;margin-top:6px;border-radius:1px;background:linear-gradient(90deg,#c679c4,#fa3d1d,#ffb005,#e1e1fe,#0358f7)"></div>
+          </div>
+
+          <!-- sweep-only: repeat -->
+          <div class="pg-field" id="pg-repeat-field" style="display:none">
+            <div class="label"><span>Repeat (rotate text)</span></div>
+            <label class="pg-toggle">
+              <input type="checkbox" id="pg-repeat" />
+              <span class="track" aria-hidden="true"></span>
+              <span class="state" id="pg-repeat-state">OFF</span>
+            </label>
+          </div>
+
+          <!-- hyperText-only: mode -->
+          <div class="pg-field" id="pg-hypermode-field" style="display:none">
+            <div class="label"><span>Mode</span></div>
+            <div class="pg-segmented" id="pg-hypermode" role="group">
+              <button type="button" data-v="character" aria-pressed="true">Scramble</button>
+              <button type="button" data-v="cursor">Cursor</button>
+              <button type="button" data-v="blink">Blink</button>
+            </div>
+          </div>
+
+          <!-- hyperText-only: character set -->
+          <div class="pg-field" id="pg-charset-field" style="display:none">
+            <div class="label"><span>Character Set</span></div>
+            <div class="pg-segmented" id="pg-charset" role="group">
+              <button type="button" data-v="alpha" aria-pressed="true">A–Z</button>
+              <button type="button" data-v="digits">0–9</button>
+              <button type="button" data-v="symbols">!@#$</button>
+            </div>
+          </div>
+
+          <!-- text3dFlip-only: rotate direction -->
+          <div class="pg-field" id="pg-flipdir-field" style="display:none">
+            <div class="label"><span>Rotate Direction</span></div>
+            <div class="pg-segmented" id="pg-flipdir" role="group">
+              <button type="button" data-v="top" aria-pressed="true">Top</button>
+              <button type="button" data-v="bottom">Bottom</button>
+              <button type="button" data-v="left">Left</button>
+              <button type="button" data-v="right">Right</button>
+            </div>
+          </div>
+
+          <!-- text3dFlip-only: stagger from -->
+          <div class="pg-field" id="pg-staggerfrom-field" style="display:none">
+            <div class="label"><span>Stagger From</span></div>
+            <div class="pg-segmented" id="pg-staggerfrom" role="group">
+              <button type="button" data-v="first" aria-pressed="true">First</button>
+              <button type="button" data-v="last">Last</button>
+              <button type="button" data-v="center">Center</button>
+              <button type="button" data-v="random">Random</button>
+            </div>
+          </div>
+
+          <!-- morphingText-only: texts list -->
+          <div class="pg-field" id="pg-morph-texts-field" style="display:none">
+            <div class="label"><span>Texts (comma-separated)</span></div>
+            <input type="text" class="pg-input" id="pg-morph-texts" value="Hello,Morphing,Text,Animation" />
+          </div>
+
+          <!-- textType-only: texts list -->
+          <div class="pg-field" id="pg-type-texts-field" style="display:none">
+            <div class="label"><span>Texts (comma-separated)</span></div>
+            <input type="text" class="pg-input" id="pg-type-texts" value="Build Fast,Ship Better,Design With Motion" />
+          </div>
+
+          <!-- textType-only: typing speed -->
+          <div class="pg-field" id="pg-typing-speed-field" style="display:none">
+            <div class="label"><span>Typing Speed</span><span class="v" id="pg-typing-speed-v">50ms</span></div>
+            <input type="range" class="pg-range" id="pg-typing-speed" min="10" max="200" step="5" value="50" />
+          </div>
+
+          <!-- textType-only: text colors -->
+          <div class="pg-field" id="pg-type-colors-field" style="display:none">
+            <div class="label"><span>Text Colors</span></div>
+            <div class="pg-segmented" id="pg-type-colors" role="group">
+              <button type="button" data-v="none" aria-pressed="true">None</button>
+              <button type="button" data-v="ocean">Ocean</button>
+              <button type="button" data-v="warm">Warm</button>
+              <button type="button" data-v="neon">Neon</button>
+            </div>
+            <div id="pg-type-color-bar" style="height:6px;margin-top:6px;border-radius:1px;display:none"></div>
+          </div>
+
+          <!-- textShiftWords-only: phrases -->
+          <div class="pg-field" id="pg-shift-texts-field" style="display:none">
+            <div class="label"><span>Phrases (comma-separated)</span></div>
+            <input type="text" class="pg-input" id="pg-shift-texts" value="Premium domains,Fast checkout,Global DNS" />
+          </div>
+
+          <!-- textShiftWords-only: type interval -->
+          <div class="pg-field" id="pg-shift-interval-field" style="display:none">
+            <div class="label"><span>Type Interval</span><span class="v" id="pg-shift-interval-v">70ms</span></div>
+            <input type="range" class="pg-range" id="pg-shift-interval" min="20" max="150" step="5" value="70" />
+          </div>
+
+          <!-- textShiftWords-only: pause -->
+          <div class="pg-field" id="pg-shift-pause-field" style="display:none">
+            <div class="label"><span>Pause</span><span class="v" id="pg-shift-pause-v">600ms</span></div>
+            <input type="range" class="pg-range" id="pg-shift-pause" min="200" max="2000" step="50" value="600" />
+          </div>
+
+          <!-- textShiftWords-only: underline -->
+          <div class="pg-field" id="pg-shift-underline-field" style="display:none">
+            <div class="label"><span>Underline</span></div>
+            <label class="pg-toggle">
+              <input type="checkbox" id="pg-shift-underline" checked />
+              <span class="track" aria-hidden="true"></span>
+              <span class="state" id="pg-shift-underline-state">ON</span>
+            </label>
+          </div>
+
+          <div class="pg-field">
+            <div class="label"><span>Duration</span><span class="v" id="pg-duration-v">0.7s</span></div>
+            <input type="range" class="pg-range" id="pg-duration" min="100" max="3000" step="50" value="700" />
+          </div>
+
+          <div class="pg-field">
+            <div class="label"><span>Delay</span><span class="v" id="pg-delay-v">0.0s</span></div>
+            <input type="range" class="pg-range" id="pg-delay" min="0" max="2000" step="50" value="0" />
+          </div>
+
+          <div class="pg-field">
+            <div class="label"><span>As tag</span></div>
+            <select class="pg-select" id="pg-as">
+              <option value="h1" selected>h1</option>
+              <option value="h2">h2</option>
+              <option value="h3">h3</option>
+              <option value="p">p</option>
+              <option value="span">span</option>
+            </select>
+          </div>
+
+          <div class="pg-field">
+            <div class="label"><span>Once (play once)</span></div>
+            <label class="pg-toggle">
+              <input type="checkbox" id="pg-once" />
+              <span class="track" aria-hidden="true"></span>
+              <span class="state" id="pg-once-state">OFF</span>
+            </label>
+          </div>
+
+          <div class="pg-actions">
+            <button type="button" id="pg-copy-jsx">Copy JSX</button>
+            <button type="button" id="pg-copy-html">Copy HTML</button>
+            <button type="button" class="accent" id="pg-replay">Replay</button>
+          </div>
+        </div>
+
+        <div class="pg-preview">
+          <div class="badge">Playground</div>
+          <div class="stage" id="pg-stage">
+            <!-- Live preview element injected by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ============== SECTION HEADING ============== -->
+      <div class="section-heading">
+        <div class="caps">The Specimens</div>
+        <div class="hr"></div>
+        <div class="caps mono">22 / 22</div>
+      </div>
+
+      <!-- ============== SPECIMENS ============== -->
+      <main class="specimens">
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 01</div>
+            <div class="name">Fade In</div>
+            <div class="params"><span><span class="k">by</span> word</span><span><span class="k">duration</span> 0.7s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="fadeIn" data-by="word">Build delightful UIs faster.</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 02</div>
+            <div class="name">Blur In</div>
+            <div class="params"><span><span class="k">by</span> text</span><span><span class="k">duration</span> 0.7s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo italic" data-anim="blurIn" data-by="text">A whole sentence, eased into focus.</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 03</div>
+            <div class="name">Blur In · Up</div>
+            <div class="params"><span><span class="k">by</span> character</span><span><span class="k">duration</span> 0.7s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="blurInUp" data-by="character">Build delightful UIs faster.</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 04</div>
+            <div class="name">Blur In · Down</div>
+            <div class="params"><span><span class="k">by</span> word</span><span><span class="k">duration</span> 0.7s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="blurInDown" data-by="word">Falling gently from above.</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 05</div>
+            <div class="name">Slide Up</div>
+            <div class="params"><span><span class="k">by</span> word</span><span><span class="k">duration</span> 0.7s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="slideUp" data-by="word">Words rising, like a tide.</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 06</div>
+            <div class="name">Slide Down</div>
+            <div class="params"><span><span class="k">by</span> word</span><span><span class="k">duration</span> 0.7s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="slideDown" data-by="word">Descending into place.</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 07</div>
+            <div class="name">Slide Left</div>
+            <div class="params"><span><span class="k">by</span> character</span><span><span class="k">duration</span> 0.7s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo italic" data-anim="slideLeft" data-by="character">A typewriter from the right margin.</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 08</div>
+            <div class="name">Slide Right</div>
+            <div class="params"><span><span class="k">by</span> word</span><span><span class="k">duration</span> 0.7s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="slideRight" data-by="word">Threaded in from the left.</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 09</div>
+            <div class="name">Scale Up</div>
+            <div class="params"><span><span class="k">by</span> text</span><span><span class="k">duration</span> 0.7s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="scaleUp" data-by="text">One line, one moment.</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 10</div>
+            <div class="name">Scale Down</div>
+            <div class="params"><span><span class="k">by</span> character</span><span><span class="k">duration</span> 0.7s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="scaleDown" data-by="character">Settling, weight by weight.</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 11</div>
+            <div class="name">Color Sweep</div>
+            <div class="params"><span><span class="k">mode</span> sweep</span><span><span class="k">duration</span> 2s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="colorSweep" style="--ta-duration:2000ms">Magic UI is awesome.</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 12</div>
+            <div class="name">Color Sweep · Inline</div>
+            <div class="params"><span><span class="k">mode</span> rotate</span><span><span class="k">duration</span> 2s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo">Learn to <span data-anim="colorSweep" data-texts="build faster,ship smarter,scale easier" style="--ta-duration:2000ms;--sweep-c1:#A97CF8;--sweep-c2:#F38CB8;--sweep-c3:#FDCC92;--sweep-c4:#F38CB8;--sweep-c5:#A97CF8">build faster</span></div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 13</div>
+            <div class="name">Shimmer</div>
+            <div class="params"><span><span class="k">duration</span> 2s</span><span><span class="k">loop</span> infinite</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="shimmer" style="--ta-duration:2000ms">Thinking about your request...</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 14</div>
+            <div class="name">Hyper Text</div>
+            <div class="params"><span><span class="k">mode</span> scramble</span><span><span class="k">duration</span> 0.8s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="hyperText" data-duration="800">HOVER ME!</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 15</div>
+            <div class="name">Hyper Text · Digits</div>
+            <div class="params"><span><span class="k">charset</span> 0–9</span><span><span class="k">duration</span> 0.8s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="hyperText" data-duration="800" data-charset="digits">DECRYPTING...</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 16</div>
+            <div class="name">Hyper Text · Cursor</div>
+            <div class="params"><span><span class="k">mode</span> cursor</span><span><span class="k">duration</span> 1.2s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="hyperText" data-duration="1200" data-mode="cursor">The quick brown fox jumps</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 17</div>
+            <div class="name">Hyper Text · Blink</div>
+            <div class="params"><span><span class="k">mode</span> blink</span><span><span class="k">duration</span> 0.8s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="hyperText" data-duration="800" data-mode="blink">Hello World</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 18</div>
+            <div class="name">3D Flip · Top</div>
+            <div class="params"><span><span class="k">direction</span> top</span><span><span class="k">stagger</span> first</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="text3dFlip" data-dir="top" data-stagger="first">Stay hungry, stay foolish</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 19</div>
+            <div class="name">3D Flip · Center</div>
+            <div class="params"><span><span class="k">direction</span> right</span><span><span class="k">stagger</span> center</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="text3dFlip" data-dir="right" data-stagger="center">Design for failure</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 20</div>
+            <div class="name">Fade In · Lines</div>
+            <div class="params"><span><span class="k">by</span> line</span><span><span class="k">as</span> paragraph</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo lines" data-anim="fadeIn" data-by="line">A first line, considered.
+A second, in answer.
+A third, to close the stanza.</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 21</div>
+            <div class="name">Morphing Text</div>
+            <div class="params"><span><span class="k">morphTime</span> 1.5s</span><span><span class="k">cooldown</span> 0.5s</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="morphingText" data-texts="Hello,Morphing,Text,Effect,React">Hello</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 22</div>
+            <div class="name">Text Type</div>
+            <div class="params"><span><span class="k">typingSpeed</span> 50ms</span><span><span class="k">loop</span> true</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="textType" data-texts="Build Fast,Ship Better,Design With Motion" style="font-size:var(--t-h1)">Build Fast</div>
+          </div>
+        </article>
+
+        <article class="specimen">
+          <div class="meta-col">
+            <div class="folio">No. 23</div>
+            <div class="name">Text Shift Words</div>
+            <div class="params"><span><span class="k">typeIntervalMs</span> 70</span><span><span class="k">pauseMs</span> 600</span><span><span class="k">underline</span> gradient</span></div>
+          </div>
+          <div class="demo-col">
+            <div class="demo" data-anim="textShiftWords" data-texts="Premium domains,Fast checkout,Global DNS" style="font-size:var(--t-h1)">Premium domains</div>
+          </div>
+        </article>
+
+      </main>
+
+      <!-- SVG filter for morphingText -->
+      <svg style="position:fixed;width:0;height:0;" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="morph-threshold">
+            <feColorMatrix in="SourceGraphic" type="matrix"
+              values="1 0 0 0 0
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0 0 0 255 -140" />
+          </filter>
+        </defs>
+      </svg>
+
+      <!-- ============== COLOPHON ============== -->
+      <footer class="colophon">
+        <div>
+          <h4>Component</h4>
+          <p><code>oi-text-effect</code> · entrance presets wrap magicui's <em>text-animate</em>; typewriters via <code>TextType</code> and <code>TextShiftWords</code>.</p>
+          <p>17 presets (10 entrance + 1 sweep + 1 scramble + 1 3D flip + 1 morph + 1 shimmer + 2 typewriters) × 4 split modes, plus custom Framer Motion <code>variants</code>. One showcase for all categories.</p>
+        </div>
+        <div>
+          <h4>Typeset In</h4>
+          <p>Display & body: <em>Gelasio</em>, Eduardo Tunni.</p>
+          <p>Labels: <em>Ubuntu Mono</em>, Dalton Maag.</p>
+        </div>
+        <div>
+          <h4>Style</h4>
+          <p>Editorial — <code>oi-awesome-ui/editorial</code>.</p>
+          <p>Warm paper #FAFAF7, ink #111111, terracotta accent #B13B1B.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // ===== TextAnimate runtime =====
+      const STAGGER = { text: 60, word: 50, character: 30, line: 60 };
+
+      function splitNode(node) {
+        const by = node.dataset.by || "word";
+        const raw = node.dataset.text ?? node.textContent ?? "";
+        if (!node.dataset.text) node.dataset.text = raw;
+
+        let segments;
+        switch (by) {
+          case "character": segments = [...raw]; break;
+          case "line":      segments = raw.split("\n"); break;
+          case "text":      segments = [raw]; break;
+          case "word":
+          default:          segments = raw.split(/(\s+)/); break;
+        }
+
+        node.classList.add("oi-ta");
+        node.dataset.by = by;
+        node.innerHTML = "";
+        const frag = document.createDocumentFragment();
+        segments.forEach((s, i) => {
+          const span = document.createElement("span");
+          span.className = "seg";
+          span.style.setProperty("--i", i);
+          span.textContent = s;
+          frag.appendChild(span);
+        });
+        node.appendChild(frag);
+
+        if (!node.style.getPropertyValue("--ta-step")) {
+          node.style.setProperty("--ta-step", `${STAGGER[by] ?? 40}ms`);
+        }
+      }
+
+      function replay(node) {
+        node.querySelectorAll(".seg").forEach((seg) => {
+          seg.style.animation = "none";
+          seg.offsetHeight;
+          seg.style.animation = "";
+        });
+      }
+
+      function replaySweep(node) {
+        if (node.dataset.texts) {
+          const texts = node.dataset.texts.split(",");
+          if (!node.dataset._sweepIdx) {
+            node.dataset._sweepIdx = "0";
+            node.style.animation = "none";
+            node.offsetHeight;
+            node.style.animation = "";
+            return;
+          }
+          const idx = (parseInt(node.dataset._sweepIdx) + 1) % texts.length;
+          node.dataset._sweepIdx = idx;
+          const newText = texts[idx];
+          const duration = parseInt(getComputedStyle(node).getPropertyValue("--ta-duration") || "2000");
+          const easing = "cubic-bezier(0.4, 0, 0.2, 1)";
+
+          node.style.display = "inline-block";
+          node.style.overflow = "hidden";
+          node.style.verticalAlign = "bottom";
+          node.style.whiteSpace = "nowrap";
+          node.style.width = "0px";
+          node.style.animation = "none";
+          node.offsetHeight;
+
+          node.textContent = newText;
+          const targetW = node.scrollWidth;
+
+          node.style.animation = `oi-colorSweep ${duration}ms ${easing} both`;
+          const reveal = node.animate(
+            [{ width: "0px" }, { width: targetW + "px" }],
+            { duration, easing, fill: "forwards" }
+          );
+          reveal.onfinish = () => {
+            node.style.width = "";
+          };
+          return;
+        }
+        node.style.animation = "none";
+        node.offsetHeight;
+        node.style.animation = "";
+      }
+
+      // ===== HyperText runtime =====
+      const CHARSETS = {
+        alpha:   "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),
+        digits:  "0123456789".split(""),
+        symbols: "!@#$%^&*()_+-=[]{}|;:',.<>?/~`".split(""),
+      };
+
+      function runHyperText(node) {
+        const text = node.dataset.text || node.textContent || "";
+        if (!node.dataset.text) node.dataset.text = text;
+        const duration = parseInt(node.dataset.duration || "800");
+        const charsetName = node.dataset.charset || "alpha";
+        const charset = CHARSETS[charsetName] || CHARSETS.alpha;
+        const mode = node.dataset.mode || "character";
+
+        const chars = [...text];
+        const randomChar = () => charset[Math.floor(Math.random() * charset.length)];
+
+        if (mode === "blink") {
+          // Blink mode: full text + trailing "!" always visible; cursor scrambles periodically
+          const steps = Math.ceil(duration / 50);
+          let frame = 0;
+          node.textContent = text + randomChar();
+          const interval = setInterval(() => {
+            frame++;
+            if (frame >= steps) {
+              clearInterval(interval);
+              node.textContent = text + "!";
+            } else {
+              node.textContent = text + randomChar();
+            }
+          }, 50);
+        } else if (mode === "cursor") {
+          // Typing mode: reveal chars one by one, trailing scrambling cursor
+          const steps = Math.ceil(duration / 50);
+          let frame = 0;
+          node.textContent = randomChar();
+          const interval = setInterval(() => {
+            frame++;
+            const revealedCount = Math.floor((frame / steps) * chars.length);
+            const revealed = chars.slice(0, revealedCount).join("");
+            if (frame >= steps) {
+              clearInterval(interval);
+              node.textContent = text;
+            } else {
+              node.textContent = revealed + randomChar();
+            }
+          }, 50);
+        } else {
+          // Scramble mode (default): all chars scramble, reveal L→R
+          const steps = Math.ceil(duration / 50);
+          let frame = 0;
+          node.textContent = chars.map(ch => ch === " " ? " " : randomChar()).join("");
+          const interval = setInterval(() => {
+            frame++;
+            const revealedCount = Math.floor((frame / steps) * chars.length);
+            node.textContent = chars.map((ch, i) => {
+              if (ch === " ") return " ";
+              if (i < revealedCount) return ch;
+              return randomChar();
+            }).join("");
+            if (frame >= steps) {
+              clearInterval(interval);
+              node.textContent = text;
+            }
+          }, 50);
+        }
+      }
+
+      // ===== Text3DFlip runtime =====
+      function buildFlip(node) {
+        const text = node.dataset.text || node.textContent || "";
+        if (!node.dataset.text) node.dataset.text = text;
+        const dir = node.dataset.dir || "top";
+        const staggerFrom = node.dataset.stagger || "first";
+        const staggerDur = parseFloat(node.dataset.staggerDuration || "0.03") * 1000;
+
+        const chars = [...text];
+        node.innerHTML = "";
+        node.classList.add("oi-flip");
+        node.dataset.dir = dir;
+
+        const indices = computeStaggerIndices(chars.length, staggerFrom);
+
+        chars.forEach((ch, i) => {
+          const wrapper = document.createElement("span");
+          wrapper.className = "flip-char";
+          if (ch === " ") {
+            wrapper.innerHTML = "&nbsp;";
+            wrapper.style.width = "0.3em";
+            node.appendChild(wrapper);
+            return;
+          }
+          const inner = document.createElement("span");
+          inner.className = "flip-inner";
+          inner.style.setProperty("--flip-delay", `${indices[i] * staggerDur}ms`);
+          const front = document.createElement("span");
+          front.className = "front";
+          front.textContent = ch;
+          const back = document.createElement("span");
+          back.className = "back";
+          back.textContent = ch;
+          inner.appendChild(front);
+          inner.appendChild(back);
+          wrapper.appendChild(inner);
+          node.appendChild(wrapper);
+        });
+      }
+
+      function computeStaggerIndices(len, from) {
+        const indices = new Array(len);
+        if (from === "last") {
+          for (let i = 0; i < len; i++) indices[i] = len - 1 - i;
+        } else if (from === "center") {
+          const mid = (len - 1) / 2;
+          for (let i = 0; i < len; i++) indices[i] = Math.abs(i - mid);
+        } else if (from === "random") {
+          const order = Array.from({length: len}, (_, i) => i);
+          for (let i = order.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [order[i], order[j]] = [order[j], order[i]];
+          }
+          for (let i = 0; i < len; i++) indices[order[i]] = i;
+        } else {
+          for (let i = 0; i < len; i++) indices[i] = i;
+        }
+        return indices;
+      }
+
+      function getFlipDuration(node) {
+        const chars = node.querySelectorAll(".flip-inner");
+        let maxDelay = 0;
+        chars.forEach(el => {
+          const d = parseFloat(el.style.getPropertyValue("--flip-delay")) || 0;
+          if (d > maxDelay) maxDelay = d;
+        });
+        return 600 + maxDelay; // transition duration + max stagger delay
+      }
+
+      function runFlip(node) {
+        node.classList.add("flipped");
+      }
+      function resetFlip(node) {
+        node.classList.remove("flipped");
+      }
+
+      // ===== Morphing Text =====
+      const morphInstances = new Map();
+
+      function buildMorph(node) {
+        const textsStr = node.dataset.texts || node.textContent;
+        const texts = textsStr.split(",").map((t) => t.trim()).filter(Boolean);
+        if (texts.length < 2) return;
+
+        node.textContent = "";
+        node.classList.add("oi-morph");
+
+        const span1 = document.createElement("span");
+        span1.className = "morph-text";
+        span1.textContent = texts[0];
+
+        const span2 = document.createElement("span");
+        span2.className = "morph-text";
+        span2.textContent = texts[1];
+        span2.style.opacity = "0%";
+
+        node.appendChild(span1);
+        node.appendChild(span2);
+
+        node.dataset._morphTexts = JSON.stringify(texts);
+      }
+
+      function runMorph(node) {
+        if (morphInstances.has(node)) {
+          cancelAnimationFrame(morphInstances.get(node));
+          morphInstances.delete(node);
+        }
+
+        const texts = JSON.parse(node.dataset._morphTexts || "[]");
+        if (texts.length < 2) return;
+
+        const span1 = node.querySelector(".morph-text:first-child");
+        const span2 = node.querySelector(".morph-text:last-child");
+        if (!span1 || !span2) return;
+
+        const morphTime = 1.5;
+        const cooldownTime = 0.5;
+        let textIndex = 0;
+        let morph = 0;
+        let cooldown = 0;
+        let lastTime = performance.now();
+
+        function setStyles(fraction) {
+          span2.style.filter = `blur(${Math.min(8 / fraction - 8, 100)}px)`;
+          span2.style.opacity = `${Math.pow(fraction, 0.4) * 100}%`;
+
+          const inv = 1 - fraction;
+          span1.style.filter = `blur(${Math.min(8 / inv - 8, 100)}px)`;
+          span1.style.opacity = `${Math.pow(inv, 0.4) * 100}%`;
+
+          span1.textContent = texts[textIndex % texts.length];
+          span2.textContent = texts[(textIndex + 1) % texts.length];
+        }
+
+        function doMorph() {
+          morph -= cooldown;
+          cooldown = 0;
+          let fraction = morph / morphTime;
+          if (fraction > 1) {
+            cooldown = cooldownTime;
+            fraction = 1;
+          }
+          setStyles(fraction);
+          if (fraction === 1) textIndex++;
+        }
+
+        function doCooldown() {
+          morph = 0;
+          span2.style.filter = "none";
+          span2.style.opacity = "100%";
+          span1.style.filter = "none";
+          span1.style.opacity = "0%";
+        }
+
+        function frame(now) {
+          const dt = (now - lastTime) / 1000;
+          lastTime = now;
+          cooldown -= dt;
+          if (cooldown <= 0) doMorph();
+          else doCooldown();
+          morphInstances.set(node, requestAnimationFrame(frame));
+        }
+
+        morphInstances.set(node, requestAnimationFrame(frame));
+      }
+
+      function stopMorph(node) {
+        if (morphInstances.has(node)) {
+          cancelAnimationFrame(morphInstances.get(node));
+          morphInstances.delete(node);
+        }
+      }
+
+      // ===== Typewriter runtime =====
+      function runTypewriter(node) {
+        stopTypewriter(node);
+        const textsStr = node.dataset.texts || node.dataset.text || node.textContent;
+        const texts = textsStr.split(",").map(t => t.trim()).filter(Boolean);
+        if (!texts.length) return;
+        const colors = (node.dataset.colors || "").split(",").filter(Boolean);
+        const typingSpeed = parseInt(node.dataset.typingSpeed || "50");
+        const deletingSpeed = parseInt(node.dataset.deletingSpeed || "30");
+        const pauseDuration = parseInt(node.dataset.pauseDuration || "2000");
+
+        let ti = 0, ci = 0, deleting = false;
+        if (!node.dataset.text) node.dataset.text = node.textContent;
+        node.innerHTML = '<span class="tw-cursor">|</span>';
+
+        function tick() {
+          const t = texts[ti];
+          ci += deleting ? -1 : 1;
+          if (colors.length) node.style.color = colors[ti % colors.length];
+          node.innerHTML = t.slice(0, ci) + '<span class="tw-cursor">|</span>';
+          if (!deleting && ci === t.length) {
+            node._twTimeout = setTimeout(() => { deleting = true; tick(); }, pauseDuration);
+            return;
+          }
+          if (deleting && ci === 0) {
+            deleting = false;
+            ti = (ti + 1) % texts.length;
+          }
+          node._twTimeout = setTimeout(tick, deleting ? deletingSpeed : typingSpeed);
+        }
+        tick();
+      }
+
+      function stopTypewriter(node) {
+        if (node._twTimeout) { clearTimeout(node._twTimeout); node._twTimeout = null; }
+      }
+
+      // ===== Text Shift Words runtime (interval typewriter + underline) =====
+      function buildShiftWords(node) {
+        const textsStr = node.dataset.texts || node.dataset.text || node.textContent;
+        const texts = textsStr.split(",").map((t) => t.trim()).filter(Boolean);
+        if (!texts.length) return;
+        if (!node.dataset.text) node.dataset.text = node.textContent.trim();
+        const showUnderline = node.dataset.underline !== "false";
+        node.innerHTML =
+          `<span class="shift-text">${texts[0].slice(0, 1)}</span>` +
+          (showUnderline ? '<span class="shift-underline" aria-hidden="true"></span>' : "");
+        node._shiftTextEl = node.querySelector(".shift-text");
+      }
+
+      function runTextShiftWords(node) {
+        stopTextShiftWords(node);
+        buildShiftWords(node);
+        const textEl = node._shiftTextEl || node.querySelector(".shift-text");
+        if (!textEl) return;
+
+        const textsStr = node.dataset.texts || node.dataset.text || "";
+        const words = textsStr.split(",").map((t) => t.trim()).filter(Boolean);
+        if (!words.length) return;
+
+        const typeInterval = parseInt(node.dataset.typeInterval || "70", 10);
+        const pauseMs = parseInt(node.dataset.pauseMs || "600", 10);
+
+        const state = {
+          phraseIdx: 0,
+          letterCount: 1,
+          direction: 1,
+          waiting: false,
+        };
+        textEl.textContent = words[0].slice(0, 1);
+
+        const timeouts = [];
+        const schedule = (fn, delay) => {
+          const t = window.setTimeout(fn, delay);
+          timeouts.push(t);
+        };
+
+        const id = window.setInterval(() => {
+          if (state.waiting) return;
+
+          const current = words[state.phraseIdx % words.length];
+          const len = current.length;
+
+          if (state.letterCount === 0) {
+            state.waiting = true;
+            textEl.textContent = "";
+            schedule(() => {
+              state.phraseIdx = (state.phraseIdx + 1) % words.length;
+              state.direction = 1;
+              state.letterCount = 1;
+              state.waiting = false;
+            }, pauseMs);
+            return;
+          }
+
+          if (state.letterCount === len + 1 && state.direction === 1) {
+            state.waiting = true;
+            schedule(() => {
+              state.direction = -1;
+              state.letterCount += state.direction;
+              state.waiting = false;
+            }, pauseMs);
+            return;
+          }
+
+          textEl.textContent = current.slice(0, Math.max(0, state.letterCount));
+          state.letterCount += state.direction;
+        }, typeInterval);
+
+        node._shiftInterval = id;
+        node._shiftTimeouts = timeouts;
+      }
+
+      function stopTextShiftWords(node) {
+        if (node._shiftInterval) {
+          window.clearInterval(node._shiftInterval);
+          node._shiftInterval = null;
+        }
+        if (node._shiftTimeouts) {
+          node._shiftTimeouts.forEach((t) => window.clearTimeout(t));
+          node._shiftTimeouts = null;
+        }
+      }
+
+      const LOOP_DELAY = 3000; // ms pause between loops
+      const SKIP_SPLIT = ["colorSweep", "hyperText", "text3dFlip", "morphingText", "shimmer", "textType", "textShiftWords"];
+
+      const nodes = document.querySelectorAll("[data-anim]");
+      nodes.forEach((n) => {
+        if (n.dataset.anim === "textType" || n.dataset.anim === "textShiftWords") { /* on visible */ }
+        else if (n.dataset.anim === "text3dFlip") buildFlip(n);
+        else if (n.dataset.anim === "morphingText") buildMorph(n);
+        else if (n.dataset.anim === "hyperText" && n.dataset.mode === "blink") {
+          if (!n.dataset.text) n.dataset.text = n.textContent;
+          n.textContent = n.textContent + "!";
+        }
+        else if (!SKIP_SPLIT.includes(n.dataset.anim)) splitNode(n);
+      });
+
+      function replayNode(node) {
+        const anim = node.dataset.anim;
+        if (anim === "shimmer") return;
+        if (anim === "textType") { runTypewriter(node); return; }
+        if (anim === "textShiftWords") { runTextShiftWords(node); return; }
+        if (anim === "colorSweep") replaySweep(node);
+        else if (anim === "morphingText") runMorph(node);
+        else if (anim === "hyperText") runHyperText(node);
+        else if (anim === "text3dFlip") {
+          if (node.classList.contains("flipped")) {
+            resetFlip(node);
+            const resetTime = getFlipDuration(node);
+            setTimeout(() => runFlip(node), resetTime + 200);
+          } else {
+            runFlip(node);
+          }
+        }
+        else replay(node);
+      }
+
+      // Auto-loop: replay each specimen on an interval while it's visible
+      const visibleNodes = new Set();
+
+      function loopNode(node) {
+        if (!visibleNodes.has(node)) return;
+        if (node.dataset.anim === "morphingText" || node.dataset.anim === "shimmer" || node.dataset.anim === "textType" || node.dataset.anim === "textShiftWords") return;
+        replayNode(node);
+        let dur;
+        if (node.dataset.anim === "hyperText") dur = parseInt(node.dataset.duration || "800");
+        else if (node.dataset.anim === "text3dFlip") dur = getFlipDuration(node) * 2 + 400;
+        else dur = parseInt(getComputedStyle(node).getPropertyValue("--ta-duration") || "700");
+        setTimeout(() => loopNode(node), dur + LOOP_DELAY);
+      }
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              visibleNodes.add(e.target);
+              replayNode(e.target);
+              if (e.target.dataset.anim === "morphingText" || e.target.dataset.anim === "shimmer" || e.target.dataset.anim === "textType" || e.target.dataset.anim === "textShiftWords") return;
+              let dur;
+              if (e.target.dataset.anim === "hyperText") dur = parseInt(e.target.dataset.duration || "800");
+              else if (e.target.dataset.anim === "text3dFlip") dur = getFlipDuration(e.target) * 2 + 400;
+              else dur = parseInt(getComputedStyle(e.target).getPropertyValue("--ta-duration") || "700");
+              setTimeout(() => loopNode(e.target), dur + LOOP_DELAY);
+            } else {
+              visibleNodes.delete(e.target);
+              if (e.target.dataset.anim === "textType") stopTypewriter(e.target);
+              else if (e.target.dataset.anim === "textShiftWords") stopTextShiftWords(e.target);
+              else if (e.target.dataset.anim === "morphingText") stopMorph(e.target);
+            }
+          });
+        },
+        { threshold: 0.25 },
+      );
+      nodes.forEach((n) => io.observe(n));
+
+      // ===== Playground =====
+      const COLOR_PALETTES = {
+        rainbow: ["#c679c4", "#fa3d1d", "#ffb005", "#e1e1fe", "#0358f7"],
+        warm:    ["#f97316", "#eab308", "#22c55e", "#3b82f6", "#a855f7"],
+        cool:    ["#22d3ee", "#818cf8", "#f472b6", "#34d399", "#6366f1"],
+      };
+      const TYPE_COLOR_PALETTES = {
+        none:  [],
+        ocean: ["#38bdf8", "#22d3ee", "#a78bfa"],
+        warm:  ["#f97316", "#eab308", "#ef4444"],
+        neon:  ["#22d3ee", "#a3e635", "#f472b6"],
+      };
+
+      const SWEEP_ANIMS = ["colorSweep"];
+      const HYPER_ANIMS = ["hyperText"];
+      const FLIP_ANIMS = ["text3dFlip"];
+      const MORPH_ANIMS = ["morphingText"];
+      const SHIMMER_ANIMS = ["shimmer"];
+      const TYPE_ANIMS = ["textType"];
+      const SHIFT_ANIMS = ["textShiftWords"];
+
+      const PG = {
+        animation: "blurInUp",
+        by: "character",
+        duration: 700,   // ms
+        delay: 0,        // ms
+        as: "h1",
+        once: false,
+        text: "Build delightful UIs faster",
+        // sweep-specific
+        colorPalette: "rainbow",
+        repeat: false,
+        // hyper-specific
+        charset: "alpha",
+        hyperMode: "character",
+        // flip-specific
+        flipDir: "top",
+        staggerFrom: "first",
+        // morph-specific
+        morphTexts: "Hello,Morphing,Text,Animation",
+        // type-specific
+        typeTexts: "Build Fast,Ship Better,Design With Motion",
+        typingSpeed: 50,
+        typeColorPalette: "none",
+        // shift-specific
+        shiftTexts: "Premium domains,Fast checkout,Global DNS",
+        typeIntervalMs: 70,
+        pauseMs: 600,
+        shiftUnderline: true,
+      };
+
+      const pgStage = document.getElementById("pg-stage");
+      const pgDurEl = document.getElementById("pg-duration");
+      const pgDurVal = document.getElementById("pg-duration-v");
+      const pgDelEl = document.getElementById("pg-delay");
+      const pgDelVal = document.getElementById("pg-delay-v");
+      const pgAnimEl = document.getElementById("pg-animation");
+      const pgAsEl   = document.getElementById("pg-as");
+      const pgOnceEl = document.getElementById("pg-once");
+      const pgOnceState = document.getElementById("pg-once-state");
+      const pgBy     = document.getElementById("pg-by");
+      const pgByField = pgBy.closest(".pg-field");
+      const pgColorsField = document.getElementById("pg-colors-field");
+      const pgRepeatField = document.getElementById("pg-repeat-field");
+      const pgColorsGroup = document.getElementById("pg-colors");
+      const pgColorBar = document.getElementById("pg-color-bar");
+      const pgRepeatEl = document.getElementById("pg-repeat");
+      const pgRepeatState = document.getElementById("pg-repeat-state");
+
+      const pgCharsetField = document.getElementById("pg-charset-field");
+      const pgCharsetGroup = document.getElementById("pg-charset");
+      const pgHyperModeField = document.getElementById("pg-hypermode-field");
+      const pgHyperModeGroup = document.getElementById("pg-hypermode");
+      const pgFlipdirField = document.getElementById("pg-flipdir-field");
+      const pgFlipdirGroup = document.getElementById("pg-flipdir");
+      const pgStaggerfromField = document.getElementById("pg-staggerfrom-field");
+      const pgStaggerfromGroup = document.getElementById("pg-staggerfrom");
+      const pgMorphTextsField = document.getElementById("pg-morph-texts-field");
+      const pgMorphTextsInput = document.getElementById("pg-morph-texts");
+      const pgTypeTextsField = document.getElementById("pg-type-texts-field");
+      const pgTypeTextsInput = document.getElementById("pg-type-texts");
+      const pgTypingSpeedField = document.getElementById("pg-typing-speed-field");
+      const pgTypingSpeedEl = document.getElementById("pg-typing-speed");
+      const pgTypingSpeedVal = document.getElementById("pg-typing-speed-v");
+      const pgTypeColorsField = document.getElementById("pg-type-colors-field");
+      const pgTypeColorsGroup = document.getElementById("pg-type-colors");
+      const pgTypeColorBar = document.getElementById("pg-type-color-bar");
+      const pgShiftTextsField = document.getElementById("pg-shift-texts-field");
+      const pgShiftTextsInput = document.getElementById("pg-shift-texts");
+      const pgShiftIntervalField = document.getElementById("pg-shift-interval-field");
+      const pgShiftIntervalEl = document.getElementById("pg-shift-interval");
+      const pgShiftIntervalVal = document.getElementById("pg-shift-interval-v");
+      const pgShiftPauseField = document.getElementById("pg-shift-pause-field");
+      const pgShiftPauseEl = document.getElementById("pg-shift-pause");
+      const pgShiftPauseVal = document.getElementById("pg-shift-pause-v");
+      const pgShiftUnderlineField = document.getElementById("pg-shift-underline-field");
+      const pgShiftUnderlineEl = document.getElementById("pg-shift-underline");
+      const pgShiftUnderlineState = document.getElementById("pg-shift-underline-state");
+
+      function isSweep() { return SWEEP_ANIMS.includes(PG.animation); }
+      function isHyper() { return HYPER_ANIMS.includes(PG.animation); }
+      function isFlip()  { return FLIP_ANIMS.includes(PG.animation); }
+      function isMorph() { return MORPH_ANIMS.includes(PG.animation); }
+      function isShimmer() { return SHIMMER_ANIMS.includes(PG.animation); }
+      function isType() { return TYPE_ANIMS.includes(PG.animation); }
+      function isShift() { return SHIFT_ANIMS.includes(PG.animation); }
+
+      function togglePanels() {
+        const sweep = isSweep();
+        const hyper = isHyper();
+        const flip = isFlip();
+        const morph = isMorph();
+        const shimmer = isShimmer();
+        const type = isType();
+        const shift = isShift();
+        const entrance = !sweep && !hyper && !flip && !morph && !shimmer && !type && !shift;
+        pgByField.style.display = entrance ? "" : "none";
+        pgColorsField.style.display = sweep ? "" : "none";
+        pgRepeatField.style.display = sweep ? "" : "none";
+        pgCharsetField.style.display = hyper ? "" : "none";
+        pgHyperModeField.style.display = hyper ? "" : "none";
+        pgFlipdirField.style.display = flip ? "" : "none";
+        pgStaggerfromField.style.display = flip ? "" : "none";
+        pgMorphTextsField.style.display = morph ? "" : "none";
+        pgTypeTextsField.style.display = type ? "" : "none";
+        pgTypingSpeedField.style.display = type ? "" : "none";
+        pgTypeColorsField.style.display = type ? "" : "none";
+        pgShiftTextsField.style.display = shift ? "" : "none";
+        pgShiftIntervalField.style.display = shift ? "" : "none";
+        pgShiftPauseField.style.display = shift ? "" : "none";
+        pgShiftUnderlineField.style.display = shift ? "" : "none";
+        if (type) updateTypeColorBar();
+        updatePgLabels();
+      }
+
+      function updateColorBar() {
+        const c = COLOR_PALETTES[PG.colorPalette];
+        pgColorBar.style.background = `linear-gradient(90deg, ${c.join(", ")})`;
+      }
+
+      function updateTypeColorBar() {
+        const c = TYPE_COLOR_PALETTES[PG.typeColorPalette];
+        if (c && c.length) {
+          pgTypeColorBar.style.background = `linear-gradient(90deg, ${c.join(", ")})`;
+          pgTypeColorBar.style.display = "";
+        } else {
+          pgTypeColorBar.style.display = "none";
+        }
+      }
+
+      function renderPlayground(replayOnly = false) {
+        if (replayOnly) {
+          const el = pgStage.firstElementChild;
+          if (!el) return;
+          if (isShimmer()) return;
+          if (isType()) { stopTypewriter(el); runTypewriter(el); }
+          else if (isShift()) { stopTextShiftWords(el); runTextShiftWords(el); }
+          else if (isMorph()) { stopMorph(el); runMorph(el); }
+          else if (isHyper()) runHyperText(el);
+          else if (isSweep()) replaySweep(el);
+          else if (isFlip()) { resetFlip(el); setTimeout(() => runFlip(el), 50); }
+          else replay(el);
+          return;
+        }
+
+        // Stop any running animation before clearing
+        const prev = pgStage.firstElementChild;
+        if (prev && prev.dataset.anim === "textType") stopTypewriter(prev);
+        else if (prev && prev.dataset.anim === "textShiftWords") stopTextShiftWords(prev);
+        else if (prev && prev.dataset.anim === "morphingText") stopMorph(prev);
+
+        pgStage.innerHTML = "";
+        const el = document.createElement(PG.as);
+        el.dataset.anim = PG.animation;
+        el.style.setProperty("--ta-duration", `${PG.duration}ms`);
+        el.style.setProperty("--ta-delay", `${PG.delay}ms`);
+
+        if (isType()) {
+          el.dataset.texts = PG.typeTexts;
+          el.dataset.typingSpeed = PG.typingSpeed;
+          const tc = TYPE_COLOR_PALETTES[PG.typeColorPalette];
+          if (tc && tc.length) el.dataset.colors = tc.join(",");
+          el.textContent = PG.typeTexts.split(",")[0] || "";
+          pgStage.appendChild(el);
+          runTypewriter(el);
+        } else if (isShift()) {
+          el.dataset.texts = PG.shiftTexts;
+          el.dataset.typeInterval = PG.typeIntervalMs;
+          el.dataset.pauseMs = PG.pauseMs;
+          el.dataset.underline = PG.shiftUnderline ? "true" : "false";
+          el.textContent = PG.shiftTexts.split(",")[0]?.trim() || "";
+          pgStage.appendChild(el);
+          runTextShiftWords(el);
+        } else if (isShimmer()) {
+          el.textContent = PG.text;
+          pgStage.appendChild(el);
+        } else if (isMorph()) {
+          el.dataset.texts = PG.morphTexts;
+          el.textContent = PG.morphTexts.split(",")[0] || "";
+          pgStage.appendChild(el);
+          buildMorph(el);
+          runMorph(el);
+        } else if (isFlip()) {
+          el.dataset.dir = PG.flipDir;
+          el.dataset.stagger = PG.staggerFrom;
+          el.dataset.staggerDuration = "0.03";
+          el.textContent = PG.text;
+          pgStage.appendChild(el);
+          buildFlip(el);
+          setTimeout(() => runFlip(el), 100);
+        } else if (isHyper()) {
+          el.dataset.duration = PG.duration;
+          el.dataset.charset = PG.charset;
+          el.dataset.mode = PG.hyperMode;
+          el.textContent = PG.text;
+          pgStage.appendChild(el);
+          runHyperText(el);
+        } else if (isSweep()) {
+          const c = COLOR_PALETTES[PG.colorPalette];
+          c.forEach((color, i) => el.style.setProperty(`--sweep-c${i + 1}`, color));
+          el.textContent = PG.text;
+          pgStage.appendChild(el);
+        } else {
+          el.dataset.by = PG.by;
+          el.style.setProperty("--ta-step", `${Math.round((STAGGER[PG.by] ?? 40) * (PG.duration / 700))}ms`);
+          el.textContent = PG.text;
+          pgStage.appendChild(el);
+          splitNode(el);
+        }
+      }
+
+      function updatePgLabels() {
+        pgDurVal.textContent = `${(PG.duration / 1000).toFixed(2)}s`;
+        pgDelVal.textContent = `${(PG.delay / 1000).toFixed(2)}s`;
+        pgOnceState.textContent = PG.once ? "ON" : "OFF";
+        pgRepeatState.textContent = PG.repeat ? "ON" : "OFF";
+        pgShiftUnderlineState.textContent = PG.shiftUnderline ? "ON" : "OFF";
+      }
+
+      // Initial render
+      updatePgLabels();
+      renderPlayground();
+
+      // Hover to replay
+      pgStage.addEventListener("mouseenter", () => renderPlayground(true));
+
+      // Wire controls
+      pgAnimEl.addEventListener("change", (e) => {
+        PG.animation = e.target.value;
+        togglePanels();
+        renderPlayground();
+      });
+      pgAsEl.addEventListener("change",   (e) => { PG.as = e.target.value;        renderPlayground(); });
+      pgDurEl.addEventListener("input",   (e) => { PG.duration = +e.target.value; updatePgLabels(); renderPlayground(); });
+      pgDelEl.addEventListener("input",   (e) => { PG.delay = +e.target.value;    updatePgLabels(); renderPlayground(); });
+      pgOnceEl.addEventListener("change", (e) => { PG.once = e.target.checked;    updatePgLabels(); });
+      pgRepeatEl.addEventListener("change", (e) => { PG.repeat = e.target.checked; updatePgLabels(); });
+
+      pgBy.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-v]");
+        if (!btn) return;
+        pgBy.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b === btn));
+        PG.by = btn.dataset.v;
+        renderPlayground();
+      });
+
+      pgColorsGroup.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-v]");
+        if (!btn) return;
+        pgColorsGroup.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b === btn));
+        PG.colorPalette = btn.dataset.v;
+        updateColorBar();
+        renderPlayground();
+      });
+
+      pgCharsetGroup.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-v]");
+        if (!btn) return;
+        pgCharsetGroup.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b === btn));
+        PG.charset = btn.dataset.v;
+        renderPlayground();
+      });
+
+      pgHyperModeGroup.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-v]");
+        if (!btn) return;
+        pgHyperModeGroup.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b === btn));
+        PG.hyperMode = btn.dataset.v;
+        renderPlayground();
+      });
+
+      pgFlipdirGroup.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-v]");
+        if (!btn) return;
+        pgFlipdirGroup.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b === btn));
+        PG.flipDir = btn.dataset.v;
+        renderPlayground();
+      });
+
+      pgStaggerfromGroup.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-v]");
+        if (!btn) return;
+        pgStaggerfromGroup.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b === btn));
+        PG.staggerFrom = btn.dataset.v;
+        renderPlayground();
+      });
+
+      pgMorphTextsInput.addEventListener("change", (e) => {
+        PG.morphTexts = e.target.value;
+        renderPlayground();
+      });
+
+      pgTypeTextsInput.addEventListener("change", (e) => {
+        PG.typeTexts = e.target.value;
+        renderPlayground();
+      });
+      pgShiftTextsInput.addEventListener("change", (e) => {
+        PG.shiftTexts = e.target.value;
+        renderPlayground();
+      });
+      pgShiftIntervalEl.addEventListener("input", (e) => {
+        PG.typeIntervalMs = +e.target.value;
+        pgShiftIntervalVal.textContent = `${PG.typeIntervalMs}ms`;
+        renderPlayground();
+      });
+      pgShiftPauseEl.addEventListener("input", (e) => {
+        PG.pauseMs = +e.target.value;
+        pgShiftPauseVal.textContent = `${PG.pauseMs}ms`;
+        renderPlayground();
+      });
+      pgShiftUnderlineEl.addEventListener("change", (e) => {
+        PG.shiftUnderline = e.target.checked;
+        updatePgLabels();
+        renderPlayground();
+      });
+      pgTypingSpeedEl.addEventListener("input", (e) => {
+        PG.typingSpeed = +e.target.value;
+        pgTypingSpeedVal.textContent = `${PG.typingSpeed}ms`;
+        renderPlayground();
+      });
+      pgTypeColorsGroup.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-v]");
+        if (!btn) return;
+        pgTypeColorsGroup.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", b === btn));
+        PG.typeColorPalette = btn.dataset.v;
+        updateTypeColorBar();
+        renderPlayground();
+      });
+
+      document.getElementById("pg-replay").addEventListener("click", () => renderPlayground(true));
+
+      // Copy buttons
+      function flashCopied(btn, label) {
+        const orig = btn.textContent;
+        btn.textContent = "Copied";
+        btn.classList.add("copied");
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove("copied"); }, 1100);
+      }
+      function copyText(text) {
+        if (navigator.clipboard?.writeText) {
+          return navigator.clipboard.writeText(text);
+        }
+        const ta = document.createElement("textarea");
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        document.execCommand("copy"); ta.remove();
+        return Promise.resolve();
+      }
+
+      function buildJSX() {
+        if (isShift()) {
+          const texts = PG.shiftTexts.split(",").map(t => t.trim()).filter(Boolean);
+          const props = [`phrases={[${texts.map(t => `"${t}"`).join(", ")}]}`];
+          if (PG.typeIntervalMs !== 70) props.push(`typeIntervalMs={${PG.typeIntervalMs}}`);
+          if (PG.pauseMs !== 600) props.push(`pauseMs={${PG.pauseMs}}`);
+          if (!PG.shiftUnderline) props.push(`showUnderline={false}`);
+          return `<TextShiftWords\n  ${props.join("\n  ")}\n/>`;
+        }
+        if (isType()) {
+          const texts = PG.typeTexts.split(",").map(t => t.trim()).filter(Boolean);
+          const tc = TYPE_COLOR_PALETTES[PG.typeColorPalette];
+          const props = [`text={[${texts.map(t => `"${t}"`).join(", ")}]}`];
+          if (PG.typingSpeed !== 50) props.push(`typingSpeed={${PG.typingSpeed}}`);
+          props.push(`loop={true}`);
+          if (tc && tc.length) props.push(`textColors={[${tc.map(c => `"${c}"`).join(", ")}]}`);
+          return `<TextType\n  ${props.join("\n  ")}\n/>`;
+        }
+        if (isShimmer()) {
+          const props = [];
+          if (PG.duration !== 2000) props.push(`duration={${(PG.duration / 1000).toFixed(2)}}`);
+          if (PG.as !== "p") props.push(`as="${PG.as}"`);
+          const p = props.length ? `\n  ${props.join("\n  ")}\n` : "";
+          return `<TextShimmer${p}>\n  ${PG.text}\n</TextShimmer>`;
+        }
+        if (isMorph()) {
+          const texts = PG.morphTexts.split(",").map(t => t.trim()).filter(Boolean);
+          const props = [`texts={[${texts.map(t => `"${t}"`).join(", ")}]}`];
+          if (PG.duration !== 1500) props.push(`morphTime={${(PG.duration / 1000).toFixed(2)}}`);
+          return `<MorphingText\n  ${props.join("\n  ")}\n/>`;
+        }
+        if (isFlip()) {
+          const props = [];
+          if (PG.flipDir !== "right") props.push(`rotateDirection="${PG.flipDir}"`);
+          if (PG.staggerFrom !== "first") props.push(`staggerFrom="${PG.staggerFrom}"`);
+          if (PG.duration !== 700) props.push(`staggerDuration={${(PG.duration / 1000 * 0.07).toFixed(3)}}`);
+          if (PG.as !== "p") props.push(`as="${PG.as}"`);
+          const p = props.length ? `\n  ${props.join("\n  ")}\n` : "";
+          return `<Text3DFlip\n  className="text-4xl font-bold"${p}>\n  ${PG.text}\n</Text3DFlip>`;
+        }
+        if (isHyper()) {
+          const props = [];
+          if (PG.hyperMode !== "character") props.push(`mode="${PG.hyperMode}"`);
+          if (PG.duration !== 800) props.push(`duration={${PG.duration}}`);
+          if (PG.delay !== 0)      props.push(`delay={${PG.delay}}`);
+          if (PG.as !== "div")     props.push(`as="${PG.as}"`);
+          if (PG.charset !== "alpha") props.push(`characterSet={${JSON.stringify(CHARSETS[PG.charset])}}`);
+          const p = props.length ? `\n  ${props.join("\n  ")}\n` : "";
+          return `<HyperText${p}>\n  ${PG.text}\n</HyperText>`;
+        }
+        if (isSweep()) {
+          const c = COLOR_PALETTES[PG.colorPalette];
+          const props = [`text="${PG.text}"`];
+          props.push(`colors={[${c.map(x => `"${x}"`).join(", ")}]}`);
+          if (PG.duration !== 1500) props.push(`duration={${(PG.duration / 1000).toFixed(2)}}`);
+          if (PG.delay !== 0)       props.push(`delay={${(PG.delay / 1000).toFixed(2)}}`);
+          if (PG.repeat)            props.push(`repeat`);
+          if (PG.once)              props.push(`once`);
+          return `<DiaTextReveal\n  className="text-4xl font-bold"\n  ${props.join("\n  ")}\n/>`;
+        }
+        const props = [`animation="${PG.animation}"`, `by="${PG.by}"`];
+        if (PG.duration !== 300)  props.push(`duration={${(PG.duration / 1000).toFixed(2)}}`);
+        if (PG.delay !== 0)       props.push(`delay={${(PG.delay / 1000).toFixed(2)}}`);
+        if (PG.as !== "p")        props.push(`as="${PG.as}"`);
+        if (PG.once)              props.push(`once`);
+        return `<TextAnimate\n  ${props.join("\n  ")}\n>\n  ${PG.text}\n</TextAnimate>`;
+      }
+
+      function buildHTML() {
+        if (isShift()) {
+          const texts = PG.shiftTexts.split(",").map(t => t.trim()).filter(Boolean);
+          const attrs = [`data-anim="textShiftWords"`, `data-texts="${texts.join(",")}"`];
+          if (PG.typeIntervalMs !== 70) attrs.push(`data-type-interval="${PG.typeIntervalMs}"`);
+          if (PG.pauseMs !== 600) attrs.push(`data-pause-ms="${PG.pauseMs}"`);
+          if (!PG.shiftUnderline) attrs.push(`data-underline="false"`);
+          return `<${PG.as} ${attrs.join(" ")}>${texts[0] || ""}</${PG.as}>`;
+        }
+        if (isType()) {
+          const texts = PG.typeTexts.split(",").map(t => t.trim()).filter(Boolean);
+          const tc = TYPE_COLOR_PALETTES[PG.typeColorPalette];
+          const attrs = [`data-anim="textType"`, `data-texts="${texts.join(",")}"`];
+          if (PG.typingSpeed !== 50) attrs.push(`data-typing-speed="${PG.typingSpeed}"`);
+          if (tc && tc.length) attrs.push(`data-colors="${tc.join(",")}"`);
+          return `<${PG.as} ${attrs.join(" ")}>${texts[0] || ""}</${PG.as}>`;
+        }
+        if (isShimmer()) {
+          const styleBits = [];
+          if (PG.duration !== 2000) styleBits.push(`--ta-duration: ${PG.duration}ms`);
+          const style = styleBits.length ? ` style="${styleBits.join("; ")}"` : "";
+          return `<${PG.as} data-anim="shimmer"${style}>\n  ${PG.text}\n</${PG.as}>`;
+        }
+        if (isMorph()) {
+          const texts = PG.morphTexts.split(",").map(t => t.trim()).filter(Boolean);
+          return `<${PG.as} data-anim="morphingText" data-texts="${texts.join(",")}">\n  ${texts[0] || ""}\n</${PG.as}>`;
+        }
+        if (isFlip()) {
+          const attrs = [`data-anim="text3dFlip"`, `data-dir="${PG.flipDir}"`];
+          if (PG.staggerFrom !== "first") attrs.push(`data-stagger="${PG.staggerFrom}"`);
+          return `<${PG.as} ${attrs.join(" ")}>\n  ${PG.text}\n</${PG.as}>`;
+        }
+        if (isHyper()) {
+          const attrs = [`data-anim="hyperText"`, `data-duration="${PG.duration}"`];
+          if (PG.hyperMode !== "character") attrs.push(`data-mode="${PG.hyperMode}"`);
+          if (PG.charset !== "alpha") attrs.push(`data-charset="${PG.charset}"`);
+          return `<${PG.as} ${attrs.join(" ")}>\n  ${PG.text}\n</${PG.as}>`;
+        }
+        const styleBits = [];
+        styleBits.push(`--ta-duration: ${PG.duration}ms`);
+        if (PG.delay)  styleBits.push(`--ta-delay: ${PG.delay}ms`);
+        if (isSweep()) {
+          const c = COLOR_PALETTES[PG.colorPalette];
+          c.forEach((color, i) => styleBits.push(`--sweep-c${i + 1}: ${color}`));
+          const style = ` style="${styleBits.join("; ")}"`;
+          return `<${PG.as} data-anim="colorSweep"${style}>\n  ${PG.text}\n</${PG.as}>`;
+        }
+        const style = styleBits.length ? ` style="${styleBits.join("; ")}"` : "";
+        return `<${PG.as} data-anim="${PG.animation}" data-by="${PG.by}"${style}>\n  ${PG.text}\n</${PG.as}>`;
+      }
+
+      document.getElementById("pg-copy-jsx").addEventListener("click", (e) => {
+        copyText(buildJSX()).then(() => flashCopied(e.target));
+      });
+      document.getElementById("pg-copy-html").addEventListener("click", (e) => {
+        copyText(buildHTML()).then(() => flashCopied(e.target));
+      });
+
+    </script>
+  </body>
+</html>

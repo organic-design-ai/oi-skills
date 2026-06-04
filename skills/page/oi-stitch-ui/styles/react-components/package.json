@@ -1,0 +1,15 @@
+{
+  "name": "react-components",
+  "version": "1.0.0",
+  "description": "HTML design exports to React components with AST validation",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.js"
+  },
+  "dependencies": {
+    "@swc/core": "^1.3.100"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

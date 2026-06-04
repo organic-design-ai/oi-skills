@@ -1,0 +1,18 @@
+name: my-skill
+category: widget
+status: draft
+author: Alibaba Cloud Design
+
+description: One-line English summary for README / list-skills
+description_zh: 一行中文说明
+
+triggers:
+  - my-skill
+  - trigger phrase
+
+usage: >-
+  One-line English summary for agents (usage / 怎么用).
+usage_zh: >-
+  一行中文：本 skill 做什么、如何唤起。
+
+requires: []

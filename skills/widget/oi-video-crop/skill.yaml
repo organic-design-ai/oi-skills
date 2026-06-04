@@ -1,0 +1,27 @@
+# Metadata for this skill only (not installed to agents). Used by repo scripts + docs.
+name: oi-video-crop
+category: widget
+status: stable
+author: Haihang
+
+description: Crop local videos with ffmpeg (width/height/both), axis pivot, env check
+description_zh: 本地视频裁切（宽/高/双向）、轴心、环境自动安装与预览
+
+triggers:
+  - oi-video-crop
+  - crop video
+  - trim video
+  - 裁切视频
+  - 裁剪视频
+  - ffmpeg crop
+  - 裁切宽度
+  - 裁切高度
+
+requires:
+  - python>=3.9
+  - ffmpeg
+
+usage: >-
+  `oi-video-crop`, 裁切/裁剪视频, ffmpeg crop + axis; see SKILL.md Usage.
+usage_zh: >-
+  用户问 usage/怎么用 时，朗读 SKILL.md 的 Usage 小节。

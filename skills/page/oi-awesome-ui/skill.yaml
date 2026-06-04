@@ -1,0 +1,26 @@
+# Metadata for this skill only (not installed to agents). Used by repo scripts + docs.
+name: oi-awesome-ui
+category: page
+status: stable
+author: Alibaba Cloud Design
+
+description: 62 curated UI design style guides for landing pages; pick a slug and apply tokens
+description_zh: 62 套 UI 设计风格指南，按 slug 加载规则并落地实现
+
+triggers:
+  - oi-awesome-ui
+  - awesome design
+  - design system style
+  - glassmorphism skill
+  - typeui style
+  - 设计风格
+  - 设计系统风格
+  - 玻璃态
+  - 落地页风格
+
+requires: []
+
+usage: >-
+  `oi-awesome-ui`, 62 visual style slugs; pick slug then read styles/<slug>/SKILL.md.
+usage_zh: >-
+  用户问 usage/怎么用 时，朗读 SKILL.md 的 Usage 小节。

@@ -1,0 +1,27 @@
+# Metadata for this skill only (not installed to agents). Used by repo scripts + docs.
+name: oi-guizang-ppt
+category: ppt
+status: stable
+author: Guizang
+
+description: Single-file horizontal HTML PPT — editorial magazine or Swiss International style
+description_zh: 单文件横向翻页网页 PPT — 电子杂志风或瑞士国际主义风
+
+triggers:
+  - oi-guizang-ppt
+  - guizang ppt
+  - magazine ppt
+  - swiss style ppt
+  - horizontal swipe deck
+  - 杂志风 ppt
+  - 瑞士风 ppt
+  - 网页 ppt
+  - 横向翻页 ppt
+  - 电子杂志 ppt
+
+requires: []
+
+usage: >-
+  `oi-guizang-ppt`, magazine/Swiss horizontal HTML deck; see SKILL.md Usage.
+usage_zh: >-
+  用户问 usage/怎么用 时，朗读 SKILL.md 的 Usage 小节。

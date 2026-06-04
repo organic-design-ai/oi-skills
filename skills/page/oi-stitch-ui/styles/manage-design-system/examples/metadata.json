@@ -1,0 +1,7 @@
+{
+  "designDir": "design",
+  "pages": [
+    { "slug": "home", "html": "design/pages/home.html" },
+    { "slug": "pricing", "html": "design/pages/pricing.html" }
+  ]
+}

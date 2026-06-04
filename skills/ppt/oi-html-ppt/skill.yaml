@@ -1,0 +1,33 @@
+# Metadata for this skill only (not installed to agents). Used by repo scripts + docs.
+name: oi-html-ppt
+category: ppt
+status: stable
+author: lewislulu
+
+description: Static HTML presentations — 36 themes, layouts, animations, presenter mode, PNG export
+description_zh: 静态 HTML 幻灯片 — 36 主题、版式、动效、演讲者模式、PNG 导出
+
+triggers:
+  - oi-html-ppt
+  - html ppt
+  - html presentation
+  - presentation
+  - ppt
+  - slides
+  - deck
+  - keynote
+  - reveal
+  - slideshow
+  - 幻灯片
+  - 演讲稿
+  - 做一份 ppt
+  - 小红书图文
+  - pitch deck
+  - tech sharing
+
+requires: []
+
+usage: >-
+  `oi-html-ppt`, HTML slides/deck/PPT with themes and presenter mode; see SKILL.md Usage.
+usage_zh: >-
+  用户问 usage/怎么用 时，朗读 SKILL.md 的 Usage 小节。
