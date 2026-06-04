@@ -8,17 +8,41 @@
 
 ## 安装
 
-**用户**
+**用户**（在目标项目目录执行）
 
 ```bash
-npx skills add organic-design-ai/oi-skills --all -y -g
+npx skills add organic-design-ai/oi-skills --all -y
 ```
+
+**Claude Code**
+
+```bash
+npx skills add organic-design-ai/oi-skills --skill '*' -y -a claude-code
+```
+
+安装路径：`.claude/skills/oi-*`
+
+**Qoder**
+
+```bash
+npx skills add organic-design-ai/oi-skills --skill '*' -y -a qoder
+```
+
+安装路径：`.qoder/skills/oi-*`
+
+**Cursor**
+
+```bash
+npx skills add organic-design-ai/oi-skills --skill '*' -y -a cursor
+```
+
+安装路径：`.agents/skills/oi-*`（或 `.cursor/skills/oi-*`）
 
 **本地开发与测试**
 
 ```bash
-cd ..
-npx skills add ./oi-skills --all -y -g
+cd /path/to/your-project
+npx skills add ../oi-skills --all -y
 ```
 
 ## 作者与贡献

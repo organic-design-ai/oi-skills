@@ -8,20 +8,44 @@
 
 ## Install
 
-**Users**
+**Users** (run in your target project directory)
 
 ```bash
-npx skills add organic-design-ai/oi-skills --all -y -g
+npx skills add organic-design-ai/oi-skills --all -y
 ```
+
+**Claude Code**
+
+```bash
+npx skills add organic-design-ai/oi-skills --skill '*' -y -a claude-code
+```
+
+Install path: `.claude/skills/oi-*`
+
+**Qoder**
+
+```bash
+npx skills add organic-design-ai/oi-skills --skill '*' -y -a qoder
+```
+
+Install path: `.qoder/skills/oi-*`
+
+**Cursor**
+
+```bash
+npx skills add organic-design-ai/oi-skills --skill '*' -y -a cursor
+```
+
+Install path: `.agents/skills/oi-*` (or `.cursor/skills/oi-*`)
 
 **Local dev & test**
 
 ```bash
-cd ..
-npx skills add ./oi-skills --all -y -g
+cd /path/to/your-project
+npx skills add ../oi-skills --all -y
 ```
 
-## Authors & credits
+## Authors
 
 ### Alibaba Cloud Design (original)
 
@@ -33,7 +57,7 @@ npx skills add ./oi-skills --all -y -g
 
 ### Open-source integrations
 
-| Oi Skill | Upstream |
+| Oi Skill | Creators |
 |----------|----------|
 | `oi-hue-ui` | [dominikmartn/hue](https://github.com/dominikmartn/hue) |
 | `oi-guizang-ppt` | [op7418/guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill) |
