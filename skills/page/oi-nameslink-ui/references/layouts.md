@@ -208,7 +208,7 @@ These are *quiet neutral tints*, not imagery. Imagery means: photographs, videos
 Nameslink home has exactly one hero (see §2.1). Treat it as canonical:
 
 - **Heading row** (`HomeHeroHead`): `flex flex-row flex-nowrap items-end justify-between` desktop; stacks vertical at ≤1024.
-- **H1**: `font-playfair text-[64px] font-semibold leading-[80px] tracking-normal`; tablet `text-[clamp(40px,9vw,56px)] leading-[1.15]`. **Raw px** — the heading-lg token is 60/64; the hero is its own 64/80.
+- **H1**: `font-playfair text-[64px] font-semibold leading-[80px] tracking-normal not-italic`; tablet `text-[clamp(40px,9vw,56px)] leading-[1.15]`. **Raw px** — the heading-lg token is 60/64; the hero is its own 64/80. **`font-style: normal` is mandatory** — never apply italic to the H1 (or any other Playfair section title) by default.
 - **Subtitle**: typewriter `text-base` (16 px); right-aligned desktop; gradient underline `border-image: var(--pt-gradient-2)`.
 - **Hero card**: `min-h-[588px]; rounded-[20px]; bg-neutral-50; overflow-hidden; relative isolate`. Tablet `min-h-[420px]`.
 - **Trust strip**: `px-[70px] py-[30px]` desktop / `px-[18px] pt-6 pb-0 mb-[140px]` mobile; z-[2].
@@ -410,6 +410,62 @@ Q5. Does it need a stroke at all?
 | Plan card | 10 | `px-10 pb-10 pt-11` |
 | Hero card | 20 | (children own) |
 | Steps card | **28** | `px-[70px] pb-[60px] pt-10` (tablet `p-5`) |
+
+### 5.6 No grey-bg inset sub-cards inside a card  ★
+
+**Hard rule.** Once a surface is already a `bg-neutral-50` card, **do not** nest filled sub-cards (`bg-neutral-100` / `bg-neutral-150` / soft grey wash) inside it for "recommended models", "cost summary", "spec rows", "benefit groups", etc. That stacked-card look is the single biggest tell that the design has drifted from Nameslink's flat / borderless / quiet system into a generic SaaS card layout.
+
+```
+❌ WRONG — outer card with grey inset sub-cards (RECOMMENDED MODELS, COST SUMMARY, etc.)
+┌─ bg-neutral-50  rounded-[20px] ─────────────────────────────────┐
+│  RECOMMENDED MODELS                                             │
+│  ┌─ bg-neutral-150  rounded-[12px] ─────────────────────────┐  │  ← grey "card in card"
+│  │  Qwen3.7-Max   [CORE]               ¥12 / 1M tokens     │  │     this is the
+│  │  Flagship LLM …                                          │  │     anti-pattern
+│  └────────────────────────────────────────────────────────────┘  │
+│  ┌─ bg-neutral-150  rounded-[12px] ─────────────────────────┐  │
+│  │  Qwen3-Coder   [ASSIST]             Low cost            │  │
+│  │  Code-tuned model …                                      │  │
+│  └────────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────┘
+
+✅ RIGHT — clean card interior; rows separated by hairline rule, no grey fill
+┌─ bg-neutral-50  rounded-[20px] ─────────────────────────────────┐
+│  RECOMMENDED MODELS  (mono caption, neutral-500, mb-5)          │
+│                                                                 │
+│  Qwen3.7-Max   [CORE chip]            ¥12 / 1M tokens           │  ← row on the
+│  Flagship LLM with deep grasp …                                 │     card itself
+│  → Outline, episode scripts, dialogue lines                     │
+│  ─────────────────────────────────────────── (border-b line1)   │
+│  Qwen3-Coder   [ASSIST chip]          Low cost                  │
+│  Code-tuned model …                                             │
+│  → Structured script JSON, relationship graphs                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+When to apply this rule:
+
+- Lists of items inside a card (recommended models, included features, plan benefits, FAQ rows in a panel)
+- "Summary" blocks (cost summary, totals, key stats) inside a plan / pricing / bundle card
+- Spec / metadata sections inside a product card
+- Anything that, on inspection, looks like "smaller cards laid on a bigger card"
+
+How to lay it out instead:
+
+- Keep the outer card surface (`bg-neutral-50`) **uninterrupted**
+- Separate rows with `border-b border-solid border-line1` (1 px hairline) — same recipe as why-choose / faq lists in §5.2
+- Use whitespace (`py-5` / `py-6`) + caption eyebrow (Inter mono uppercase 12 px, `neutral-500`) for grouping, **not** a fill change
+- Tag-like labels (CORE, ASSIST, Script, Visuals) become pill chips in their natural row position — **never** a grey block hosting one piece of info
+- If a chip-style group genuinely needs a filled background to read (rare), keep it a single small pill chip on the card, not a full-width grey panel
+
+The only places a sub-fill is OK on top of `neutral-50`:
+
+- Mode pill rack track (`bg-primary-50` light / `bg-neutral-150` dark) — it's a **control**, not a content panel
+- Search input shell — also a control
+- Plan-pro `card_bg.jpg` — image art, not a grey fill
+- Steps "lavender" card — distinct floor-level card on canvas, not nested inside another card
+
+Everything else: keep the card interior clean.
 
 ---
 
@@ -762,6 +818,8 @@ Mode is set on `<html data-prefers-color='light'|'dark'>`. Token blocks live in 
 - [ ] Floor top gaps from the {20, 100, 120, 140, 170, 280} set; tablet → {70, 100}
 - [ ] Section title is Playfair 40/54 with `mb-15` (10 mobile); subtitle is Inter `text-lg leading-[30px]` neutral-600
 - [ ] Cards are **borderless by default** — `bg-neutral-50 + rounded-[10/20/28]` with no border, no shadow unless interactive
+- [ ] No grey-bg (`neutral-150` / `100`) inset sub-cards stacked inside an outer `neutral-50` card — rows separated by `border-b border-line1` instead (§5.6)
+- [ ] Playfair H1 + section titles are upright (`font-style: normal`); italic Playfair only used as in-line emphasis span
 - [ ] Borders appear only on: faq + why list rules, mobile profile chip, tag outline variants, tertiary CTA
 - [ ] Playfair restricted to: hero h1, section titles, plan/dock price numerals, FAQ Q-labels — never on body, cards, nav
 - [ ] CTAs are pills; `primary` uses near-black rest → purple hover (light) / purple → deeper-purple (dark)

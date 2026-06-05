@@ -48,6 +48,51 @@ Full rule + DO/DON'T diagrams: `references/layouts.md` §2.
 
 实现前若未读 manifest，先 fetch 再写 markup。详见 `references/assets.md`.
 
+### 面板即卡片：外不描边 · 内不嵌灰底  ★
+
+当一个区块本身就是「**面板即卡片**」（recommended models 列表、cost summary、feature 列表、step 介绍、FAQ 列表、bundle 内的子项汇总）时：
+
+1. **外层面板不要描边。** 用 `--pt-gradient-card-bg` 或一阶中性步（`neutral-100`）做底，靠 bg-step 与画布分离；不要叠 `1px line-100` 外框线。`shadow: none`。
+2. **面板内部的小区域不要再叠灰底子卡。** 推荐项 / 成本行 / 规格行 **不要**用 `bg-neutral-100`/`neutral-150` 圆角小盒子盛装；它们直接坐在面板上，用 **typography + hairline** 分层：
+   - 标题：`font-semibold` body-lg / title-md，强对比 neutral-950
+   - 描述：body-sm neutral-650/750
+   - 价格 / 状态：mono `--pt-font-mono`，func 色（`func-success` 价格，neutral-650 价目）
+   - 标签：单个 pill chip（`primary-50` / `neutral-150` 填充），**不**整块灰底盛一段信息
+   - 行间分隔：`border-bottom: 1px solid var(--pt-color-line-100)`（标准），或 `0.5px var(--pt-color-line-200)`（密集数据）
+3. **干净空白 > 视觉容器。** 标题与正文、行与行之间留 `12 / 16 / 24 / 32 px`；不要靠灰底圆角圈出"这是一个区域"。
+
+对比：
+
+```
+❌ 错误 — 大卡片外有 1px 描边，内部又嵌灰底圆角小卡
+┌─ bg-neutral-50  border 1px line-100  rounded-md ───────────┐
+│  RECOMMENDED MODELS                                        │
+│  ┌─ bg-neutral-150 rounded-sm ──────────────────────────┐ │   ← grey card-in-card
+│  │  Qwen3.7-Max …                                       │ │
+│  └──────────────────────────────────────────────────────┘ │
+│  ┌─ bg-neutral-150 rounded-sm ──────────────────────────┐ │
+│  │  Qwen3-Coder …                                       │ │
+│  └──────────────────────────────────────────────────────┘ │
+└────────────────────────────────────────────────────────────┘
+
+✅ 正确 — 外层无描边 wash 面板，内部行靠 hairline + typography
+┌─ bg gradient-card-bg  rounded-md  no border  no shadow ───┐
+│  RECOMMENDED MODELS  (mono uppercase neutral-450, mb-16)  │
+│                                                            │
+│  Qwen3.7-Max   [CORE]              ¥12 / 1M tokens         │  ← row directly on
+│  Flagship LLM with deep grasp …                            │     panel; no fill
+│  → Outline, episode scripts, dialogue lines                │
+│  ─────────────────────────────────  border-b line-100      │
+│  Qwen3-Coder   [ASSIST]            Low cost                │
+│  Code-tuned model …                                        │
+│  → Structured script JSON, relationship graphs             │
+└────────────────────────────────────────────────────────────┘
+```
+
+适用清单：recommended models、bundle 内 cost summary、plan benefit、step intro、prod-shell prod-group、FAQ list、feature breakdown 等"卡内含多条目"场景。
+
+详细规则与可视示例：`references/layouts.md` §11.6。bordered 紧凑 tile 网格（Supported AI Tools、logo tile）仍允许 `1px line-100` 单层描边 — 那不是面板即卡片。
+
 ---
 
 ## Usage
@@ -59,7 +104,7 @@ Full rule + DO/DON'T diagrams: `references/layouts.md` §2.
 **Quick start**
 1. Read this `SKILL.md` (philosophy, workflow, anti-patterns).
 2. Load specs: `<skill-dir>/references/tokens.md`, `components.md`, `layouts.md`, `icons.md`, `assets.md`.
-3. Declare Inter + Roboto Mono, ask light/dark, implement with `--pt-*` tokens.
+3. Inject the `@font-face` block below for Inter; load Roboto Mono per tokens. Ask light/dark, implement with `--pt-*` tokens.
 
 **Example prompts**
 - 「用 oi-qwencloud-ui 做 Qwen Cloud 产品页」
@@ -88,13 +133,43 @@ Full rule + DO/DON'T diagrams: `references/layouts.md` §2.
 - **Gradients are text-only.** Eight `--pt-gradient-*` tokens clip to single words; featured tier may use 1px gradient border rim only.
 - **Photography as hero.** One `flower_*` per page behind headline; customer cards use `card_1–4` full-bleed art.
 
-**Fonts (declare before coding):**
+**Fonts (inject before coding):**
 
-```html
-<link rel="stylesheet" href="https://acd-assets.alicdn.com/acd_work/web-fonts/inter/inter.css" />
+Embed the following `@font-face` block in the page's `<style>` (or top of the global CSS). Do **not** swap in Google Fonts, system fallbacks, or alternate URLs.
+
+```css
+@font-face {
+    font-family: 'Inter';
+    src: url('https://acd-assets.alicdn.com/acd_work/web-fonts/inter/Inter-Variable.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+}
 ```
 
-Roboto Mono: see `references/tokens.md` § Typography.
+Then set `--pt-font-base: 'Inter', sans-serif`. Roboto Mono: see `references/tokens.md` § Typography.
+
+**Reset (inject right after the `@font-face` block):**
+
+Browser defaults italicize `<em>`, `<i>`, `<cite>`, `<dfn>`, `<var>`, `<address>` — that creates accidental italics inside body copy, captions, blockquotes, and AI-generated prose. Inject this minimal reset so emphasis becomes a deliberate utility class instead of a default. Reference: `/Users/duhaihang/Ali/Gitwork/organic/src/css/reset.scss` (canonical Meyer-style reset used by the source codebase — copy it wholesale when the page is more than a single landing block).
+
+```css
+*, *::before, *::after { box-sizing: border-box; }
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, blockquote, dl, dd {
+    margin: 0;
+    padding: 0;
+}
+ul, ol { list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; }
+img, svg, video { display: block; max-width: 100%; }
+input, textarea, select { font: inherit; color: inherit; }
+
+/* No accidental italics — render upright by default; italicize only via an explicit utility. */
+em, i, cite, dfn, var, address { font-style: normal; }
+```
+
+If you need real emphasis, mark it with a deliberate class (e.g. `<em class="is-italic">`) and style it explicitly — never rely on the user-agent default.
 
 ---
 
@@ -150,6 +225,9 @@ All brand assets live on CDN — **not** in `<skill-dir>`. See `references/asset
 
 ## 3. Anti-patterns
 
+- **Panel-as-card outer stroke** — when a card hosts multi-row content (recommended list, cost summary, plan breakdown, FAQ), it must be borderless (`gradient-card-bg` or `neutral-100` step); no 1px outer hairline around the whole panel
+- **Grey-bg sub-card inside a card** — no `neutral-100` / `neutral-150` filled rounded boxes wrapping individual rows inside an outer card; rows sit directly on the panel, divided by `border-b line-100`
+- **Accidental italics** — reset block must include `em, i, cite, dfn, var, address { font-style: normal }`; italic only via an explicit utility class on a wrapper span
 - No purple glyph fill on icons (`currentColor` only)
 - No stock/placeholder images; no icons outside `Icons.json` or Tabler-outlined fallback
 - No heavy shadow on cards; new work stays flat — 淡阴影 token only when Guideline requires legibility
@@ -191,9 +269,12 @@ All brand assets live on CDN — **not** in `<skill-dir>`. See `references/asset
 
 ## 6. Review checklist
 
+- [ ] `@font-face` for Inter injected verbatim (acd-assets URL)
+- [ ] Reset block injected right after `@font-face` — includes `em, i, cite, dfn, var, address { font-style: normal }`, list/link/button resets, `box-sizing: border-box`
 - [ ] Light CTA: black rest, purple hover — not purple at rest
 - [ ] ≤1 gradient text word per screen (plus allowed tier border rim)
 - [ ] Cards and hero frames flat — no decorative shadow
+- [ ] **Panel-as-card** blocks (recommended/cost/plan/feature/faq lists) are **borderless** outer + **typography + hairline** rows — no outer 1px stroke, no grey-bg inset sub-cards (`layouts.md` §11.6)
 - [ ] Model primary vs secondary card backgrounds distinct
 - [ ] `arrow-up-outlined` on primary CTA
 - [ ] `flower_*` / `card_*` URLs from `Images.json` only; one floral hero per page

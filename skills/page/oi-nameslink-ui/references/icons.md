@@ -4,12 +4,43 @@
 
 **Minimalism.** Simple line icons. One color (`currentColor`). No fills, badges, or backgrounds on glyphs.
 
-Two sources:
+Three sources, in priority order:
 
-- **App** — `nsiconfont`, project `5164327`
-- **Brand kit** — 67 outlined SVGs on CDN; manifest: `assets.md` → Icons.json
+1. **App** — `nsiconfont`, project `5164327` (production React app only)
+2. **Brand kit** — 67 outlined SVGs on CDN; manifest: `assets.md` → Icons.json (default for static / generated pages)
+3. **Lucide (fallback only)** — open-source line icons from https://lucide.dev. Use **only** when neither manifest above contains the glyph; never as a convenience replacement
 
 Same names; pick one system per surface. Do not mix in one control.
+
+---
+
+## 0. Fallback to Lucide
+
+If after fetching `Icons.json` you cannot find a matching `id` / `component` for the concept (e.g., a niche product mark, a chart-type glyph, an audio waveform), fall back to Lucide.
+
+```html
+<!-- Static HTML / vanilla -->
+<img
+  src="https://unpkg.com/lucide-static@latest/icons/waveform.svg"
+  alt=""
+  style="width: 1em; height: 1em; color: currentColor;"
+/>
+```
+
+```tsx
+// React
+import { Waveform } from 'lucide-react'
+<Waveform size={16} strokeWidth={1.5} aria-hidden />
+```
+
+Rules when using Lucide:
+
+- `stroke-width: 1.5` (match brand-kit visual weight; default Lucide is 2)
+- `currentColor` only — no Lucide-default colors
+- Outlined only — no filled / duotone variants
+- Same size scale as brand kit: 14 / 16 inline, 30 service card, 64 empty state
+- One system per control: a button using Lucide must not also embed a brand-kit `<use>` — pick Lucide or brand kit, not both
+- Document the gap: if you reach for Lucide more than 2× on a single page, the manifest is probably missing the icon set — flag it for the brand team rather than scattering Lucide everywhere
 
 ---
 

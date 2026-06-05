@@ -113,6 +113,8 @@ Text fill: `background-image` + `background-clip: text` + transparent fill.
 | Body lg / md / sm | 18 / 28 · 16 / 22 · 14 / 20 | 400 |
 | Plan price | 56 / 60 Playfair | 700 |
 
+**Style:** all Playfair headings (hero H1, every `home-section-title`, plan/dock price, FAQ Q-label) default to `font-style: normal` — **upright, never italic**. Italic Playfair is reserved for a deliberate inline emphasis span only.
+
 Tracking: slight negative on large type only (`-0.02em` display, `-0.01em` floor). Body stays normal.
 
 ---

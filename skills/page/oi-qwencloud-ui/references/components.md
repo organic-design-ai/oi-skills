@@ -6,6 +6,8 @@ Tokens: `references/tokens.md` (`--pt-*`). Page-level composition (page shell, h
 
 **Tone:** 简洁 · 平白 · 弱描边 · 淡阴影. Flat surfaces; default `shadow: none` (淡阴影 token only when Guideline needs legibility). Weak 1px borders on outline controls and featured pricing rim — otherwise `neutral-50` / `150` / `100` and whitespace. One accent per view: near-black CTA, or one gradient word, or purple on hover — not all three competing.
 
+**Panel-as-card composition** (`layouts.md` §11.6): when a card hosts a list of repeated rows (recommended models, cost summary, plan benefits, FAQ, bundle items), the outer panel is **borderless** (`gradient-card-bg` or `neutral-100` step, no 1px hairline, no shadow) and interior rows separate via **typography + a single hairline** — never nested grey-bg sub-cards.
+
 ---
 
 ## §01 Hero Images
@@ -54,6 +56,8 @@ Grid: 2 columns. Classes: `model-feature-card-grid` · `model-feature-card` · `
 Inner: `mf-name` · `mf-desc` (2-line clamp) · `mf-tag` (pill, purple outline) · `mf-price-row` · `mf-divider` (`line-100`) · `mf-stats` · `mf-cta`.
 
 Primary CTAs: primary + outline. Secondary card: secondary + text.
+
+**If a model card hosts a sub-list** (recommended models, related items, included assets), treat the card as a panel-as-card (`layouts.md` §11.6): drop the optional `line-100` outer hairline and lay rows directly on the panel with `border-b 1px line-100` between rows. Do **not** wrap each row in its own `neutral-100/150` filled rounded sub-card.
 
 ---
 

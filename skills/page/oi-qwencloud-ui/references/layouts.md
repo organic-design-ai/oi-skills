@@ -1038,6 +1038,11 @@ The kit reads as clean and flat because of these specific techniques. Replicate 
 Use this short flow when composing a new card.
 
 ```
+Q0. Is the card actually a panel-as-card hosting a list of repeated rows
+    (recommended models, cost summary, plan benefits, FAQ list, bundle items)?
+    └─ Yes → panel-as-card (§11.6). Borderless wash outer + typography + hairline rows.
+              Skip Q1; do not give the panel a 1px outer hairline, do not nest grey sub-cards.
+
 Q1. Does the card sit on the page canvas (neutral-50)?
     └─ Yes → bordered card (A). Hairline 1px line-100; bg neutral-50; radius sm/md by size.
     └─ No  → it sits on a stepped panel → borderless card (B). Bg neutral-50 or neutral-100; no border.
@@ -1073,6 +1078,113 @@ Q7. Is the card an overlay (dropdown, sheet, fab, sticky bar)?
 | Standard content card | `--pt-radius-md` | 28 / 32 |
 | Panel-as-card (faq, intro, prod) | `--pt-radius-md` | 60 44 (mobile 32 20) |
 | Hero / signup / era panel | `--pt-radius-lg` | 32 / 40 48 / 48 |
+
+### 11.6 Panel-as-card: no outer stroke, no grey sub-card inside  ★
+
+When a card's job is to **host multiple items as one block** (recommended models, cost summary, plan benefits, step intro with embedded list, FAQ list, prod-shell prod-group, customer bundle "what you get") it is a **panel-as-card** — and it must follow these two rules **together**:
+
+1. **The outer panel is borderless.** Background is `--pt-gradient-card-bg` (preferred) or one neutral step (`neutral-100`); `border: 0`; `box-shadow: none`. Visual separation from canvas comes from the bg-step alone. No 1px hairline `--pt-color-line-100` wrapping the whole block.
+2. **Interior items are not nested grey sub-cards.** Each item sits directly on the panel surface and uses **typography + a single hairline** to read as a row:
+   - Title row: `font-semibold` + body-lg/title-md; neutral-950 ink
+   - Caption / meta: mono caption-sm uppercase, `0.06em`, `neutral-450/600`
+   - Body / description: body-sm, `neutral-650`
+   - Numeric / price: `--pt-font-mono`, `func-success` for prices, `neutral-650` for labels
+   - Pill chip for tag (single small pill, `primary-50` or `neutral-150` fill) — never a whole grey block to host one piece of info
+   - Divider between items: `border-bottom: 1px solid var(--pt-color-line-100)` (standard) or `0.5px var(--pt-color-line-200)` (dense data)
+   - Spacing: `py 16–24` per row; section caption `mb 16–24`
+
+```
+❌ WRONG  — outer stroke + grey card-in-card
+┌─ bg-neutral-50  border 1px line-100  radius-md ──────────────────┐
+│  RECOMMENDED MODELS                                              │
+│  ┌─ bg-neutral-150  radius-sm  padding 20 ─────────────────────┐ │
+│  │  Qwen3.7-Max  [CORE]                  ¥12 / 1M tokens      │ │   ← grey
+│  │  Flagship LLM with deep grasp of plot logic …              │ │     card-in-card
+│  │  → Outline, episode scripts, dialogue lines                │ │
+│  └─────────────────────────────────────────────────────────────┘ │
+│  ┌─ bg-neutral-150  radius-sm  padding 20 ─────────────────────┐ │
+│  │  Qwen3-Coder  [ASSIST]                Low cost             │ │
+│  │  …                                                          │ │
+│  └─────────────────────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────────┘
+
+❌ WRONG  — bundle with grey-bg cost summary inset
+┌─ bg-neutral-50  border 1px line-100  radius-md ──────────────────┐
+│  [♡ icon]                                                        │
+│  Urban Sweet Romance                                             │
+│  Light, sweet urban love stories …                               │
+│  [ Qwen3.7-Max ] [ Wan 2.7 ] [ CosyVoice ] [ Wan 2.7 ]           │   ← model chips
+│  ┌─ bg-neutral-100  radius-sm  padding 20 ─────────────────────┐ │   ← grey
+│  │   EST. COST          ¥8–15 / ep                            │ │     inset
+│  │   CYCLE              0.5–1 day / ep                        │ │     summary —
+│  │   MODELS             4 core models                         │ │     anti-pattern
+│  └─────────────────────────────────────────────────────────────┘ │
+│  [ Activate bundle ]                                             │
+└──────────────────────────────────────────────────────────────────┘
+
+✅ RIGHT — borderless wash panel, typography + hairline rows
+┌─ bg gradient-card-bg  radius-md  no border  no shadow ───────────┐
+│  RECOMMENDED MODELS  (mono uppercase neutral-450, mb-24)         │
+│                                                                  │
+│  Qwen3.7-Max   [CORE chip]              ¥12 / 1M tokens          │
+│  Flagship LLM with deep grasp of plot logic and character        │
+│  arcs — drafts full-length, high-fidelity scripts.               │
+│  → Outline, episode scripts, dialogue lines                      │
+│  ───────────────────────────────  border-b 1px line-100          │
+│  Qwen3-Coder   [ASSIST chip]            Low cost                 │
+│  Code-tuned model that turns prose into structured output …      │
+│  → Structured script JSON, relationship graphs                   │
+└──────────────────────────────────────────────────────────────────┘
+
+✅ RIGHT — bundle on canvas, summary rows as plain KV (typography only)
+┌─ bg neutral-50  no border  radius-md  padding 32 ───────────────┐
+│  [♡ icon — pill chip neutral-150, radius-md, 40×40]              │
+│                                                                  │
+│  Urban Sweet Romance        (Inter semibold 32, neutral-950)     │
+│  Light, sweet urban love stories — optimized for short-video     │
+│  platforms.                  (body-md neutral-650)               │
+│                                                                  │
+│  [Qwen3.7-Max · Script]  [Wan 2.7 · Visuals]  [CosyVoice · …]    │   ← pill chips
+│  [Wan 2.7 · Video]                                               │     (single pill,
+│                                                                  │      not a grey
+│  EST. COST                              ¥8–15 / ep               │   ← block per
+│  ─────────────────────────  border-b 1px line-100                │     item)
+│  CYCLE                                  0.5–1 day / ep           │
+│  ─────────────────────────  border-b 1px line-100                │
+│  MODELS                                 4 core models            │
+│                                                                  │
+│  [♟ For solo creators & small studios]   (pill chip)             │
+│                                                                  │
+│  [ Activate bundle ]   (primary CTA, full-width)                 │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+**When this rule applies:**
+
+- Recommended-list panels (recommended models, related products)
+- Cost / spec summary blocks inside a card
+- Plan-benefit lists inside a pricing card
+- Step intro with embedded "推荐产品" or "you get" sub-list
+- `prod-shell` `prod-group` (already borderless — keep it that way)
+- Customer bundle cards listing models / quotas / inclusions
+- FAQ list (Pattern C panel-head + accordion rows — already correct; don't regress)
+
+**When this rule does NOT apply (bordered tile grids are OK):**
+
+- Compact tile grids on canvas where each tile **is** the unit (Supported AI Tools logo tiles, `logo tile` 4-up, `models-card` marketplace grid). These follow §11.1 A with a single 1px `line-100` hairline; they are tiles, not panels-as-card.
+- A single content card on canvas (one quote, one product) — §11.1 A bordered card is fine.
+- Cards leading with imagery (`customers-say-card`, hero media panel) where the chrome lives outside the visible image.
+
+**Decision shortcut:** if the block contains a list of ≥2 sub-items that read as rows of the same thing, it is a panel-as-card — outer borderless + interior hairline rows. If the block is one self-contained card, archetype A/B/C applies as before.
+
+**Implementation checklist for panel-as-card:**
+
+- [ ] Outer container: `background: var(--pt-gradient-card-bg)` (or `neutral-100`); `border: 0`; `box-shadow: none`; `border-radius: var(--pt-radius-md)`; padding `60 44` desktop / `32 20` mobile
+- [ ] Section caption: mono caption-sm uppercase, `0.06em`, `neutral-450/600`, `margin-bottom: 24`
+- [ ] Each row: `padding: 20 0` (or `24 0` airy); `border-bottom: 1px solid var(--pt-color-line-100)` except the last row
+- [ ] Tag chip in a row: a single pill (§8.2), not a filled background block
+- [ ] Numeric / price: `--pt-font-mono`; price in `--pt-color-func-success`, labels in `neutral-650`
+- [ ] No `box-shadow`, no inset `background`, no nested `border` inside the panel
 
 ---
 
@@ -1574,6 +1686,7 @@ When building a models-like data page:
 - [ ] Reader column = `var(--pt-layout-max-read-box)`; legal/docs body never exceeds it
 - [ ] Card classified through the §11.4 decision tree (A bordered / B borderless / C featured-rim / …); padding + radius from §11.5; one of the eight internal recipes §11.2
 - [ ] Bordered vs borderless choice respects the "stepped panel ⇒ no border" rule (§11.1 B)
+- [ ] **Panel-as-card** (recommended/cost/plan/feature/FAQ list blocks) is borderless outer + typography + hairline rows — no 1px outer hairline, no grey-bg inset sub-cards (§11.6)
 - [ ] All ten "clean & flat" signals (§11.3) present — bg-step over chrome, hairlines only, hover lift via single shadow + 4-px Y, etc.
 - [ ] Radius is one of the five working tokens (§15)
 - [ ] Spacing values land on the 2-px rhythm; no orphan numbers

@@ -38,7 +38,7 @@ Disabled: `neutral-400` / `neutral-550`, no interaction.
 
 ## 2. Cards
 
-All flat. **No shadow.**
+All flat. **No shadow. No grey-bg inset sub-cards** — when listing items inside a card (recommended models, included specs, cost summary rows, benefit groups), keep the card interior on `neutral-50` and divide rows with `border-b border-line1` only. See `layouts.md` §5.6.
 
 ### Hero
 
