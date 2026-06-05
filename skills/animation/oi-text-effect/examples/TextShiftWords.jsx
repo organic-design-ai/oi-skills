@@ -1,6 +1,6 @@
 /**
  * TextShiftWords — phrase cycle: type → pause → delete → next phrase.
- * Interval-driven typewriter (nameslink hero-desc-typewriter style) with an
+ * Interval-driven typewriter (neat hero-desc-typewriter style) with an
  * optional gradient underline that tracks the typed text width.
  *
  * Part of the `oi-text-effect` skill.

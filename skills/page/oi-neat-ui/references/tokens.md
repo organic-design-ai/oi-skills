@@ -1,4 +1,4 @@
-# Nameslink — Design Tokens
+# Neat — Design Tokens
 
 Source: brand guideline (`:root` / `html[data-prefers-color='dark']`). Namespace: `--pt-*`. Copy values as-is. Full token ramp: see installed `references/tokens.md` (extracted from guideline).
 
@@ -168,7 +168,7 @@ Breakpoint **1024 px**: single column, tighter vertical rhythm.
 
 ## 7. Images (CDN)
 
-Manifest: https://acd-assets.alicdn.com/acd_work/skills/nameslink/Images.json (absolute JPG URLs). See `assets.md`.
+Manifest: https://acd-assets.alicdn.com/acd_work/skills/neat/Images.json (absolute JPG URLs). See `assets.md`.
 
 | File | Use |
 |------|-----|
@@ -193,7 +193,7 @@ Wordmark uses `currentColor`. Nib uses `--pt-gradient-1` only. Do not flatten th
 
 ## 10. Dark / Light mode
 
-Both modes are first-class. Token blocks live in `nameslink/src/css/token.css:2-94`. Mode is set on `<html data-prefers-color='light'|'dark'>`.
+Both modes are first-class. Token blocks live in `neat/src/css/token.css:2-94`. Mode is set on `<html data-prefers-color='light'|'dark'>`.
 
 ```css
 html[data-prefers-color='dark']  { /* …tokens… */ }
@@ -206,7 +206,7 @@ html[data-prefers-color='light'] { /* …tokens… */ }
 | Group | Light | Dark | Behavior |
 |-------|-------|------|----------|
 | Neutral 50 | `#ffffff` (card surface) | `#000000` (card surface) | **Ladder inverts** — 50 stays "card surface" in both modes; hex flips |
-| Neutral 100 | `#f7f7f9` (canvas) | `#0d0d0e` (canvas) | Same — role preserved (Nameslink uses 100 as canvas, 50 as card; the opposite of most kits) |
+| Neutral 100 | `#f7f7f9` (canvas) | `#0d0d0e` (canvas) | Same — role preserved (Neat uses 100 as canvas, 50 as card; the opposite of most kits) |
 | Neutral 950 | `#000000` (ink) | `#ffffff` (ink) | Role preserved, hex flips |
 | Primary 50–950 | identical hex in both modes | identical | **Brand purple ramp is mode-constant** — `primary-50: #edefff` stays lavender wash in dark too |
 | `--pt-color-line1` | `#e9eaee` (light hairline) | `#1e1e20` (dark hairline) | Auto-inverts |

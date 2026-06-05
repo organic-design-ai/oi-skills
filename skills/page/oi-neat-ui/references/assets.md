@@ -1,4 +1,4 @@
-# Nameslink — Remote brand assets
+# Neat — Remote brand assets
 
 Brand kit files are **not** bundled in the skill.
 
@@ -6,13 +6,13 @@ Brand kit files are **not** bundled in the skill.
 
 **Visual tone:** 简洁、平白、弱描边、淡阴影 — see `SKILL.md` §核心约束.
 
-**Base:** `https://acd-assets.alicdn.com/acd_work/skills/nameslink/`
+**Base:** `https://acd-assets.alicdn.com/acd_work/skills/neat/`
 
 | Resource | URL |
 |----------|-----|
-| Guideline (visual reference + live demos) | https://acd-assets.alicdn.com/acd_work/skills/nameslink/Guideline.html |
-| Icons manifest (67 SVGs, full `href` per icon) | https://acd-assets.alicdn.com/acd_work/skills/nameslink/Icons.json |
-| Images manifest (JPG URLs) | https://acd-assets.alicdn.com/acd_work/skills/nameslink/Images.json |
+| Guideline (visual reference + live demos) | https://acd-assets.alicdn.com/acd_work/skills/neat/Guideline.html |
+| Icons manifest (67 SVGs, full `href` per icon) | https://acd-assets.alicdn.com/acd_work/skills/neat/Icons.json |
+| Images manifest (JPG URLs) | https://acd-assets.alicdn.com/acd_work/skills/neat/Images.json |
 
 ## Usage
 

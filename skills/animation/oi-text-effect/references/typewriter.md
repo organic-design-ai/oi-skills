@@ -3,7 +3,7 @@
 逐字输入 + 删除 + 多句轮播的打字机动画。当前提供两种组件：
 
 - `TextType`：经典打字机，支持光标闪烁、变速模拟真人输入
-- `TextShiftWords`：词组轮播型打字机（nameslink hero-desc 风格），支持渐变下划线与可见区域触发
+- `TextShiftWords`：词组轮播型打字机（neat hero-desc 风格），支持渐变下划线与可见区域触发
 
 ## Props
 

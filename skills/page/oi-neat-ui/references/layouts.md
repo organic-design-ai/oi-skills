@@ -1,4 +1,4 @@
-# Nameslink — Page Layouts
+# Neat — Page Layouts
 
 Page-level composition. Tokens: `tokens.md` (`--pt-*`). Components: `components.md`. Icons/photos: manifest (`icons.md`, `assets.md`).
 
@@ -67,7 +67,7 @@ Mobile (`≤1024 px`) override in `token.css`:
 </div>
 ```
 
-- Body bg: `--pt-color-neutral-100` (`#f7f7f9` light / `#0d0d0e` dark). Note: **not** `neutral-50` like other kits — Nameslink uses 100 as canvas, 50 as card surface.
+- Body bg: `--pt-color-neutral-100` (`#f7f7f9` light / `#0d0d0e` dark). Note: **not** `neutral-50` like other kits — Neat uses 100 as canvas, 50 as card surface.
 - Default text: `--pt-color-neutral-750`; default font: `--pt-font-regular` (Inter).
 - Scrollbar: 3 px width, custom.
 
@@ -173,7 +173,7 @@ Two **separate paragraphs**, in this order:
 1. **Title paragraph** — H1 (Playfair) + subtitle/typewriter + optional CTA. Lives in `.layout-max-inner`. Background: `--pt-color-neutral-100` (page canvas). Nothing visual, just type.
 2. **Visual paragraph** — the hero card (`bg-neutral-50, rounded-[20px], min-h-[588px]`) holding the poster image, trust strip, and glass search. Whitespace above (≥ 32 px) cleanly separates it from the title paragraph.
 
-This is what makes the Nameslink home feel calm — title and visual are **never in the same rectangle**.
+This is what makes the Neat home feel calm — title and visual are **never in the same rectangle**.
 
 ### 2.4 Hard rules
 
@@ -205,7 +205,7 @@ These are *quiet neutral tints*, not imagery. Imagery means: photographs, videos
 
 ## 3. Hero variant
 
-Nameslink home has exactly one hero (see §2.1). Treat it as canonical:
+Neat home has exactly one hero (see §2.1). Treat it as canonical:
 
 - **Heading row** (`HomeHeroHead`): `flex flex-row flex-nowrap items-end justify-between` desktop; stacks vertical at ≤1024.
 - **H1**: `font-playfair text-[64px] font-semibold leading-[80px] tracking-normal not-italic`; tablet `text-[clamp(40px,9vw,56px)] leading-[1.15]`. **Raw px** — the heading-lg token is 60/64; the hero is its own 64/80. **`font-style: normal` is mandatory** — never apply italic to the H1 (or any other Playfair section title) by default.
@@ -281,7 +281,7 @@ Title becomes the first cell of the 4-col grid; doesn't get its own row.
 
 ## 5. Card archetypes
 
-**Nameslink cards are borderless by default.** Differentiation is bg + radius + (rare) hover-shadow. The only `border` declarations on cards are: why-choose item bottom rule, faq item rules, mobile-menu profile chip, and a handful of tag chips. Treat borderless as the rule, bordered as the exception.
+**Neat cards are borderless by default.** Differentiation is bg + radius + (rare) hover-shadow. The only `border` declarations on cards are: why-choose item bottom rule, faq item rules, mobile-menu profile chip, and a handful of tag chips. Treat borderless as the rule, bordered as the exception.
 
 ### 5.1 Borderless cards (the default)
 
@@ -413,7 +413,7 @@ Q5. Does it need a stroke at all?
 
 ### 5.6 No grey-bg inset sub-cards inside a card  ★
 
-**Hard rule.** Once a surface is already a `bg-neutral-50` card, **do not** nest filled sub-cards (`bg-neutral-100` / `bg-neutral-150` / soft grey wash) inside it for "recommended models", "cost summary", "spec rows", "benefit groups", etc. That stacked-card look is the single biggest tell that the design has drifted from Nameslink's flat / borderless / quiet system into a generic SaaS card layout.
+**Hard rule.** Once a surface is already a `bg-neutral-50` card, **do not** nest filled sub-cards (`bg-neutral-100` / `bg-neutral-150` / soft grey wash) inside it for "recommended models", "cost summary", "spec rows", "benefit groups", etc. That stacked-card look is the single biggest tell that the design has drifted from Neat's flat / borderless / quiet system into a generic SaaS card layout.
 
 ```
 ❌ WRONG — outer card with grey inset sub-cards (RECOMMENDED MODELS, COST SUMMARY, etc.)
@@ -704,7 +704,7 @@ Defaults:
 
 ## 9. Radius vocabulary
 
-Nameslink uses fewer radii in practice than the token set offers. Working set:
+Neat uses fewer radii in practice than the token set offers. Working set:
 
 | Token | px | Use |
 |-------|---:|-----|
@@ -721,7 +721,7 @@ Tokens 3xs (6), sm (18), md (24), lg (36), xl (42), 2xl (48) exist but are seldo
 
 ## 10. Background steps & elevation
 
-Nameslink reverses the usual canvas/surface ordering: **`neutral-100` is canvas, `neutral-50` is card surface.**
+Neat reverses the usual canvas/surface ordering: **`neutral-100` is canvas, `neutral-50` is card surface.**
 
 | Plane | Light | Dark | When |
 |-------|-------|------|------|

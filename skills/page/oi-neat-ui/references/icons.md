@@ -1,6 +1,6 @@
-# Nameslink Icons
+# Neat Icons
 
-**Manifest required.** Fetch https://acd-assets.alicdn.com/acd_work/skills/nameslink/Icons.json — every glyph URL from an entry’s `href`; do not invent paths.
+**Manifest required.** Fetch https://acd-assets.alicdn.com/acd_work/skills/neat/Icons.json — every glyph URL from an entry’s `href`; do not invent paths.
 
 **Minimalism.** Simple line icons. One color (`currentColor`). No fills, badges, or backgrounds on glyphs.
 
@@ -46,13 +46,13 @@ Rules when using Lucide:
 
 ## 1. CDN SVG kit
 
-Fetch: https://acd-assets.alicdn.com/acd_work/skills/nameslink/Icons.json
+Fetch: https://acd-assets.alicdn.com/acd_work/skills/neat/Icons.json
 
 Each entry: `component`, `id`, `href` (absolute URL to `Icons/{id}.svg`).
 
 ```html
 <svg viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true">
-  <use href="https://acd-assets.alicdn.com/acd_work/skills/nameslink/Icons/arrow-right-outlined.svg#arrow-right-outlined" />
+  <use href="https://acd-assets.alicdn.com/acd_work/skills/neat/Icons/arrow-right-outlined.svg#arrow-right-outlined" />
 </svg>
 ```
 

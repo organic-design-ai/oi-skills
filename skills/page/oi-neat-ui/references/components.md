@@ -1,4 +1,4 @@
-# Nameslink — Components
+# Neat — Components
 
 Tokens: `references/tokens.md`. Icons/images: **manifest only** — `references/assets.md` (`Icons.json`, `Images.json`).
 

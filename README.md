@@ -48,7 +48,7 @@ npx skills add ../oi-skills --all -y -g
 | Oi Skill | Author |
 |----------|--------|
 | `oi-qwencloud-ui` | Alibaba Cloud Design |
-| `oi-nameslink-ui` | Alibaba Cloud Design |
+| `oi-neat-ui` | Alibaba Cloud Design |
 | `oi-video-crop` | Alibaba Cloud Design |
 | `oi-video-to-gif` | Alibaba Cloud Design |
 | `oi-images-to-gif` | Alibaba Cloud Design |

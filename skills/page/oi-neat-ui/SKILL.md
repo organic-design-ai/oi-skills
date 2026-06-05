@@ -1,16 +1,16 @@
 ---
-name: oi-nameslink-ui
+name: oi-neat-ui
 description: >-
-  Nameslink brand UI: simple flat surfaces, weak borders, light shadow only, purple accent,
+  Neat brand UI: simple flat surfaces, weak borders, light shadow only, purple accent,
   Inter + Playfair. Icons and photos MUST come from CDN Icons.json / Images.json manifests.
-  TRIGGER for Nameslink style, oi-nameslink-ui, nameslink-ui, or Nameslink landing/product UI.
+  TRIGGER for Neat style, oi-neat-ui, neat-ui, or Neat landing/product UI.
   NOT for generic UI, other brand kits, or video/media tools.
 ---
-# Oi Nameslink UI — Nameslink Design System
+# Oi Neat UI — Neat Design System
 
 **Author:** Alibaba Cloud Design
 
-**Skill path:** `<skill-dir>/` (e.g. `~/.cursor/skills/oi-nameslink-ui`).
+**Skill path:** `<skill-dir>/` (e.g. `~/.cursor/skills/oi-neat-ui`).
 
 Reference specs: `references/` (`tokens.md`, `components.md`, `layouts.md`, `icons.md`, `assets.md`). Brand kit on CDN — see `assets.md`.
 
@@ -64,9 +64,9 @@ Full rule + DO/DON'T diagrams: `references/layouts.md` §2.
 
 ## Usage
 
-> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-nameslink-ui` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-nameslink-ui`), then ask what they want to accomplish.
+> **Agent:** If the user asks how to use this skill (`usage`, `怎么用`, `help`, `@oi-neat-ui` without a concrete task), **reply with this section** (replace `<skill-dir>` with this skill's install path, e.g. `~/.agents/skills/oi-neat-ui`), then ask what they want to accomplish.
 
-**Triggers:** `oi-nameslink-ui`, `nameslink-ui`, Nameslink style, Nameslink design, Nameslink 风格 / 设计系统.
+**Triggers:** `oi-neat-ui`, `neat-ui`, Neat style, Neat design, Neat 风格 / 设计系统.
 
 **Quick start**
 1. Read this `SKILL.md` (philosophy, workflow, anti-patterns).
@@ -74,19 +74,19 @@ Full rule + DO/DON'T diagrams: `references/layouts.md` §2.
 3. Inject the `@font-face` block below (Inter + Playfair Display). **Default to light theme tokens** unless the user explicitly asks for dark. Implement with `--pt-*` tokens.
 
 **Example prompts**
-- 「用 oi-nameslink-ui 做 Nameslink 首页」
-- 「按 Nameslink tokens 改 pricing 卡片」
-- 「Nameslink 深色模式 hero + glass search」
+- 「用 oi-neat-ui 做 Neat 首页」
+- 「按 Neat tokens 改 pricing 卡片」
+- 「Neat 深色模式 hero + glass search」
 
-**Do not use for:** generic UI without explicit Nameslink request; multi-style libraries → `oi-awesome-ui` / `oi-taste-ui`; ffmpeg / video (`widget/*`).
+**Do not use for:** generic UI without explicit Neat request; multi-style libraries → `oi-awesome-ui` / `oi-taste-ui`; ffmpeg / video (`widget/*`).
 
 ## When to use
 
-- User wants **Nameslink** brand UI (domain/marketplace product, editorial floors, flat plan cards)
-- Landing pages, marketing, or app chrome that must match Nameslink tokens and components
+- User wants **Neat** brand UI (domain/marketplace product, editorial floors, flat plan cards)
+- Landing pages, marketing, or app chrome that must match Neat tokens and components
 - Need icon kit, logo rules, photography slots, and CTA inversion patterns
 
-**Do not use** unless the user names Nameslink or this skill.
+**Do not use** unless the user names Neat or this skill.
 
 ---
 
@@ -185,9 +185,9 @@ All brand assets live on CDN — **not** in `<skill-dir>`. See `references/asset
 
 | Asset | Source |
 |-------|--------|
-| Guideline | `…/nameslink/Guideline.html` |
-| Icons (67) | `…/nameslink/Icons.json` → `Icons/*.svg` |
-| Images | `…/nameslink/Images.json` → absolute JPG URLs |
+| Guideline | `…/neat/Guideline.html` |
+| Icons (67) | `…/neat/Icons.json` → `Icons/*.svg` |
+| Images | `…/neat/Images.json` → absolute JPG URLs |
 | Logo | Inline in Guideline (gradient nib) |
 
 **Mandatory:** resolve every icon and JPG from `Icons.json` / `Images.json` — no substitutes. One icon system per surface (CDN SVG from manifest **or** production iconfont `5164327` — never mix in one control). See `references/icons.md`.

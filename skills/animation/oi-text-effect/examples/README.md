@@ -10,7 +10,7 @@
 | `MorphingText.jsx` | SVG-filter liquid morph between phrases. |
 | `TextShimmer.jsx` | Neutral gradient shimmer loop. |
 | `TextType.jsx` | Typewriter typing/deleting/loop (merged from former `oi-text-type`). |
-| `TextShiftWords.jsx` | Interval phrase cycle with gradient underline (nameslink hero-desc style). |
+| `TextShiftWords.jsx` | Interval phrase cycle with gradient underline (neat hero-desc style). |
 | `react-demo.jsx` | Reference page for all variants + custom `variants`. |
 
 ## React quick install
