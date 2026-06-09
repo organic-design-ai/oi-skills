@@ -95,6 +95,112 @@ Tier / `.card-row-item`: `neutral-50` fill, `line-100` hairline, `radius-sm`, pa
 
 Featured (`.tier.is-featured` / `.card-row-item.is-featured`): gradient rim only (§11.1 C) — no ribbon, no shadow. Default CTA `btn--secondary`; featured CTA `btn--primary`. Checkmarks / features: `check-outlined` + §8.16.
 
+### §07a Compact Model Cards
+
+Asymmetric **half + quarter** row under pricing — Guideline §07 specimen; production home uses `.afm-bottom-grid` + `.afm-card-half` / `.afm-card-quarter` (same recipe). Floor spec: `layouts.md` **§4.6 variant C**.
+
+| Piece | Guideline class | Production alias |
+|-------|-----------------|------------------|
+| Grid | `.compact-cards-grid` | `.afm-bottom-grid` |
+| Card | `.compact-card` | `.afm-card.afm-card-compact` |
+| Half width | `.compact-card--half` | `.afm-card-half` |
+| Quarter width | `.compact-card--quarter` | `.afm-card-quarter` |
+
+**Chrome:** `neutral-50` fill · `1px line-100` · `radius-xs` · pad 28 · fixed h **294** desktop · **no shadow** · no hover lift.
+
+**Interior stack (top → bottom):**
+
+1. `.compact-card__title-row` — `h4` `body-lg` semibold + optional `.model-tag.is-hot` (`gradient-6` pill, 40×22)
+2. `.compact-card__desc` — `body-sm` `neutral-650` · **2-line clamp**
+3. `.model-tags` — flex wrap gap 8:
+   - `.model-tag` — `supporting-gray` fill
+   - `.model-tag.is-special` — gradient-7 rim (`Opensource`, `Best choice`)
+4. `.card-metrics-wrap` — `margin-top: auto`
+   - `.card-metrics-note` — mono caption `neutral-450`; price via `.price-text` + `$` (§8.18)
+   - `.card-metrics` — `border-top line-200`; 2-col `max-content`, gap 18 / 64
+   - `.card-metric` — `strong` `title-sm` + `span` `body-sm` label
+
+**Data source:** featured-model floor `halfCard` + first two `quarterCards` (Featured tab). No in-card CTA.
+
+### §07b Industry Model Cards
+
+Tabbed **4-up industry row** — Guideline `.industry-cards`; production `.afm-industry` + `.afm-industry-card`. Floor spec: `layouts.md` **§4.7 variant A** (enriched).
+
+| Piece | Guideline class | Production alias |
+|-------|-----------------|------------------|
+| Floor | `.industry-cards` | `.afm-industry` |
+| Head | `.industry-cards__head` | `.afm-head.afm-head-industry` |
+| Tabs | `.industry-tabs` · `.industry-tab.is-active` | `.afm-tabs` · `.afm-tab.is-active` |
+| Grid | `.industry-cards__grid` | `.afm-industry-grid` |
+| Card | `.industry-card` | `.afm-industry-card.afm-card-compact` |
+| Footer CTA | `.industry-cards__cta` | `.afm-browse-cta` |
+
+**Head:** Pattern B left — `h3` `heading-sm`; **one** gradient word on **"industries"** (`gradient-3` `.grad-word`). Tabs: pill row, active = `neutral-150` + 6 px `primary-550` dot `::before`.
+
+**Card chrome:** **no box** — only `border-bottom: 1px line-200`; pad `4 4 20`; min-h 200 desktop; transparent bg.
+
+**Interior:**
+
+1. `.industry-card__title-row` — `.industry-card__logo` 24×24 manifest icon + `h4` `body-lg` + optional `.model-tag.is-hot`
+2. `.industry-card__desc` — `body-sm` `neutral-750` · 2-line clamp
+3. `.model-tags` — capability chips (no special rim unless product requires)
+4. `.industry-card__arrow` — `arrow-up-outlined` 12×12; `margin-top: auto`; rotate for affordance
+
+**Footer:** centered `btn--outline btn--xl` (220 px wide) — "Browse all models". Not `btn--primary`.
+
+### §07c Agent Builder Cards
+
+**2-up builder floor** — Guideline `.agent-builder-section`; production `agent-builder-section` + `.agent-builder-card`. Floor spec: `layouts.md` **§4.5** (marketing = borderless visual); Guideline §07 specimen uses **bordered** `.agent-builder-visual` for the design gallery only.
+
+| Piece | Guideline class | Production alias |
+|-------|-----------------|------------------|
+| Section | `.agent-builder-section` | `.agent-builder-section` |
+| Head | `.agent-builder-head` | `.agent-builder-head` |
+| Grid | `.agent-builder-grid` | `.agent-builder-grid` |
+| Card | `.agent-builder-card` | `.agent-builder-card` |
+| Visual | `.agent-builder-visual` | `.agent-builder-visual` |
+| Copy | `.agent-builder-copy` | `.agent-builder-copy` |
+
+**Head:** Pattern A centered — `h3` `heading-md`; highlight span `.grad-word` on **"Agent builder"** (`gradient-2`); desc `body-md` `neutral-750` max 640 px.
+
+**Per card (visual → copy, gap 48):**
+
+1. `.agent-builder-visual` — Guideline: `radius-xs` · `1px line-100` · h **248** · cover `img`/`video` · `.agent-builder-visual__icon` 20×20 white glyph top-left (`code-outlined` / `terminal-outlined`). **Marketing pages:** drop border — use §4.5 `.media-duo-visual` (`radius-md`, no border).
+2. `.agent-builder-copy` — `h4` `title-md` semibold · `p` `body-md` `neutral-550` · CTA `btn--text` ("Start Building" / "Explore Docs") — **not** pill buttons.
+
+**Assets:** `Images/card_1.jpg`, `card_2.jpg` (or CDN equivalents from `Images.json`).
+
+---
+
+## Coding Plan page (Token Plan)
+
+Production stack — full floor spec: `layouts.md` **§4.0.1**. Page ends with **§4.10 `<Footer />` only** (no tail visual, no `FooterBottom`).
+
+| # | Section | Root classes | Layout § |
+|---|---------|--------------|----------|
+| 1 | Intro + showcase | `.coding-plan-intro-section` · `.coding-plan-intro-showcase` | §4.0.1 · §8.29 |
+| 2 | Limited offer pricing | `.coding-plan-offer-section` · `.coding-plan-offer-card` | §4.4 · R9 |
+| 3 | Supported AI tools | `.coding-plan-tools-section` · `.coding-plan-tools-item` | §4.8 A |
+| 4 | FAQ | `.coding-plan-faq-section` · `.coding-plan-faq-panel` · `.coding-plan-faq-item` | §4.12 B-wash · §8.27 |
+
+### Intro showcase (floor 1)
+
+- **Head** (inner): `h1` + `.coding-plan-intro-title-gradient` (`gradient-1`) · `.heading-desc-lg` centered · optional inline `TextLink` in description (token `{key}` or embedded `<a>`).
+- **Panel** (wide): `.coding-plan-intro-showcase` — `gradient-card-bg`, `radius-md`, h **380**, pad `60 44`, 2-col gap **64**.
+- **Accordion:** `.coding-plan-feature-item` — icon + title + `IconModelsPlusSvg`; expanded hides plus; `body-sm` copy; §8.29 single-open + preview.
+- **Preview:** `.coding-plan-preview-panel.is-active` — product mock components (`PreviewCpCompare2`, etc.); desktop right column; mobile inline in expanded row.
+
+### FAQ panel (floor 4)
+
+- **Shell:** `.coding-plan-faq-panel` — `gradient-card-bg` (not flat `neutral-100`), `radius-md`, gap **154**, pad `60 44`.
+- **Left:** two-line `h2` + `.coding-plan-faq-gradient` (`gradient-2` on second line).
+- **Right:** `.coding-plan-faq-item` — `title-md` question + plus icon; answer `body-sm`; §8.27 policy; collapsed row `min-height: 100px`.
+
+### Plans + tools (floors 2–3)
+
+- **Plans:** `.coding-plan-offer-card` — §07 pricing tier recipe; `TagHot` / `TagNormal` badges; `PriceText` in price row; featured `.is-featured` gradient rim.
+- **Tools:** `.coding-plan-tools-grid` 4-col — `.coding-plan-tools-item` `line-100` `radius-xs` h64; logo + name; theme-aware logo swap (light/dark).
+
 ---
 
 ## §08 Components & Primitives

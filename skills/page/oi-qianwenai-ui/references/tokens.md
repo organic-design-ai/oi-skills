@@ -1,12 +1,12 @@
 # 千问云 — Design Tokens
 
-Source: brand guideline (`:root` / `html[data-prefers-color='dark']`). All variables use `--pt-cn-*`. No semantic alias layer.
+Source: brand guideline (`:root` / `html[data-prefers-color='dark']`). All variables use `--pt-*`. No semantic alias layer.
 
 ## Design stance
 
 扁平、克制、安静。层级靠 **neutral 色阶**（`50` ↔ `100` ↔ `150`）区分，不靠阴影。边框极少——仅在结构必须时用 `line-100` 发丝线。
 
-**营销长页默认 `box-shadow: none`** — 与 Guideline Token Plan / 首页 / Hackathon 参考一致。`--pt-cn-shadow-*` 仅用于：分段控件选中 thumb、卡片 hover lift（数据页）、compare bar、FAB、搜索下拉。
+**营销长页默认 `box-shadow: none`** — 与 Guideline Token Plan / 首页 / Hackathon 参考一致。`--pt-shadow-*` 仅用于：分段控件选中 thumb、卡片 hover lift（数据页）、compare bar、FAB、搜索下拉。
 
 **千问云 vs 国际站色感：** 交互主色为 **蓝紫** `primary-550`；标题渐变优先 **蓝绿青** 谱系（`gradient-1/2/3/8/9`），而非国际站的纯紫粉渐变。
 
@@ -14,7 +14,7 @@ Source: brand guideline (`:root` / `html[data-prefers-color='dark']`). All varia
 
 ## Colors
 
-### Primary (`--pt-cn-color-primary-*`) — 蓝紫主色
+### Primary (`--pt-color-primary-*`) — 蓝紫主色
 
 10 stops（Guideline 注释：Primary blue-violet ramp CN）。
 
@@ -28,7 +28,7 @@ Source: brand guideline (`:root` / `html[data-prefers-color='dark']`). All varia
 
 Dark mode remaps: `550` → `#714FFC` · `650` → `#653AFF`.
 
-### Neutral (`--pt-cn-color-neutral-*`)
+### Neutral (`--pt-color-neutral-*`)
 
 19 stops. **Light 与 Guideline 一致**；dark mode 角色反转（`50` 近黑画布 ↔ `950` 近白字）。
 
@@ -48,9 +48,9 @@ Dark mode remaps: `550` → `#714FFC` · `650` → `#653AFF`.
 
 | Token | Resolves to (light) |
 |-------|---------------------|
-| `--pt-cn-color-line-100` | `neutral-200` — card hairline |
-| `--pt-cn-color-line-200` | `neutral-300` — outline button, input |
-| `--pt-cn-color-line-300` | `neutral-350` — hover border |
+| `--pt-color-line-100` | `neutral-200` — card hairline |
+| `--pt-color-line-200` | `neutral-300` — outline button, input |
+| `--pt-color-line-300` | `neutral-350` — hover border |
 
 ### Supporting pairs (badges / chips only)
 
@@ -58,9 +58,9 @@ bg + tint: gray · red · orange · green · blue · purple. Not for large surfa
 
 ### Functional
 
-`--pt-cn-color-func-success` `#0DA740` · `--pt-cn-color-func-warning` `#FF7931` · `--pt-cn-color-func-danger` `#F33939` · `--pt-cn-color-func-emphasize` `#277FE4`
+`--pt-color-func-success` `#0DA740` · `--pt-color-func-warning` `#FF7931` · `--pt-color-func-danger` `#F33939` · `--pt-color-func-emphasize` `#277FE4`
 
-Links: `--pt-cn-color-link-default` → `primary-550` · hover → `primary-650`
+Links: `--pt-color-link-default` → `primary-550` · hover → `primary-650`
 
 ### Accent decoration
 
@@ -70,12 +70,12 @@ Links: `--pt-cn-color-link-default` → `primary-550` · hover → `primary-650`
 
 | Token | Light | Dark |
 |-------|-------|------|
-| `--pt-cn-cta-color-fill` | `neutral-950` | `primary-550` |
-| `--pt-cn-cta-color-fill-hover` | `primary-550` | `primary-650` |
-| `--pt-cn-cta-color-font-fill` | `primary-50` | `primary-50` |
-| `--pt-cn-cta-secondary-color-fill` | `primary-50` | `neutral-400` |
-| `--pt-cn-cta-secondary-color-fill-hover` | `primary-150` | `primary-850` |
-| `--pt-cn-cta-secondary-color-font-fill` | `primary-550` | `neutral-800` |
+| `--pt-cta-color-fill` | `neutral-950` | `primary-550` |
+| `--pt-cta-color-fill-hover` | `primary-550` | `primary-650` |
+| `--pt-cta-color-font-fill` | `primary-50` | `primary-50` |
+| `--pt-cta-secondary-color-fill` | `primary-50` | `neutral-400` |
+| `--pt-cta-secondary-color-fill-hover` | `primary-150` | `primary-850` |
+| `--pt-cta-secondary-color-font-fill` | `primary-550` | `neutral-800` |
 
 Light primary button: near-black rest, purple hover.
 
@@ -95,7 +95,7 @@ Light primary button: near-black rest, purple hover.
 | **`gradient-8`** | 径向 **青 → 绿** `#14C8C7 → #22CA95 → #008D26` | **蓝绿** tail visual、自然/增长主题 |
 | **`gradient-9`** | 青 → 绿 → 金 **（仅 CN）** | 国内专属标题、活动 kicker |
 
-Card wash: `--pt-cn-gradient-card-bg` — `135deg`, `neutral-150` → `neutral-50` — hero showcase、panel-as-card；几乎看不出色带。
+Card wash: `--pt-gradient-card-bg` — `135deg`, `neutral-150` → `neutral-50` — hero showcase、panel-as-card；几乎看不出色带。
 
 **与国际站差异：** 国际站 `oi-qwencloud-ui` 渐变偏紫粉（`#653AFF` 系）；千问云优先 **蓝绿青**（`#14C8C7` / `#4897FE` / `#40EBDA`）混入 `gradient-1–3/8/9`。
 
@@ -107,9 +107,9 @@ Card wash: `--pt-cn-gradient-card-bg` — `135deg`, `neutral-150` → `neutral-5
 
 | Token | Role |
 |-------|------|
-| `--pt-cn-font-base` | Inter, **PingFang SC**, system sans |
-| `--pt-cn-font-mono` | **Roboto Mono**, PingFang SC, system sans |
-| `--pt-cn-font-code` | Consolas stack |
+| `--pt-font-base` | Inter, **PingFang SC**, system sans |
+| `--pt-font-mono` | **Roboto Mono**, PingFang SC, system sans |
+| `--pt-font-code` | Consolas stack |
 
 千问云 vs 国际站：行高更大（中文排版）、标题字距用固定 px、部分标题字重 600。
 
@@ -117,34 +117,34 @@ Card wash: `--pt-cn-gradient-card-bg` — `135deg`, `neutral-150` → `neutral-5
 
 | Token | Size | Line | Use |
 |-------|-----:|-----:|-----|
-| `--pt-cn-heading-font-size-3xl` | 78 | 94 | Hero display (CN-only step) |
-| `--pt-cn-heading-font-size-2xl` | 72 | 86 | Marketing hero h1 |
-| `--pt-cn-heading-font-size-xl` | 64 | 84 | Tagline split hero |
-| `--pt-cn-heading-font-size-lg` | 60 | 78 | Centered intro hero |
-| `--pt-cn-heading-font-size-md` | 44 | 58 | Section heads |
-| `--pt-cn-heading-font-size-sm` | 36 | 46 | Compact h1 / legal |
-| `--pt-cn-title-font-size-lg` | 28 | 36 | Sub-section title |
-| `--pt-cn-title-font-size-md` | 24 | 36 | Card title |
-| `--pt-cn-title-font-size-sm` | 20 | 30 | Card headline |
-| `--pt-cn-title-font-size-xs` | 18 | 28 | Agent glass panel title |
-| `--pt-cn-body-font-size-lg` | 18 | 28 | Hero/section subtitle |
-| `--pt-cn-body-font-size-md` | 16 | 24 | Body |
-| `--pt-cn-body-font-size-sm` | 14 | 20 | Card meta |
-| `--pt-cn-body-font-size-xs` | 13 | 20 | Caption |
+| `--pt-heading-font-size-3xl` | 78 | 94 | Hero display (CN-only step) |
+| `--pt-heading-font-size-2xl` | 72 | 86 | Marketing hero h1 |
+| `--pt-heading-font-size-xl` | 64 | 84 | Tagline split hero |
+| `--pt-heading-font-size-lg` | 60 | 78 | Centered intro hero |
+| `--pt-heading-font-size-md` | 44 | 58 | Section heads |
+| `--pt-heading-font-size-sm` | 36 | 46 | Compact h1 / legal |
+| `--pt-title-font-size-lg` | 28 | 36 | Sub-section title |
+| `--pt-title-font-size-md` | 24 | 36 | Card title |
+| `--pt-title-font-size-sm` | 20 | 30 | Card headline |
+| `--pt-title-font-size-xs` | 18 | 28 | Agent glass panel title |
+| `--pt-body-font-size-lg` | 18 | 28 | Hero/section subtitle |
+| `--pt-body-font-size-md` | 16 | 24 | Body |
+| `--pt-body-font-size-sm` | 14 | 20 | Card meta |
+| `--pt-body-font-size-xs` | 13 | 20 | Caption |
 
 Letter-spacing: headings `0.25px` · body `0.4px` (lg `0.5px`) · titles `0`.
 
-Fluid: `--pt-cn-heading-font-size-fluid-md: clamp(36px, 8vw, 52px)` · `--pt-cn-title-font-size-fluid-md: clamp(28px, 6vw, 40px)`
+Fluid: `--pt-heading-font-size-fluid-md: clamp(36px, 8vw, 52px)` · `--pt-title-font-size-fluid-md: clamp(28px, 6vw, 40px)`
 
 ---
 
 ## Spacing
 
-**2-px rhythm.** `--pt-cn-spacing-N` = N × 2 px.
+**2-px rhythm.** `--pt-spacing-N` = N × 2 px.
 
 Scale: `1` 2px · `2` 4px · `3` 6px · `4` 8px · `5` 10px · `6` 12px · `7` 14px · `8` 16px · `9` 18px · `10` 20px · `11` 22px · `12` 24px · `13` 26px · `14` 28px · `15` 30px · `16` 32px · `18` 36px · `20` 40px · `22` 44px · `24` 48px · `28` 56px · `32` 64px · `36` 72px · `40` 80px · `44` 88px · `48` 96px · `57` 114px · `61` 122px · `69` 138px · `77` 154px
 
-Semantic: `--pt-cn-margin-sm/md/lg` → `spacing-12/18/24` · `--pt-cn-padding-sm/md/lg` → `14px/18px/spacing-12` · `--pt-cn-gap-sm/md/lg` → `spacing-6/14px/spacing-9`
+Semantic: `--pt-margin-sm/md/lg` → `spacing-12/18/24` · `--pt-padding-sm/md/lg` → `14px/18px/spacing-12` · `--pt-gap-sm/md/lg` → `spacing-6/14px/spacing-9`
 
 ---
 
@@ -160,18 +160,18 @@ Line widths: `thin` 0.5 px · `normal` 1 px · `thick` 1.5 px.
 
 | Token | Light | Dark |
 |-------|-------|------|
-| `--pt-cn-shadow-light` | `0 8px 24px rgba(83,91,107,.06)` | `0 8px 24px rgba(0,0,0,.28)` |
-| `--pt-cn-shadow-normal` | `0 16px 40px rgba(83,91,107,.10)` | `0 16px 40px rgba(0,0,0,.38)` |
+| `--pt-shadow-light` | `0 8px 24px rgba(83,91,107,.06)` | `0 8px 24px rgba(0,0,0,.28)` |
+| `--pt-shadow-normal` | `0 16px 40px rgba(83,91,107,.10)` | `0 16px 40px rgba(0,0,0,.38)` |
 
 ---
 
 ## Motion
 
-`--pt-cn-motion-fast` 0.25s · `--pt-cn-motion-slow` 0.7s · ease-in-out. Color and opacity only.
+`--pt-motion-fast` 0.25s · `--pt-motion-slow` 0.7s · ease-in-out. Color and opacity only.
 
 ---
 
-## Z-index (`--pt-cn-z-*`)
+## Z-index (`--pt-z-*`)
 
 `hide` -1 · `base` 0 · `popup-inline` 50 · `sticky` 100 · `fixed` 200 · `sidebar` 300 · `float-widget` 500 · `sub-nav` 900 · `top-nav` 1000 · `top-banner` 1050 · `dropdown` 1100 · `popover` 1200 · `tooltip` 1300 · `drawer-backdrop` 1400 · `drawer` 1410 · `dialog-backdrop` 1500 · `dialog` 1510 · `notification` 1600 · `max` 2000
 
@@ -181,11 +181,11 @@ Line widths: `thin` 0.5 px · `normal` 1 px · `thick` 1.5 px.
 
 | Token | Value | Use |
 |-------|-------|-----|
-| `--pt-cn-layout-limit-width` | 1920px | Absolute cap |
-| `--pt-cn-layout-max-width` | `min(100vw - 140px, 1920px)` | Outer (`.layout-max-wide`) |
-| `--pt-cn-layout-max-inner` | `min(100vw - 280px, 1780px)` | Inner (`.layout-max-inner`) |
-| `--pt-cn-layout-max-read-box` | **640px** | Reader column (CN prose) |
-| `--pt-cn-nav-backdrop-offset` | 84px desktop · 62px mobile | Sticky offset |
+| `--pt-layout-limit-width` | 1920px | Absolute cap |
+| `--pt-layout-max-width` | `min(100vw - 140px, 1920px)` | Outer (`.layout-max-wide`) |
+| `--pt-layout-max-inner` | `min(100vw - 280px, 1780px)` | Inner (`.layout-max-inner`) |
+| `--pt-layout-max-read-box` | **640px** | Reader column (CN prose) |
+| `--pt-nav-backdrop-offset` | 84px desktop · 62px mobile | Sticky offset |
 
 Breakpoint: 1024px. Desktop gutters **70px**; mobile **10px**.
 

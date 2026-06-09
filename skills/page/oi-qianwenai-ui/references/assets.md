@@ -19,7 +19,7 @@ Brand kit files are **not** bundled in the skill.
 ## Usage
 
 1. **Tokens / components** — use installed `tokens.md` and `components.md`.
-2. **Visual QA** — open `Guideline.html` before unfamiliar sections (hero, model cards, pricing, **§08 组件与基础模块**).
+2. **Visual QA** — open `Guideline.html` before unfamiliar sections (hero, model cards, pricing, **§07 紧凑/行业/智能体构建卡片**, **Coding Plan §4.0.1 展示+FAQ 面板**, **§08 组件与基础模块**).
 3. **Icons** — fetch `Icons.json`; static HTML uses each `href` under the CDN base (`<img class="qc-icon-img" src="…">`). No external icon npm package — manifest only.
 4. **Photography** — fetch `Images.json`; **one** `qwen-model-*` per hero; `card-*` for customer / strip cards; `agent-*` for agent grid.
 5. **§08 gallery** — `Guideline.html` mounts `comp-primitives-mount[data-ui-style="qianwenai"]`; replicate BEM roots from `components.md` §08.

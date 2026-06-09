@@ -19,7 +19,7 @@ Brand kit files are **not** bundled in the skill.
 ## Usage
 
 1. **Tokens / components** — use installed `tokens.md` and `components.md`.
-2. **Visual QA** — open or fetch `Guideline.html` before implementing unfamiliar sections (hero, model cards, pricing rim, customer card, **§08 production cards**).
+2. **Visual QA** — open or fetch `Guideline.html` before implementing unfamiliar sections (hero, model cards, pricing rim, **§07 compact / industry / agent-builder cards**, **Coding Plan §4.0.1 showcase + FAQ panel**, customer card, **§08 production cards**).
 3. **Icons** — fetch `Icons.json`; use each `href` for static HTML (`<img class="qc-icon-img" src="…">`). React: prefer `@ali/qwen-cloud-icons` when available.
 4. **Photography** — fetch `Images.json`; **one** `flower_01–06` per hero; `card_1–4` for customer stories.
 5. **§08 gallery** — `Guideline.html` mounts the transpiled preview grid (`comp-primitives-mount`); component anatomy is documented in `components.md` §08. For static pages, replicate BEM roots from the gallery — do not fork token values.

@@ -115,7 +115,7 @@ Guideline long-scroll pages (Home, Token Plan, Hackathon) share one **planar** s
 | **Nested chrome** | No grey inset sub-cards inside pricing, FAQ, or panel lists — typography + one hairline (§11.6) |
 | **Imagery** | Title on canvas; photos in framed panels (§2). Tail visual is the §2.5 exception |
 
-Qianwen AI: prefer `--pt-cn-gradient-1/2/3/8` for headline clips; Qwen Cloud intl: `--pt-gradient-1/2/3`. See each kit `tokens.md`.
+Qianwen AI: prefer `--pt-gradient-1/2/3/8` for headline clips; Qwen Cloud intl: `--pt-gradient-1/2/3`. See each kit `tokens.md`.
 
 ---
 
@@ -405,7 +405,7 @@ Mobile: height `min(420px, 56vw)`; metrics → `repeat(2, 1fr)` 2×2 grid.
 
 #### Mode B — Info showcase  *(`.hero-visual--showcase`)*
 
-Reference: **Token Plan** — lavender wash panel; **left accordion drives right preview** (fold / expand per item). Mid-page **Choose Your Arena** variant (taller visual, centered head above split): **§4.13** — not inside `.hero-visual`.
+Reference: **Token Plan / Coding Plan** — lavender wash panel; **left accordion drives right preview** (fold / expand per item). Production: `.coding-plan-intro-showcase` in `.layout-max-wide` with title in separate `.coding-plan-intro-header` (§4.0.1) — same interaction as `.hero-visual--showcase`. Mid-page **Choose Your Arena**: **§4.13** — not inside showcase.
 
 ```
 ┌─ .hero-visual--showcase  h: 420  bg: gradient-card-bg ────────┐
@@ -422,7 +422,7 @@ Reference: **Token Plan** — lavender wash panel; **left accordion drives right
 
 | Property | Value |
 |----------|-------|
-| Height | **`420 px` locked** — do not use 380 / 540 on this mode |
+| Height | **`420 px`** canonical (`.hero-visual--showcase`) · **`380 px`** production (`.coding-plan-intro-showcase`) — stay in **380–420** band; do not use 540+ |
 | Background | `var(--pt-gradient-card-bg)` — quiet wash; reads as canvas step, not photograph (§2.6) |
 | Padding | `60px 44px` desktop · `32px 20px` mobile |
 | Grid | `grid-template-columns: 1fr 1fr; gap: 64px; align-items: stretch; height: 100%` |
@@ -586,13 +586,15 @@ Reference scroll compositions from Guideline. Pick one recipe; **do not** invent
 
 #### Token Plan / Coding Plan
 
-| # | Floor | § | Notes |
-|---|-------|---|-------|
-| 1 | Hero title + showcase | §2.7 B + §2.8 **Mode B** | Accordion **inside** `.hero-visual` 420 px — **not** §4.13 |
-| 2 | Pricing / limited offer | §4.4 **4-up** | `line-100` cards; Enterprise/Personal toggle §8.4; one featured rim |
-| 3 | Supported tools | §4.8 **A** | Logo matrix `line-100` tiles |
-| 4 | FAQ | §4.12 shell **B** | `neutral-100` `radius-lg` in `layout-max-wide` |
-| 5 | Footer | §4.10 | Often **no** §4.9 tail between FAQ and footer |
+| # | Floor | § | Production roots | Notes |
+|---|-------|---|------------------|-------|
+| 1 | Intro title + showcase | §2.7 B + **§4.0.1** showcase | `.coding-plan-intro-section` → `.coding-plan-intro-showcase` | Title in **inner**; wash panel in **wide**; accordion + preview sync — **not** §4.13 |
+| 2 | Pricing / limited offer | §4.4 **4-up** | `.coding-plan-offer-section` → `.coding-plan-offer-grid` | `line-100` cards; one `.is-featured` rim; R9 |
+| 3 | Supported tools | §4.8 **A** | `.coding-plan-tools-section` → `.coding-plan-tools-grid` | `.coding-plan-tools-item` bordered logo tiles |
+| 4 | FAQ | §4.12 shell **B-wash** | `.coding-plan-faq-section` → `.coding-plan-faq-panel` | `gradient-card-bg` wide panel — Token Plan canonical |
+| 5 | Footer | §4.10 | `.page-footer` → `<Footer />` only | **No** §4.9 tail; **no** `FooterBottom` on this page |
+
+**§4.0.1** below is the authoritative Coding Plan / Token Plan implementation spec (production `coding-plan` page).
 
 #### Hackathon / Campaign
 
@@ -605,7 +607,179 @@ Reference scroll compositions from Guideline. Pick one recipe; **do not** invent
 | 5 | Community CTA | §4.9 **compact** 370 px | Join the community |
 | 6 | Footer | §4.10 | |
 
-**§4.13 vs §2.8 Mode B:** Token Plan accordion lives in the **hero visual box** (420 px). **Choose Your Arena** is a **mid-page** §4.13 floor (taller right visual, centered head above). Never duplicate both on one page.
+**§4.13 vs §2.8 Mode B vs §4.0.1:** Token Plan accordion lives in the **intro showcase panel** (`.coding-plan-intro-showcase`, 380 px production) directly under the centered title — same interaction family as §2.8 Mode B but **split shell** (head in inner, panel in wide). **Choose Your Arena** is **mid-page** §4.13. Never stack showcase + §4.13 on one page.
+
+### 4.0.1 Coding Plan page — intro showcase + FAQ panel  ★
+
+Production page stack (4 content floors + footer). Reference: `coding-plan` — `CodingPlanIntroSection` → `CodingPlanPlansSection` → `CodingPlanToolsSection` → `CodingPlanFaqSection` → `<Footer />`.
+
+```
+┌── canvas neutral-50 ─────────────────────────────────────────────────────┐
+│  [1] .layout-max-inner — centered h1 + heading-desc-lg                    │
+│      .coding-plan-intro-title-gradient on highlight word (gradient-1)     │
+│  [1] .layout-max-wide — .coding-plan-intro-showcase (gradient-card-bg)    │
+│      ┌ accordion 50% ──────────┐  ┌ preview 50% ─────────────────────┐  │
+│      │ feature rows + + icon   │  │ stacked .coding-plan-preview-panel│  │
+│      └─────────────────────────┘  └──────────────────────────────────┘  │
+│  [2] .layout-max-inner — §4.4 .coding-plan-offer-grid 4-up               │
+│  [3] .layout-max-inner — §4.8 A .coding-plan-tools-grid                  │
+│  [4] .layout-max-wide — .coding-plan-faq-panel (gradient-card-bg)        │
+│      ┌ title col ─────┐  ┌ .coding-plan-faq-list ─────────────────────┐ │
+│  [5] .page-footer — §4.10 <Footer /> only                                │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+No §4.9 tail visual between FAQ and footer.
+
+#### Floor 1 — `.coding-plan-intro-showcase` (accordion + preview sync)
+
+**Not** a full §2.7 hero with CTAs — opener is **title + desc only**, then the showcase panel. Maps to §2.8 Mode B interaction via **§8.29**.
+
+| Piece | Class | Container |
+|-------|-------|-----------|
+| Section | `.coding-plan-intro-section` | `margin-top: 60px` (40 mobile) |
+| Title head | `.coding-plan-intro-header` | `.layout-max-inner` — **centered** desktop · **left** mobile |
+| H1 gradient | `.coding-plan-intro-title-gradient` | `gradient-1` text clip on highlight span |
+| Showcase shell | `.coding-plan-intro-showcase` | `.layout-max-wide` only |
+
+**Showcase shell chrome:**
+
+```scss
+.coding-plan-intro-showcase {
+  margin-top: 44px;                                      // 20 mobile
+  height: 380px;                                         // production; 380–420 band for this page type
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 64px;
+  padding: 60px 44px;
+  border-radius: var(--pt-radius-md);
+  background: var(--pt-gradient-card-bg);
+  border: 0;
+  box-shadow: none;
+  overflow: hidden;
+}
+```
+
+| Property | Desktop | Mobile ≤1024 |
+|----------|---------|----------------|
+| Height | **380 px** locked | `auto`; `min-height: 0` |
+| Grid | `1fr 1fr` gap **64** | `1fr` stack gap **14–20** |
+| Padding | `60px 44px` | `clamp(16–24, 12–20)` |
+| Radius | `radius-md` (24) | same |
+
+**Left — `.coding-plan-feature-list`:** vertical stack; items `.coding-plan-feature-item` with `border-bottom: line-200`; last item no border.
+
+**Accordion row (R4 — showcase variant):**
+
+```jsx
+<div className={`coding-plan-feature-item${isExpanded ? ' is-expanded' : ''}`}>
+  <button className="coding-plan-feature-head" aria-expanded={isExpanded} aria-controls={contentId}>
+    <div className="coding-plan-feature-copy">
+      <h3>
+        <span className="coding-plan-feature-icon">{/* 20×20 manifest icon */}</span>
+        <span className="coding-plan-feature-title-text">{title}</span>
+      </h3>
+    </div>
+    <span className="coding-plan-feature-plus"><IconModelsPlusSvg /></span>
+  </button>
+  <div id={contentId} className="coding-plan-feature-content" aria-hidden={!isExpanded}>
+    <p>{description}</p>
+    {/* mobile only: .coding-plan-preview-card-mobile inside expanded item */}
+  </div>
+</div>
+```
+
+| State | Title `h3` | Plus icon | Body |
+|-------|--------------|-----------|------|
+| Collapsed | `neutral-650` | visible `primary-550` 30×30 | `grid-template-rows: 0fr`; `opacity: 0` |
+| `.is-expanded` | `neutral-950` semibold `title-md` | **`display: none`** | `grid-template-rows: 1fr`; `opacity: 1`; `body-sm` `neutral-650` |
+
+- Row padding: `16px 0` head · content `pb 14` on answer.
+- Icon in title: 20×20 `neutral-650`; **hidden on mobile**.
+- Title text: desktop **ellipsis** single line; mobile **2-line clamp**.
+
+**Interaction (§8.29):** single-open; first item expanded on load; click open item = **no-op**; switching item updates `expandedId` and syncs preview. `handleToggle`: `setExpandedId(prev => prev === id ? prev : id)`.
+
+**Right — `.coding-plan-preview-card-desktop`:**
+
+```scss
+.coding-plan-preview-stage { position: relative; flex: 1; min-height: 0; }
+.coding-plan-preview-panel {
+  position: absolute; inset: 0;
+  opacity: 0; visibility: hidden;
+  transform: translateY(8px) scale(0.985);
+  transition: opacity, transform, visibility var(--pt-motion-fast) ease;
+  pointer-events: none;
+  &.is-active {
+    opacity: 1; visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+}
+```
+
+- One panel per feature; only `.is-active` panel visible — **opacity + slight lift** (richer than FAQ).
+- Preview frame: `radius-md`; **no** outer `line-100` border (commented out in production).
+- Mobile: `.coding-plan-preview-card-desktop { display: none }`; preview renders **inside** expanded row via `.coding-plan-preview-card-mobile` (`min-height: 220px`).
+
+#### Floor 4 — `.coding-plan-faq-panel` (FAQ wash panel)
+
+Token Plan canonical **§4.12 shell B-wash** — prefer this over flat `neutral-100` when matching Coding Plan.
+
+```scss
+.coding-plan-faq-section { margin-top: 114px; }       // 64 mobile
+.coding-plan-faq-panel {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: 154px;                                           // wider than generic .faq-layout 48–120
+  padding: 60px 44px;
+  border-radius: var(--pt-radius-md);
+  background: var(--pt-gradient-card-bg);
+  border: 0;
+  box-shadow: none;
+}
+```
+
+| Column | Role |
+|--------|------|
+| `.coding-plan-faq-left` | `h2` `heading-sm` bold; **two-line** title; one gradient span `.coding-plan-faq-gradient` (`gradient-2`) on e.g. "asked questions" |
+| `.coding-plan-faq-list` | Accordion stack — `.coding-plan-faq-item` rows |
+
+**FAQ row (R20 — Coding Plan variant):**
+
+```jsx
+<article className={`coding-plan-faq-item${isExpanded ? ' is-expanded' : ''}`}>
+  <button className="coding-plan-faq-head" aria-expanded={isExpanded} aria-controls={contentId}>
+    <h3>{question}</h3>
+    <span aria-hidden="true"><IconModelsPlusSvg /></span>
+  </button>
+  <div id={contentId} className="coding-plan-faq-content" aria-hidden={!isExpanded}>
+    <p>{answer}</p>
+  </div>
+</article>
+```
+
+| Property | Value |
+|----------|-------|
+| Row padding | `40px 0` desktop · `24px 0` mobile |
+| Collapsed min-height | `100px` on `.coding-plan-faq-item:not(.is-expanded)` |
+| Divider | `border-bottom: line-200`; last item `padding-bottom: 0` |
+| Question | `title-md` semibold `neutral-950`; max-width read-box |
+| Plus control | `IconModelsPlusSvg` 18×18 `primary-550`; `margin-left: auto` on head |
+| Expanded | plus **`display: none`**; answer `padding-top: 10px` |
+
+**Interaction:** same **§8.27** contract — first item open; single-open; no collapse-all; `handleToggle` no-op on already-open item. Motion: `grid-template-rows: 0fr → 1fr` + `opacity` (`--pt-motion-fast`).
+
+Mobile: panel `grid-template-columns: 1fr`; gap **20**; pad **28 24**; left `h2` → fluid title size.
+
+#### Coding Plan checklist
+
+- [ ] Intro: inner centered head + wide showcase; **380 px** desktop; `gradient-card-bg` `radius-md`
+- [ ] Feature accordion: R4 + §8.29; plus hidden when open; preview sync desktop + inline mobile
+- [ ] Plans: §4.4 4-up `.coding-plan-offer-card`; one featured rim
+- [ ] Tools: §4.8 A `.coding-plan-tools-item` matrix
+- [ ] FAQ: `.coding-plan-faq-panel` wash; gap **154**; R20 + §8.27
+- [ ] Footer §4.10 only — no tail, no FooterBottom
 
 ### 4.1 Floor backgrounds (the alternation rule)
 
@@ -648,8 +822,10 @@ Only three planes — alternate them; **never put two floors of the same tint ad
 - **Stacking scroll floor:** `height: 180vh` with `position: sticky` interior — for scroll-choreographed reveals (rare; e.g. featured model stack on home).
 - **Closing CTA floor / tail visual:** **790 px** tall (§4.9) or **370 px** compact — §3 variant F; legacy `.era-hero-shell` ≈780 px.
 - **Card row floor:** content-driven height; 3-up or 4-up equal cards (§4.4) — pricing, token plans, prize pools.
+- **Compact model row:** asymmetric `2fr 1fr 1fr` bordered cards (§4.6 variant C) — half + two quarter featured-model tiles; stacks under §4.4 on home.
+- **Industry tab floor:** 4-up bottom-hairline cards + pill tabs (§4.7 variant A) — model serving by vertical.
 - **Media duo floor:** 2-up borderless visual cards (§4.5) — agent builder, capability pairs; text-link CTAs.
-- **Simple card floor:** 3-up `line-100` skill/step cards (§4.6) — tag, price-text, metrics; no shadow.
+- **Simple card floor:** 3-up `line-100` skill/step cards (§4.6 A/B) — tag, price-text, metrics; no shadow.
 - **Secondary showcase:** tabs + text-only cards (§4.7) — bottom hairline only; supports primary floors.
 - **Logo matrix / strip:** §4.8 — **A** bordered 4×N tiles (`line-100`, icon + name) **or** **B** borderless partner logo row (no chrome).
 - **Tail visual CTA:** 790 px or 370 px closing panel (§4.9) — centered copy + buttons on art-directed backdrop; immediately above footer.
@@ -1096,6 +1272,8 @@ Both columns share identical structure — only copy, art, and CTA color may dif
 - [ ] Body: left-aligned; title `title-md`; desc 2-line clamp `neutral-650`
 - [ ] CTA: `.media-duo-link` + `arrow-up-right-outlined` — not pill buttons
 
+**Guideline §07c specimen:** `.agent-builder-section` uses **bordered** `.agent-builder-visual` (`radius-xs`, `1px line-100`, h 248) for the design gallery — `components.md` §07c. **Live marketing** must use the borderless §4.5 recipe above (`.media-duo-visual`, `radius-md`, no border). Copy stack: `.agent-builder-copy` with `btn--text` CTAs.
+
 ### 4.6 Simple card floor — skill / step / model showcase  ★
 
 **简洁卡片楼层：** `line-100` 描边、**无阴影**、纯色 `neutral-50` 内里，靠 **tag · title · price-text · chips · metrics** 等小组件纵向叠放 — 不是 §4.4 的全宽 Subscribe，也不是 §4.5 的无框配图。参考：**Ready to Grow Together**（步骤 3 卡 + 楼层 CTA）、**Qwen 模型推荐行**（tag + 价目 + 底栏 metrics）。
@@ -1131,6 +1309,7 @@ Both columns share identical structure — only copy, art, and CTA color may dif
 |---------|------------|-------|--------|-----|-------------|-----------|
 | **A — Step flow** | `.floor--step-cards` | 3-up (sometimes 2–4) | `radius-md` (24) | 32 | **none** | **one** centered `btn--primary` below grid |
 | **B — Skill / model** | `.floor--skill-cards` | 3-up (marketplace row) | `radius-sm` (18) | 24 | optional text link only | none |
+| **C — Compact asymmetric** | `.floor--compact-models` | `2fr 1fr 1fr` (half + 2× quarter) | `radius-xs` | 28 | **none** | none — Guideline §07a |
 
 Both share: `1px line-100`, `neutral-50` fill, **`box-shadow: none`**, **no hover lift** on marketing floors.
 
@@ -1336,13 +1515,52 @@ Marketing **models-card** anatomy without marketplace hover-reveal. Follow **R11
 - [ ] B: `radius-sm` pad 24, R11 stack ending in divider + 2-col metrics
 - [ ] price-text above divider; chips single wrap row; ≤1 Hot tag per card
 
+#### Variant C — Compact asymmetric model row (half + 2× quarter)  ★
+
+**Guideline §07a** / home AFM bottom grid: one **wide half card** + **two narrow quarter cards** on the same row. Sits **below** §4.4 pricing on the Cards chapter — or directly under stacking featured-model cards on the live home page.
+
+```
+┌── floor — canvas neutral-50 ─────────────────────────────────────────────┐
+│  (optional sub-h + sec-desc under pricing tiers)                          │
+│  ┌──────────── half 2fr ────────────┐ ┌─ quarter ─┐ ┌─ quarter ─┐   │
+│  │ line-100 · radius-xs · h294      │ │ 1fr       │ │ 1fr       │   │
+│  │ name · desc · tags · metrics     │ │ same R11  │ │ same R11  │   │
+│  └──────────────────────────────────┘ └───────────┘ └───────────┘   │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+| Property | Value |
+|----------|-------|
+| Grid | `grid-template-columns: 2fr 1fr 1fr`; gap **14** |
+| Card chrome | `neutral-50`, `1px line-100`, `radius-xs`, pad **28**, h **294** desktop, **shadow none** |
+| Production roots | `.afm-bottom-grid` · `.afm-card-half` · `.afm-card-quarter` |
+| Guideline roots | `.compact-cards-grid` · `.compact-card--half` · `.compact-card--quarter` |
+
+**Interior = §4.6 variant B R11** (name + optional Hot · 2-line desc · tags · mono price note · divider · 2-col metrics). Differences from 3-up skill row:
+
+- **Asymmetric columns** (not equal 3-up).
+- **`radius-xs`** (not `radius-sm`).
+- **Fixed height** 294 desktop — metrics pinned with `margin-top: auto` on `.card-metrics-wrap`.
+- **No in-card CTA** — discovery floor only.
+
+≤1024 px: `1fr` stack; height `auto`.
+
+**Anti-patterns:** shadow / hover lift · gradient rim · full-width Subscribe · mixing with §4.4 pricing chrome in one grid.
+
+**Checklist:**
+
+- [ ] `2fr 1fr 1fr` grid; gap 14; three cards same interior recipe
+- [ ] `line-100` + `radius-xs` + pad 28; shadow none
+- [ ] R11 metrics + `.price-text`; ≤1 Hot; special tags = gradient-7 rim
+- [ ] No per-card pill CTA
+
 ### 4.7 Secondary showcase floor — text-only cards  ★
 
 **次级信息楼层：** 排版驱动、视觉权重低于 hero / §4.4–§4.6，用来**衬托**主信息。共享同一 **`.text-card`** chrome：无描边、无背景、无阴影，**仅** `border-bottom: 1px solid line-100`。两种变体：
 
 | Variant | Reference | Head | Filter | Footer |
 |---------|-----------|------|--------|--------|
-| **A — tabbed** | Model serving diverse **industries** | Pattern B/A, one gradient word | §8.20 `.secondary-tabs` | optional `btn--outline` |
+| **A — tabbed** | Model serving diverse **industries** | Pattern B left, one gradient word on "industries" | `.industry-tabs` / `.afm-tabs` (§8.20) | `btn--outline btn--xl` centered |
 | **B — plain row** | **AI and Cloud** / Solutions For All Your Needs | **Two-line left stack** §4.7.2 | **none** | §8.22 **carousel pager** `< >` |
 
 ```
@@ -1474,6 +1692,44 @@ Extremely flat — **not** §8.4 segmented track, **not** §8.5 underline nav.
 
 - No outer rail, no `neutral-150` track wrapping all tabs.
 - Dot is **5 px** (not §8.3's 6 px pill-tab variant).
+
+**Guideline §07b / home industry floor** — same variant A shell with enriched card interior (not minimal `.text-card`):
+
+| Piece | Guideline | Production |
+|-------|-----------|------------|
+| Floor | `.industry-cards` | `.afm-industry` |
+| Head | `.industry-cards__head` left; `gradient-3` on **"industries"** | `.afm-head-industry` |
+| Tabs | `.industry-tab.is-active` — 6 px dot, gap 14 when active | `.afm-tab` |
+| Grid | `.industry-cards__grid` gap **36** | `.afm-industry-grid` |
+| Card | `.industry-card` | `.afm-industry-card` |
+| CTA | `.industry-cards__cta` — `btn--outline btn--xl` w **220** | `.afm-browse-cta` |
+
+```scss
+.industry-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 36px;
+}
+.industry-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  padding: 4px 4px 20px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-bottom: 1px solid var(--pt-color-line-200);
+}
+```
+
+**R13-industry interior** (per card):
+
+1. `.industry-card__title-row` — `.industry-card__logo` 20×20 manifest glyph + `h4` `body-lg` semibold + optional `model-tag.is-hot`
+2. `.industry-card__desc` — `body-sm` `neutral-750` · 2-line clamp
+3. `.model-tags` — `.model-tag` supporting-gray (optional)
+4. `.industry-card__arrow` — `arrow-up-outlined` 12×12 · `margin-top: auto` · hover → `primary-550` on linked cards
+
+≤1024 px: grid `1fr`, gap 18; card `padding: 0 0 16px`; floor CTA `margin-top: 36px`.
 
 ---
 
@@ -2514,7 +2770,7 @@ Internal **`.faq-layout`** is identical in both shells — only the outer wrappe
 ```
 
 - Shell B panel: **no** `line-100` outer rim, **no** shadow — bg-step only (panel-as-card §11.6).
-- Optional: `.faq-panel--wash` uses `--pt-gradient-card-bg` instead of flat `neutral-100` (legacy `.coding-plan-faq-panel`) — prefer flat `neutral-100` for new pages unless matching Token Plan.
+- **Shell B-wash (Token Plan canonical):** `.coding-plan-faq-panel` — `gradient-card-bg` + `radius-md` + `60 44` pad in `.layout-max-wide` (§4.0.1). Generic marketing pages may use flat `neutral-100` `.faq-panel` `radius-lg` instead — pick one per page.
 
 #### Two-column layout — content right-heavy
 
@@ -3689,6 +3945,26 @@ function onFaqClick(clickedItem) {
 }
 ```
 
+### 8.29 Showcase accordion + preview sync  *(§4.0.1 · §2.8 Mode B)*
+
+Applies to `.coding-plan-feature-list` + `.coding-plan-preview-card-desktop` (alias: `.hero-visual--showcase` left/right split). Extends §8.27 with **right-panel preview swap**.
+
+| Rule | Implementation |
+|------|----------------|
+| Initial | First `.coding-plan-feature-item` has `.is-expanded`; first preview `.is-active` |
+| Toggle | `if (id === expandedId) return` — **no collapse-all** |
+| On switch | Set `expandedId`; matching `.coding-plan-preview-panel` gets `.is-active` |
+| Plus icon | Hidden on `.is-expanded` row — same as FAQ |
+| Preview motion | `opacity` + `translateY(8px) scale(0.985)` → `translateY(0) scale(1)` + `visibility` |
+| Mobile | Hide desktop preview card; mount `.coding-plan-preview-card-mobile` inside expanded item only |
+| `aria` | `aria-expanded` on head; `aria-hidden` on content + inactive panels |
+
+```js
+function onShowcaseToggle(featureId) {
+  setExpandedId((prev) => (prev === featureId ? prev : featureId));
+}
+```
+
 ### 8.28 Arena sync — accordion + visual panel  *(§4.13)*
 
 Applies to `.arena-sync-accordion` + `.arena-sync-visual` — extends §8.27 single-open rules with **preview sync**.
@@ -3853,8 +4129,8 @@ The kit uses borderless cards aggressively. **Whenever a card sits on a panel th
 | `.docs-next` | `--pt-color-neutral-50` | `--pt-radius-md` | 12 | docs page-bottom nav | Inner tile (`neutral-100, radius-xs, 12 20`) provides depth |
 | `.docs-timeline-content` | `--pt-color-neutral-50` | `--pt-radius-sm` | `16 20` | docs timeline | Paired with dotted rail + glowing dot |
 | `.signup-brand-panel` | `--pt-color-neutral-100` + video | `--pt-radius-lg` | 32 | signup left | Full-bleed video carries it |
-| `.coding-plan-intro-showcase` | `--pt-gradient-card-bg` | `--pt-radius-md` | `60 44` | coding-plan intro | Big floor-as-panel |
-| `.coding-plan-faq-panel` | `--pt-gradient-card-bg` | `--pt-radius-md` | `60 44` | coding-plan faq | Same |
+| `.coding-plan-intro-showcase` | `--pt-gradient-card-bg` | `--pt-radius-md` | `60 44` | coding-plan intro | §4.0.1 — h **380**; accordion + preview sync §8.29 |
+| `.coding-plan-faq-panel` | `--pt-gradient-card-bg` | `--pt-radius-md` | `60 44` | coding-plan faq | §4.0.1 — gap **154**; §8.27 FAQ rows |
 | `.prod-shell` | `--pt-gradient-card-bg` | `--pt-radius-md` | `60 44 36` | home AI-powered product | Same |
 | `.bulletin-section` | `--pt-color-neutral-100` + themed bg | `--pt-radius-md` | `var(--pt-bulletin-padding)` | home bulletin | Banner card |
 | `.models-detail-context-card-thinking` | `--pt-color-neutral-100` | `--pt-radius-xs` | 24 | models-detail | Borderless variant of the default context card |
@@ -3922,7 +4198,7 @@ Featured cards **never** get a shadow; the rim does the work.
 
 | Tile | Recipe |
 |------|--------|
-| `.afm-card-half` / `.afm-card-quarter` | `bg: transparent; border: 1px line-100; radius-xs; padding 28; height 294px desktop`; title-row mb12 + desc + metric col-stack + arrow at bottom |
+| `.afm-card-half` / `.afm-card-quarter` / `.compact-card` | `bg: neutral-50; border: 1px line-100; radius-xs; padding 28; height 294px desktop`; §4.6 variant C — title-row + desc + model-tags + card-metrics-wrap (no arrow) |
 | `.afm-industry-card` | borderless (bottom hairline only) — see B |
 | `.coding-plan-tools-item` | bordered, see A |
 | `.models-detail-io-card` | `border: 0.5px line-100; radius-xs; padding 24; min-height: calc(48 * 3.3)` — heading `body-sm neutral-550 mb8` + centered chip rail (chips: `bg supporting-purple, fg primary-550, radius-full, padding 8 12`) |
@@ -4001,15 +4277,18 @@ Used by: `.analyst-card`, `.docs-timeline-content`, `.reliability-item-meta`.
 ```
 Used in: `.afm-card-desc`, `.models-card-desc`, `.models-hero-card-main p`, `.docs-card p`.
 
-**R4. Accordion row inside a borderless panel**
+**R4. Accordion row inside a borderless / wash panel**
 ```
 parent: --pt-gradient-card-bg, radius-md, padding 60 44
-item:   border-bottom 1px line-200; padding 16–40 0
-head:   button — h3 semibold + chevron primary-550
-body:   grid-template-rows: 0fr → 1fr (animated)
-        p body-sm clamp on closed; full on open
+item:   border-bottom 1px line-200; last child border 0
+head:   button full-width — icon? + h3 title-md + plus primary-550 (30×30 showcase | 18×18 FAQ)
+        collapsed title neutral-650; expanded neutral-950 semibold
+        .is-expanded → plus display:none (not rotate to ×)
+body:   grid-template-rows 0fr→1fr + opacity (--pt-motion-fast)
+        p body-sm neutral-650; padding 0 0 14 (showcase) | pt 10 (FAQ open)
+policy: §8.27 single-open (FAQ) | §8.29 single-open + preview sync (showcase)
 ```
-Used by: `.coding-plan-feature-item`, `.prod-group`, `.coding-plan-faq-item`.
+Used by: `.coding-plan-feature-item` (§4.0.1 + §8.29), `.coding-plan-faq-item` (§4.0.1 + §8.27), `.prod-group`.
 
 **R5. Chip rail body** *(cards whose body IS a wrap of chips)*
 ```
