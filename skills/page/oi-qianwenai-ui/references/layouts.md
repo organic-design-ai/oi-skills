@@ -100,6 +100,20 @@ Inside a floor (between its head and its grid/body):
 
 Mobile (≤1024 px): collapse to `64 px` between floors, `32 px` head→body.
 
+### 1.6 Marketing flat contract  ★
+
+Guideline 长页（首页、Token Plan、Hackathon）共享 **平面** 体系。所有 §4 营销楼层默认遵守（数据页 §17 除外）。
+
+| 规则 | 规范 |
+|------|------|
+| **阴影** | 营销卡、楼层、logo、FAQ、arena 视觉：**默认 `box-shadow: none`** |
+| **分层** | 仅 `neutral-50` 画布 ↔ `neutral-100` 色带 ↔ `gradient-card-bg` 面板（§4.1） |
+| **描边** | 价卡、logo 矩阵 A、outline 按钮用 `line-100`；panel-as-card **无** 外框（§11.6） |
+| **Hover** | 营销价卡 **无** 上浮；logo 矩阵仅描边加深 |
+| **CTA** | Hero/尾部：**L1 primary + L3 outline**（§2.7）；价卡内 featured 用 primary |
+| **渐变字** | 每屏 ≤1 词；千问云优先 **`gradient-1/2/3/8/9`（蓝绿青）** — 见 `tokens.md` |
+| **嵌套** | 价卡/FAQ/面板列表内 **禁止** 灰底嵌套子卡 |
+
 ---
 
 ## 2. Heading vs imagery — the cleanliness rule  **★ most important rule ★**
@@ -164,7 +178,7 @@ The Token Plan page does the same: "千问云 Token Plan" sits centered on white
 │   H1   (60 – 96 px, font-bold, neutral-950)              │    │   text only, on canvas
 │        with at most ONE gradient word                    │    │   margin-bottom: 32–48 px
 │   subtitle  (body-lg, neutral-650, max-width 620–768)    │    │
-│   [ primary CTA ] [ outline CTA ]                        │    │
+│   [ L1 primary ] [ L3 outline ]   ← home: §2.7           │    │
 │                                                          │    │
 └──────────────────────────────────────────────────────────┘    ↓
                                                                     ← whitespace mt 48–64 px
@@ -204,7 +218,7 @@ The final closing-CTA pattern (`era-hero`) is the only hero where a heading sits
 
 - The video is **explicitly designed** as a quiet, low-contrast backdrop (the visual was art-directed FOR this purpose).
 - The h2 is **moderate** (72 px), not the giant marketing hero (96+ px).
-- Content is **centered**, the panel is `780 px` tall — extreme whitespace inside.
+- Content is **centered**, the panel is **790 px** tall (§4.9；旧 CSS 可能为 780 px) — extreme whitespace inside.
 - A **glass / blurred backdrop** sits behind the CTA pill (not the heading) for the form input only.
 - This is a closing footer beat — not the page-leading hero.
 
@@ -215,6 +229,194 @@ If you're not building this exact closing-CTA pattern with these constraints, **
 `neutral-100` (tinted floor) is fine. `--pt-cn-gradient-card-bg` (almost-flat 135° wash from `neutral-150` → `neutral-50`) is fine for the two-column panel head (§5 pattern C). These are *quiet neutral bg steps* — they read as canvas, not imagery.
 
 Imagery means: photographs, videos, model poster / abstract / liquid renders, animated gradients, glass blur over a photo. Stepped neutrals are NOT imagery.
+
+### 2.7 Home page hero — title stack  *(首页 canonical)*
+
+The marketing **homepage** (and any page that opens with the same two-paragraph beat — e.g. Hackathon landing, Token Plan intro) uses one fixed title stack in **inner**, then one **visual panel** in **outer**. Reference: Guideline home, Hackathon hero, Token Plan hero.
+
+```
+┌── .layout-max-inner — PARAGRAPH 1 (canvas only) ─────────────┐
+│                    margin-top: 48–64 px                       │
+│                                                               │
+│              H1  centered  2xl–3xl  one gradient word         │
+│              subtitle  body-lg  neutral-650  max read-box     │
+│              [ Level 1 primary ]  [ Level 3 outline ]           │
+│                                                               │
+└───────────────────────────────────────────────────────────────┘
+                         ↕  48–64 px  (字不压视觉 — never less)
+┌── .layout-max-wide — PARAGRAPH 2 (visual only) ──────────────┐
+│  ┌─ .hero-visual  radius-lg  overflow hidden ─────────────┐  │
+│  │  Mode A: hero media 450–480 px  OR                      │  │
+│  │  Mode B: info showcase 420 px  (accordion + preview)    │  │
+│  └─────────────────────────────────────────────────────────┘  │
+└───────────────────────────────────────────────────────────────┘
+```
+
+#### Title stack anatomy
+
+```scss
+.hero-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  margin-top: 48px;                                       // 64 px on airy home
+  margin-bottom: 0;                                       // gap to visual lives on .hero-visual
+
+  h1 {
+    font-size: var(--pt-cn-heading-font-size-2xl);        // 72 — or clamp(72px, 8vw, 86px) CN
+    line-height: var(--pt-cn-heading-line-height-2xl);
+    font-family: var(--pt-cn-font-bold);
+    letter-spacing: var(--pt-cn-letter-spacing-tight);
+    color: var(--pt-cn-color-neutral-950);
+    margin: 0;
+    max-width: min(100%, 920px);
+  }
+
+  .hero-sub {
+    margin: 16px auto 0;
+    max-width: var(--pt-cn-layout-max-read-box);          // 640 px
+    font-size: var(--pt-cn-body-font-size-lg);
+    line-height: var(--pt-cn-body-line-height-lg);
+    color: var(--pt-cn-color-neutral-650);
+  }
+
+  .hero-cta-row {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 36px;
+  }
+}
+```
+
+- **H1 is always center-aligned** on `--pt-cn-color-neutral-50`. At most **one** gradient-clipped `<span>` inside the h1.
+- **Subtitle** sits with the h1 on canvas — never inside `.hero-visual`.
+- **Eyebrow** (optional): mono `caption-sm`, uppercase, `neutral-450`, above h1.
+
+#### CTA pairing — Level 1 + Level 3 only  *(homepage hero)*
+
+Home hero CTAs use exactly **two** buttons in this order — not `btn--secondary` (purple soft fill):
+
+| Slot | Component | Role |
+|------|-----------|------|
+| **Level 1** | `btn--primary` | Black pill (`cta-fill` → hover `primary-550`); leading action |
+| **Level 3** | `btn--outline` | Transparent + `1px line-200`; quiet secondary path |
+
+```
+✅ RIGHT — Hackathon / home hero
+[ 立即申请 ]  [ 查看套餐 ]
+     btn--primary    btn--outline
+
+❌ WRONG — primary + secondary soft-fill on home hero
+[ 立即体验 ]  [ 获取 API Key ]     ← secondary 紫底与 L1 争抢注意力
+
+❌ WRONG — three buttons
+[ Primary ] [ Outline ] [ Text link ]   ← title stack 最多两个 CTA
+```
+
+- Icon on Level 1 only: `arrow-up-right-outlined` trailing (千问云主 CTA 规范).
+- Card / pricing / floor bodies may still use `primary + outline` or `primary + secondary` — **L1+L3 lock applies to the homepage title paragraph** and campaign openers that copy it.
+
+#### Spacing — 字不压视觉
+
+| Gap | Value | Rule |
+|-----|------:|------|
+| Nav → title stack | `48–64 px` | `margin-top` on `.hero-head` |
+| H1 → subtitle | `16 px` | stack `gap` or sub `margin-top` |
+| Subtitle → CTA row | `36 px` | `.hero-cta-row { margin-top: 36px }` |
+| **CTA row → visual panel** | **`48–64 px`** | `margin-top` on `.hero-visual` — **minimum 48 px** |
+| Visual → next floor | `96–122 px` | §1.5 |
+
+### 2.8 Hero visual panel — shared chrome & two modes
+
+`.hero-visual` is the **single large rounded block** below the title stack. It always lives in `.layout-max-wide`. Pick **one mode** per page.
+
+#### Shared shell (both modes)
+
+```scss
+.hero-visual {
+  margin-top: 48px;                                       // 64 px when title block is short
+  width: 100%;
+  border-radius: var(--pt-cn-radius-lg);                  // 36 px
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+}
+```
+
+- **No border, no shadow** on the shell.
+- Heading / subtitle / CTAs stay **outside** (§2.7).
+- Mobile: keep `radius-lg`.
+
+#### Mode A — Hero media  *(`.hero-visual--media`)*
+
+Reference: campaign / home — `qwen-model-*` poster with optional metric strip.
+
+```
+┌─ .hero-visual--media  h: 450–480 ─────────────────────────────┐
+│  ┌─ optional metric row (4-up, §8.1) ─────────────────────┐  │
+│  │  ● 10B+ TPM    ● Scaling    ● Optimal    ● Ultra-Low   │  │
+│  └────────────────────────────────────────────────────────┘  │
+│  ░░░░░░░░░░  qwen-model-* / video  object-fit: cover ░░░░░░░  │
+└───────────────────────────────────────────────────────────────┘
+```
+
+| Property | Value |
+|----------|-------|
+| Height | **`450 px`** (minimal) · **`460 px`** (default) · **`480 px`** (4-up metrics) — max 480 on home |
+| Media | One `qwen-model-*` from `Images.json` **or** cover video |
+| Overlay | Optional 4-up metrics (§8.1); text ≤ title-lg (28 px) |
+
+```scss
+.hero-visual--media {
+  height: 460px;
+}
+.hero-visual--media__media {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+}
+```
+
+Mobile: `min(420px, 56vw)`; metrics 2×2.
+
+#### Mode B — Info showcase  *(`.hero-visual--showcase`)*
+
+Reference: **Token Plan** — accordion left, product preview right.
+
+| Property | Value |
+|----------|-------|
+| Height | **`420 px` locked** |
+| Background | `var(--pt-cn-gradient-card-bg)` |
+| Padding | `60px 44px` desktop · `32px 20px` mobile |
+| Grid | `1fr 1fr; gap: 64px` |
+| Left | Accordion (§8.6): icon + title + `+` collapsed; body-sm when open |
+| Right | `.hero-visual-preview` — `.is-active` cross-fade |
+
+```scss
+.hero-visual--showcase {
+  height: 420px;
+  background: var(--pt-cn-gradient-card-bg);
+  padding: 60px 44px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+```
+
+Mobile: accordion + preview stack; `min-height: 420px`.
+
+#### Mode picker
+
+| Page intent | Mode | Height |
+|-------------|------|--------|
+| Home, campaign — one strong model poster | **A — media** | 450–480 px |
+| Token Plan, feature walkthrough | **B — showcase** | 420 px |
+| Tagline + code panel | §3 variant **A** | — |
 
 ---
 
@@ -231,34 +433,38 @@ Two-column inside `.layout-max-inner`.
 - Right: bordered command/code panel — `border: 1px solid var(--pt-cn-color-line-100); border-radius: var(--pt-cn-radius-md)`. Both columns on canvas — no imagery in this hero.
 - Mobile: 1 column; right panel drops below.
 
-### B. Stacked model imagery / video hero  *(home, organic home, marketplace-style pages)*
+### B. Stacked center hero  *(home, campaign, Token Plan opener)*
 
-Two-piece: heading stack in inner → media panel in outer.
+**Canonical homepage layout — full spec in §2.7–§2.8.** Two-piece: centered title stack in inner → `.hero-visual` in outer.
 
 ```
 .layout-max-inner-wrap
   .layout-max-inner
-    h1   (centered, --pt-cn-heading-font-size-2xl …3xl, on neutral-50)
-    .sub (centered, max-width: var(--pt-cn-layout-max-read-box))
-    .cta-row (centered, gap: 12px)
+    .hero-head
+      h1          (centered, 2xl–3xl, on neutral-50, ≤1 gradient word)
+      .hero-sub   (centered, max-width: var(--pt-cn-layout-max-read-box))
+      .hero-cta-row
+        btn--primary          ← Level 1
+        btn--outline          ← Level 3
 .layout-max-wide
-  .hero-panel
-    height: 540–720 px, border-radius: var(--pt-cn-radius-lg) (36)
-    object-fit: cover
-    optional 4-up metric overlay (small only — see §8.1)
+  .hero-visual
+    .hero-visual--media      Mode A: 450–480 px, qwen-model-* / video
+    — or —
+    .hero-visual--showcase    Mode B: 420 px, accordion + preview
 ```
 
-- H1 size range: `--pt-cn-heading-font-size-2xl` (72) up to `clamp(72px, 10vw, 168px)` for ultra-marketing pages. Always on canvas.
-- Sub margin: `32px auto 64px auto`; color `--pt-cn-color-neutral-650`.
-- Panel margin from heading stack: `48px`.
+- **Title stack:** §2.7 — centered h1, subtitle, **Level 1 + Level 3** CTAs; L1 icon `arrow-up-right-outlined`.
+- **Visual panel:** §2.8 — `radius-lg`; **48–64 px** below CTAs (字不压视觉).
+- **Mode A:** `450–480 px` (default `460`); **Mode B:** `420 px` locked.
+- H1: `2xl` (72) or `clamp(72px, 8vw, 86px)` CN; sub `--pt-cn-color-neutral-650`.
 
-### C. Centered intro hero  *(coding-plan, skills-detail)*
+### C. Centered intro hero  *(skills-detail, docs-adjacent)*
 
 `.intro-header { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center }`
 
 - H1: `--pt-cn-heading-font-size-lg` (60), letter-spacing tight, on canvas.
 - `.heading-desc`: body-lg, color `--pt-cn-color-neutral-750`, `max-width: 560–620 px`.
-- Below: optional showcase panel `background: var(--pt-cn-gradient-card-bg); border-radius: var(--pt-cn-radius-md); padding: 60px 44px` — quiet wash, not imagery.
+- **Token Plan / coding-plan openers** → **variant B + §2.8 Mode B** (`.hero-visual--showcase` 420 px).
 
 ### D. Compact left-aligned hero  *(models, models/detail, models/compare, docs)*
 
@@ -277,13 +483,13 @@ Tinted inset panel, not full-bleed.
 - Inside: `grid-template-areas: 'heading actions'; grid-template-columns: minmax(0,1fr) auto`
 - Breadcrumb row above (`max-width: var(--pt-cn-layout-max-read-box)`)
 
-### F. Era / closing CTA hero  *(closing block)*
+### F. Era / closing CTA hero  *(closing block — §4.9)*
 
-The only variant where text overlays imagery (§2.3 exception).
+§2.3 例外。完整规范见 **§4.9 尾部大视觉**。
 
-- `height: 780px; border-radius: var(--pt-cn-radius-lg)`, full-bleed in `.layout-max-wide`
-- h2 ≤72 px centered; glass / blurred backdrop behind CTA for legibility
-- Video designed as quiet backdrop
+- **高版** `790px`（`.tail-visual--tall` / legacy `.era-hero-shell` ~780 px）
+- **紧凑** `370px`（`.tail-visual--compact`）
+- `radius-lg`；居中 h2 + **L1 primary + L3 outline**；可选 §8.25 kicker 内链
 
 ### G. Marketplace carousel hero  *(models)*
 
@@ -305,7 +511,19 @@ Two-column grid `1fr 6fr; gap: 120px` inside inner. Left = small meta caption (m
 
 ## 4. Floor (section) taxonomy
 
-A "floor" is one top-level section of the page. Floors stack vertically with §1.5 rhythm.
+A "floor" is one top-level section of the page. Floors stack vertically with §1.5 rhythm. 营销页遵守 **§1.6 平面契约**。
+
+### 4.0 Canonical marketing page stacks  ★
+
+Guideline 参考页的楼层编排 — 选一条 recipe，勿乱序。楼层间交替 §4.1 背景。
+
+**首页：** §2.7–§2.8 hero A → 模型/特性 → §4.7 次级 → §4.11 证言（可选）→ §4.8 B logo 条 → §4.9 大尾部 790px → §4.10 footer
+
+**Token Plan：** §2.7 B + §2.8 **Mode B**（手风琴在 hero 420px 内，**非** §4.13）→ §4.4 四卡价 → §4.8 A 工具矩阵 → §4.12 FAQ 外壳 B → §4.10 footer（常无尾部大视觉）
+
+**Hackathon：** hero → §4.4 三卡奖 → §4.13 arena **或** §4.6 步骤 → §4.8 B 伙伴 → §4.9 紧凑 370px → footer
+
+**§4.13 vs §2.8 Mode B：** Token Plan 折叠在 **hero 视觉盒**；Choose Your Arena 是 **页中** §4.13。同页勿重复。
 
 ### 4.1 Floor backgrounds (the alternation rule)
 
@@ -342,10 +560,668 @@ Only three planes — alternate them; **never put two floors of the same tint ad
 ### 4.3 Floor sizing patterns
 
 - **Standard floor:** height = content + breathing room. Don't fix heights; let content dictate.
-- **Hero floor:** 540–780 px panel; first floor on most pages.
+- **Hero floor (home variant B):** title stack + visual **450–480 px** (Mode A) or **420 px** (Mode B); §2.7–§2.8.
+- **Hero floor (era / tail):** **790 px** 或 **370 px** compact（§4.9 / §3 F）。
 - **Bulletin floor:** `--pt-cn-bulletin-height: 306px` (24-px padding mobile, 70-px desktop) — pinned strip for announcements.
 - **Stacking scroll floor:** `height: 180vh` with `position: sticky` interior — for scroll-choreographed reveals (rare; e.g. featured model stack on home).
-- **Closing CTA floor:** 780 px panel (§3 variant F).
+- **Closing CTA / tail visual:** **790 px** 大视觉或 **370 px** 紧凑版（§4.9）；legacy `.era-hero-shell` ≈780 px。
+- **Card row floor:** content-driven height; 3-up or 4-up equal cards (§4.4).
+- **Media duo floor:** 2-up borderless visual cards (§4.5) — agent builder; text-link CTAs.
+- **Simple card floor:** 3-up `line-100` skill/step cards (§4.6) — tag, price-text, metrics.
+- **Secondary showcase:** tabs + text-only cards (§4.7) — bottom hairline only.
+- **Logo floor:** §4.8 — **A** 描边矩阵 **或** **B** 无边透明 Logo 条。
+- **Tail visual CTA:** 790 / 370 px 尾部大视觉（§4.9）— 居中文案 + 双按钮，紧贴 Footer。
+- **Site footer:** 35 / 65 不均分 + 底栏版权（§4.10）。
+- **Carousel toggle:** 100vw 卡片轨道 + ‹ › 切换（§4.11）— `line-100` 或 `neutral-100` 底，无阴影。
+- **FAQ：** 双栏手风琴（§4.12）— inner `neutral-50` **或** 宽屏 `neutral-100` 大圆角面板；`+` 互斥单开。
+- **信息折叠 + 视觉联动：** 左折叠列表驱动右预览（§4.13）— 如 Choose Your Arena。
+
+### 4.4 Card row floor — pricing / plan / prize comparison  ★
+
+The most common **mid-page floor** after the hero: centered floor-head (Pattern A, §5) + a horizontal row of **3 or 4** equal comparison cards. Reference: Hackathon **Prizes and rewards $65,000+** (3-up), Token Plan **Limited Offer** (4-up + Enterprise/Personal toggle).
+
+```
+┌── floor — canvas neutral-50 ─────────────────────────────────────────┐
+│              h2  centered  one gradient word optional                 │
+│              subtitle  body-lg  neutral-750                          │
+│              [ Enterprise | Personal ]  ← optional pill toggle       │
+│                                                                      │
+│   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌──────────┐ │
+│   │ line-100    │  │ gradient rim│  │ line-100    │  │ line-100 │ │
+│   │ neutral-50  │  │ .featured   │  │ neutral-50  │  │          │ │
+│   │ name·price  │  │ name·price  │  │ name·price  │  │          │ │
+│   │ [secondary] │  │ [ primary ] │  │ [secondary] │  │          │ │
+│   │ ─────────── │  │ ─────────── │  │ ─────────── │  │          │ │
+│   │ icon+features│  │ icon+features│  │ icon+features│  │          │ │
+│   └─────────────┘  └─────────────┘  └─────────────┘  └──────────┘ │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+#### When to use 3-up vs 4-up
+
+| Count | Use when | Reference |
+|-------|----------|-----------|
+| **3-up** | Wider cards, simpler choice | Prizes $65,000+, 3 tiers |
+| **4-up** | Dense SKU / credit grid | Token Plan monthly tiers |
+
+Pick **one** count per row. All siblings share **R9** (§11.2).
+
+#### Floor shell
+
+```jsx
+<section className="floor floor--card-row">
+  <div className="layout-max-inner-wrap">
+    <div className="layout-max-inner">
+      <header className="floor-head">…Pattern A…</header>
+      <div className="card-row-toggle" role="tablist">…§8.4 optional…</div>
+      <div className="card-row-grid card-row-grid--3">   {/* or --4 */}
+        <article className="card-row-item is-featured">…</article>
+        …
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+- Floor bg: **canvas** (`--pt-cn-color-neutral-50`). No outer bordered wrap.
+- Head → grid: `margin-bottom: 48px`; toggle `margin-bottom: 40px` when present.
+
+#### Grid
+
+```scss
+.card-row-grid {
+  display: grid;
+  align-items: stretch;
+  gap: 24px;
+}
+.card-row-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.card-row-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+```
+
+≤1024 px: `1fr`, gap **18**.
+
+#### Card chrome — no shadow, hairline or gradient rim only
+
+| State | Border | Fill | Radius | Padding | Shadow |
+|-------|--------|------|--------|---------|--------|
+| Default | `1px solid var(--pt-cn-color-line-100)` | `--pt-cn-color-neutral-50` | `--pt-cn-radius-sm` (18) | 32 | **none** |
+| Featured `.is-featured` | Gradient rim (§11.1 C) | same `neutral-50` | inherit | 32 | **none** |
+
+- **No hover lift** on card-row items.
+- Interior **solid `neutral-50`** — no inset grey feature blocks.
+- **≤1** `.is-featured` per row; rim `--pt-cn-gradient-2` or `--pt-cn-gradient-1`.
+
+#### Internal anatomy — R9 three zones
+
+**ZONE A** — name (`semibold` `body-lg`) + optional `Hot` pill; price `title-lg` bold + `body-sm` period; meta `body-sm` `neutral-650`.
+
+**ZONE B** — full-width pill; `btn--secondary` default · `btn--primary` on featured only.
+
+**ZONE C** — `border-top 1px line-100`; §8.16 icon rows; nested bullets `body-sm` `neutral-650` with 3 px primary dot — icons: `check-mark-outlined`, `notification-outlined`, `sparkle-outlined`.
+
+#### Featured vs default
+
+| Element | Default | `.is-featured` |
+|---------|---------|----------------|
+| Border | `line-100` | Gradient rim |
+| CTA | `btn--secondary` | `btn--primary` |
+
+#### Anti-patterns
+
+❌ shadow / hover lift · grey feature sub-cards · panel-as-card outer wrap · mixed 3+4 columns · two featured cards · `btn--outline` as row CTA
+
+#### Checklist
+
+- [ ] Pattern A head; optional §8.4 toggle
+- [ ] 3-up or 4-up §7 grid; stretch; gap 24
+- [ ] `neutral-50`, `radius-sm`, pad 32, shadow none
+- [ ] R9 + §8.16; CTA secondary / featured primary
+
+### 4.5 Media duo floor — visual 2-up, borderless cards  ★
+
+**视觉配图横排：** 1 行 **2 列**，无描边、无阴影；上大圆角配图帧，下左对齐文案 + **文字链 CTA**。参考：**Become an agent builder**（Agent builder · Agents SDK）。
+
+```
+┌── canvas neutral-50 ────────────────────────────────────────────────┐
+│        h2 居中  "Become an **agent builder**"（复合标题可 ≤2 渐变词）   │
+│        subtitle  body-lg  neutral-750  居中                          │
+│  ┌─ media-duo-item 无边框 ─────────────┐  ┌─ media-duo-item ──────┐ │
+│  │ ┌─ media-duo-visual radius-md ────┐ │  │ ┌─ visual ──────────┐ │ │
+│  │ │ 配图/视频  cover  左上 20px 图标 │ │  │ │  …                │ │ │
+│  │ └──────────────────────────────────┘ │  │ └───────────────────┘ │ │
+│  │ 标题 title-md 左对齐                  │  │  Agents SDK           │ │
+│  │ 描述 body-md 2行 clamp neutral-650   │  │  …                    │ │
+│  │ 立即开始 ↗  文字链 CTA               │  │  查看文档 ↗ 紫色      │ │
+│  └──────────────────────────────────────┘  └───────────────────────┘ │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+**与 §4.4 区别：** §4.4 是带 `line-100`/渐变 rim 的价目卡 + 全宽 pill 按钮；§4.5 **整卡无描边**，靠配图圆角与留白分区，CTA 为 **文字链**。
+
+#### 用法
+
+- 产品能力双列（Builder + SDK、双工作流、双集成）
+- 非定价 SKU（定价用 §4.4）
+
+#### 网格
+
+```scss
+.media-duo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;                                    // 非等高拉伸
+}
+```
+
+≤1024 px：`1fr` 纵排，gap 18。
+
+#### 卡片外壳 — 无描边、无阴影
+
+```scss
+.media-duo-item {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+```
+
+#### 三区（R10）
+
+**ZONE 1 `.media-duo-visual`** — `radius-md` (24)，`aspect-ratio: 16/10` 或 h **248–280**，`object-fit: cover`，**无边框无阴影**；左上 **20×20** 白色/浅色图标；可选 pathway 装饰标签 ≤ `caption-sm` mono。
+
+**ZONE 2 `.media-duo-body`** — `margin-top: 20–24`；**左对齐**，与配图左缘对齐：
+- `.media-duo-title`: `title-md` semibold `neutral-950`
+- `.media-duo-desc`: `body-md` `neutral-650`，**2 行 clamp**，`margin-top: 12`
+
+**ZONE 3 `.media-duo-link`** — 非 pill；`inline-flex` + `arrow-up-right-outlined` 14px；`margin-top: 16–20`；默认 `neutral-950` → hover `primary-550`；第二卡可用 `.is-accent` 紫色静息。
+
+#### 反模式
+
+❌ 给 item/visual 加 `line-100` 或阴影 · 配图下用 `btn--primary/secondary` 全宽按钮 · 文案居中 · 标题压在照片上 · 灰底包裹文案区 · 同行第 3 列
+
+#### Checklist
+
+- [ ] Pattern A 头；2 列 gap 18，`align-items: start`
+- [ ] item/visual：**border 0, shadow none**；visual `radius-md`
+- [ ] 文案左对齐；CTA 文字链 + `arrow-up-right-outlined`
+
+### 4.6 Simple card floor — skill / step / model showcase  ★
+
+**简洁卡片楼层：** `line-100`、**无阴影**、`neutral-50` 纯色内底；`step-tag` · `price-text` · `modality-chip` · metrics 纵向组合。参考：**Ready to Grow Together**（步骤 3 卡 + 楼层 CTA）、**Qwen 模型推荐行**。
+
+#### 变体
+
+| 变体 | 钩子 | 列数 | 圆角 | 内边距 | 卡内 CTA | 楼层 CTA |
+|------|------|------|------|--------|----------|----------|
+| **A 步骤流** | `.floor--step-cards` | 3-up | `radius-md` | 32 | 无 | 居中 `btn--primary` |
+| **B 技能/模型** | `.floor--skill-cards` | 3-up | `radius-sm` | 24 | 可选文字链 | 无 |
+
+共用：`1px line-100`、`shadow: none`、**无 hover 上浮**（营销页）。
+
+#### 网格
+
+```scss
+.simple-card-grid {
+  display: grid;
+  gap: 24px;
+  align-items: stretch;
+}
+.simple-card-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.simple-card-grid--3.is-asymmetric {
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+```
+
+≤1024 px：`1fr`，gap 18。
+
+#### 卡片外壳
+
+```scss
+.simple-card {
+  background: var(--pt-cn-color-neutral-50);
+  border: var(--pt-cn-line-size-normal) solid var(--pt-cn-color-line-100);
+  border-radius: var(--pt-cn-radius-sm);
+  padding: 24px;
+  box-shadow: none;
+  &:hover { box-shadow: none; transform: none; }
+}
+.simple-card--step {
+  border-radius: var(--pt-cn-radius-md);
+  padding: 32px;
+}
+```
+
+无渐变 rim（留给 §4.4）。Hot 用 `tag-hot` pill，不用渐变描边。
+
+#### A — 步骤卡（R12）
+
+1. `.step-tag` §8.17  
+2. `.simple-card-title` `title-md` semibold，`mt 16`  
+3. `.simple-card-desc` `body-md` `neutral-650`，`mt 12`  
+4. 楼层下居中 `.simple-card-floor-cta` → `btn--primary`
+
+#### B — 技能/模型卡（R11）
+
+1. 名称 `body-lg` semibold + 可选 `tag-hot`  
+2. 描述 `body-sm` 2 行 clamp  
+3. `.simple-card-chips` §8.19  
+4. `.simple-card-price` §8.18  
+5. `border-top line-100`  
+6. 2 列 metrics：`title-sm` + `body-sm` label  
+
+控制台 marketplace 的 hover-reveal（§17.7）不用于营销 skill 楼层。
+
+#### 反模式
+
+❌ 阴影/hover 上浮 · §4.4 渐变 rim · 步骤卡内 Subscribe · 价目区灰底盒子 · 外层 panel-as-card · A/B 混排
+
+#### Checklist
+
+- [ ] A 或 B 二选一；`line-100` + shadow none  
+- [ ] A：`step-tag` + 楼层 `btn--primary`  
+- [ ] B：R11 + §8.18 price-text + §8.19 chips
+
+### 4.7 Secondary showcase floor — text-only cards  ★
+
+**次级信息楼层**，衬托主楼层。共享 `.text-card`：**无 bg/描边/阴影**，**仅** `border-bottom: 1px line-100`。
+
+| 变体 | 参考 | 标题 | 筛选 | 底栏 |
+|------|------|------|------|------|
+| **A 带 tabs** | Model serving **industries** | Pattern B，一词渐变 | §8.20 tabs | 可选 `btn--outline` |
+| **B 无 tabs** | **AI and Cloud** / Solutions For All Your Needs | 双行左对齐 §4.7 | 无 | §8.22 圆钮分页 ‹ › |
+
+```
+A: h2 → tabs → text-card×4 → [Browse all]
+B: 渐变行1 + 黑字行2 → text-card×4 (R13b) → ( ‹ › ) pager
+```
+
+#### 共享网格与外壳
+
+```scss
+.text-card-grid { display: grid; gap: 24px 32px; align-items: start; }
+.text-card-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.text-card {
+  padding: 0 0 24px; background: transparent; border: 0; box-shadow: none;
+  border-bottom: 1px solid var(--pt-cn-color-line-100); border-radius: 0;
+}
+```
+
+#### 变体 A
+
+§8.20 tabs → **R13**（icon+名 / 描述 / 可选 chip / ↗）→ 可选 `btn--outline`。
+
+#### 变体 B — 无 tabs
+
+**双行左标题** `.floor-head--stacked-left`：
+
+- 行 1：整行渐变字（如「AI and Cloud」）  
+- 行 2：实心黑字（如「Solutions For All Your Needs」）  
+
+**R13b 极简卡** `.text-card--minimal`：标题 → 描述 → ↗（无 icon 行、无 chip）。
+
+**分页** §8.22 `.text-card-pager`：底部居中两枚 **40px 圆钮**，`line-100` 描边、透明底、无阴影；`chevron-left/right-outlined` 16px。与 `btn--outline` **二选一**。
+
+#### 反模式
+
+❌ 四边描边卡 · B 变体加 tabs · 同时 pager + outline 按钮 · 黑色 primary 底栏
+
+#### Checklist
+
+- [ ] 选 A **或** B  
+- [ ] text-card 仅 bottom `line-100`  
+- [ ] A：tabs + R13 · B：双行头 + R13b + pager
+
+### 4.8 Logo floor — 矩阵描边 / 无边透明条  ★
+
+信任/合作伙伴轻楼层。每页 **二选一**：
+
+| 变体 | 参考 | 布局 | 外壳 |
+|------|------|------|------|
+| **A 描边矩阵** | Supported AI Tools | 4×N 网格；icon + 名称 | 仅 `line-100` |
+| **B 无边透明条** | **Our Partners** | 1×N 横排 Logo | **无** 描边/底/阴影 |
+
+共享：Pattern A 居中标题 + 副标题（A 可选 §8.23 链）。
+
+---
+
+#### 变体 A — 描边矩阵
+
+```
+副标题… [Learn More ↗]
+┌─────────┐×4  gap 12  h 64
+│[icon] Name│  line-100 · radius-xs · no shadow
+└─────────┘
+```
+
+`repeat(4, 1fr)` · gap **12** · h **64**。≤1024：`2` 列。
+
+```scss
+.logo-matrix-tile {
+  display: flex; align-items: center; gap: 12px;
+  height: 64px; padding: 0 16px 0 20px;
+  background: transparent;
+  border: 1px solid var(--pt-cn-color-line-100);
+  border-radius: var(--pt-cn-radius-xs);
+  box-shadow: none;
+  &:hover { border-color: var(--pt-cn-color-line-200); }
+}
+```
+
+**R14** — icon 24 + 名 `body-sm` medium；等同 `.coding-plan-tools-item`。
+
+---
+
+#### 变体 B — 无边透明 Logo 条
+
+参考：**Our Partners** — 副标题「Organizations supporting the hackathon community.」+ 横排彩色品牌标，**直接落在画布上**。
+
+```
+        Our Partners
+  Organizations supporting…
+        ↓ 48–64px
+  [logo]  [logo]  [logo]  [logo]  [logo]  [logo]
+  flex 居中 · 保留品牌色 · 共用垂直中线
+```
+
+```scss
+.logo-strip {
+  display: flex; flex-wrap: wrap;
+  align-items: center; justify-content: center;
+  gap: clamp(32px, 6vw, 64px) clamp(24px, 5vw, 56px);
+}
+.logo-strip-item {
+  padding: 0; background: transparent;
+  border: 0; box-shadow: none;
+  &:hover { transform: none; border: 0; background: transparent; }
+}
+.logo-strip-item__logo {
+  height: 40px; max-height: 48px; max-width: min(160px, 28vw);
+  width: auto; object-fit: contain;
+}
+```
+
+| 规则 | 值 |
+|------|-----|
+| 外壳 | **无** border / bg / shadow |
+| Logo | 高 **40–48px**，宽自适应；**保留品牌色** |
+| Hover | 链接可选 `opacity` 变化 only |
+| 间距 | 标题 → 条 **48–64px**；logo 间 `clamp(32px, 6vw, 64px)` |
+
+**R19** — 纯 Logo 项；**无** 下方文字名（有名称用变体 A）。
+
+#### 反模式
+
+❌ B 变体给 logo 加 line-100 方框 · A/B 混排 · 阴影/灰底条 · 强制等宽方格压扁 wordmark
+
+#### Checklist
+
+- [ ] 选 **A** 或 **B**（不同楼层可各用一种）
+- [ ] **A：** 4 列 h64 R14 · **B：** `.logo-strip` R19 无边透明
+
+### 4.9 Tail visual CTA floor — 尾部大视觉  ★
+
+页末最后一个营销楼层，紧接 `.page-footer`。`.layout-max-wide` 内单块大圆角面板，**居中标题 + 副标题 + 行动按钮**叠在抽象渐变 / `qwen-model-*` / 轻视频上。参考：**Co-Build Future · AI-Powered Era**（790 px）· **Join the community**（370 px）。适用 §2.5 例外（文案可压视觉）。
+
+```
+.tail-visual  radius-lg  h 790 | 370
+  可选 kicker + 紫色内链 §8.25
+  h2 居中 ≤1 个渐变词/短语
+  副标题 body-lg
+  [ btn--primary ]  [ btn--outline ]
+        ↓ 无额外色带间隔
+.page-footer §4.10
+```
+
+| 高度 | 场景 | 参考 |
+|------|------|------|
+| `.tail-visual--tall` **790px** | 首页收尾、时代感 campaign | Co-Build Future；两行 h2；Get API Keys + Try now |
+| `.tail-visual--compact` **370px** | 社区、Hackathon、项目招募 | Join the **community**；单行 h2 + 短副标题 |
+
+```scss
+.tail-visual {
+  position: relative; width: 100%;
+  border-radius: var(--pt-cn-radius-lg);
+  overflow: hidden; box-shadow: none;
+  &--tall    { height: 790px; min-height: 790px; }
+  &--compact { height: 370px; min-height: 370px; }
+}
+.tail-visual__content {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; height: 100%;
+  padding: 48px 32px; gap: 16px;
+}
+```
+
+- **R15** 内容栈：可选 `.tail-visual-kicker`（§8.25）→ h2（高版 72 / 紧凑 44）→ 副标题 `max-width: var(--pt-cn-layout-max-read-box)` → `.tail-visual-cta-row`（**L1 primary + L3 outline**，同 §2.7）
+- 上一楼层间距 **96–122 px**；面板下 **无** 额外 padding — Footer 紧贴
+- **禁止** 面板外再叠 Pattern A 楼层头；**禁止** 阴影、`line-100` 外框、`btn--secondary` 作次按钮
+
+#### Checklist
+
+- [ ] 每页至多一块；高 **790** 或 **370**
+- [ ] R15 居中栈；≤1 渐变短语
+- [ ] Footer 紧贴其下
+
+### 4.10 Site footer floor — 页脚不均分  ★
+
+`.page-footer` 为 `.page-shell` 最后节点。画布 `neutral-50`，无阴影、无卡片外壳。
+
+```
+35% 左侧                    65% 右侧
+[X][GitHub][LinkedIn][Discord]   Products | Company | Resources
+                                 各列：粗标题 + 链接列表
+──────── line-100 ─────────────────────────────────────
+© 2026 … 保留所有权利。              管理 Cookie
+```
+
+```scss
+.page-footer-main {
+  display: grid;
+  grid-template-columns: minmax(0, 35fr) minmax(0, 65fr);
+  gap: 48px 64px;
+}
+.page-footer-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px 48px;
+}
+.page-footer-legal {
+  margin-top: 48px; padding-top: 24px;
+  border-top: 1px solid var(--pt-cn-color-line-100);
+  display: flex; justify-content: space-between;
+  font-size: var(--pt-cn-caption-font-size-sm);
+  color: var(--pt-cn-color-neutral-550);
+}
+```
+
+| 区域 | 规则 |
+|------|------|
+| **左侧 35%** `.page-footer-aside` | 横排社交 icon **20×20**，`neutral-950`，**无** 描边/底色/阴影（§8.24） |
+| **右侧 65%** `.page-footer-nav` | **3 列**链接组（**R16**）：`body-sm` 粗标题 + 链接 `neutral-650` |
+| **底栏** | 版权左对齐；「管理 Cookie」等右对齐 |
+
+社交品牌标不在 manifest 时用 Tabler `brand-*`（20 px，`stroke: 1.5`）。≤1024：主栅格 `1fr`；链接 `2` 列；≤640：链接单列，底栏纵排。
+
+#### 反模式
+
+❌ 灰底 footer 色带 · 社交 icon 方框描边 · 50/50 均分 · footer 内 pill 主按钮
+
+#### Checklist
+
+- [ ] 35fr / 65fr；左社交 §8.24，右 R16 三列链
+- [ ] 底栏 `line-100` 顶线；版权左、Cookie 右
+- [ ] 有 §4.9 时紧贴其下
+
+### 4.11 Interactive carousel toggle floor — 100vw 可切换横滑  ★
+
+**可交互横滑楼层：** 标题在 **inner**；卡片轨道 **100vw 通栏** breakout。点击 **‹ ›**（§8.26）切换 — 无 autoplay/圆点/阴影。参考：**Judging Criteria**（左头 + 右上分页）· 证言横滑（居中头 + 底部分页）。
+
+| 变体 | 参考 | 标题 | 分页位置 | 卡内 |
+|------|------|------|----------|------|
+| **A** | 证言 / quote 横滑 | Pattern A 居中 | 轨道下方居中 §8.26 | **R17** 证言卡 |
+| **B** | Judging **Criteria** | 左对齐 + 副标题 | 标题行右上 §8.26 | **R18** 评分卡 |
+
+#### 100vw 轨道
+
+```scss
+.carousel-floor-viewport {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+}
+.carousel-floor-track {
+  display: flex; gap: 24px;
+  padding-left: max(20px, calc((100vw - var(--pt-cn-layout-max-width)) / 2));
+  padding-right: max(20px, calc((100vw - var(--pt-cn-layout-max-width)) / 2));
+  transition: transform var(--pt-cn-motion-normal) ease;
+}
+```
+
+首卡对齐 inner 左 gutter（同 §3G）；末卡右侧 **peek** 裁切。
+
+#### `.carousel-card` 外壳（二选一，全轨统一）
+
+```scss
+.carousel-card {
+  flex: 0 0 auto;
+  border-radius: var(--pt-cn-radius-lg);
+  padding: 32px;
+  box-shadow: none;
+  &--bordered {
+    background: var(--pt-cn-color-neutral-50);
+    border: 1px solid var(--pt-cn-color-line-100);
+  }
+  &--filled {
+    background: var(--pt-cn-color-neutral-100);
+    border: 0;
+  }
+}
+```
+
+卡宽：证言 `min(420px, 85vw)` · 评分 `min(380px, 80vw)`。
+
+#### 变体 A / B
+
+- **A：** 居中 h2（一词渐变）→ 轨道 R17（引号 icon · 正文 3–4 行 · 头像+姓名+职位）→ 底部分页
+- **B：** `.carousel-floor-head-row`（`flex-end space-between`）左 head + 右 `.carousel-pager--head-inline` → 轨道 R18（大号 **30%** · 标题 · 圆点列表）
+
+#### 反模式
+
+❌ 阴影/上浮 · 同轨混用 bordered+filled · autoplay · 圆点指示器 · 与 §4.7 text-card 混排
+
+#### Checklist
+
+- [ ] 选 A 或 B；标题在 inner，轨道 100vw
+- [ ] 全卡 `--bordered` 或 `--filled`；§8.26 ‹ ›
+- [ ] R17 或 R18 内构
+
+### 4.12 FAQ floor — 双栏手风琴  ★
+
+左栏标题留白 + 右栏 **`+` 折叠列表**（§8.27：**默认第一项展开**，**始终仅一项打开**，互斥）。参考：**Frequently asked questions** + Learn More ↗。
+
+| 外壳 | 背景 | 宽度容器 |
+|------|------|----------|
+| **A inner** | 楼层 `neutral-50`，无外包面板 | `.layout-max-inner` |
+| **B 宽面板** | `.faq-panel` `neutral-100` `radius-lg` | `.layout-max-wide` |
+
+```
+左 ~38%                    右 ~62%
+Frequently                 Q1  +
+asked questions (渐变)     ─────
+Learn More ↗               Q2  +  ← 展开时显示答案
+                           Q3  +
+```
+
+```scss
+.faq-layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 38%) minmax(0, 1fr);
+  gap: clamp(48px, 10vw, 120px);
+}
+.faq-panel {
+  background: var(--pt-cn-color-neutral-100);
+  border-radius: var(--pt-cn-radius-lg);
+  padding: 60px 44px;
+  box-shadow: none; border: 0;
+}
+```
+
+#### `.faq-item`（R20）
+
+- 行间仅 `border-bottom: line-100`；**无** 行级阴影/灰底卡
+- 触发器：左 **问题** `body-md` semibold · 右 **`+`** `primary-550`；展开时 `+` **隐藏**
+- 答案：`body-sm` `neutral-650`；`grid-template-rows: 0fr→1fr` 动画（§8.6）
+
+#### §8.27 交互契约
+
+| 规则 | 行为 |
+|------|------|
+| 初始 | **第一项** `.is-open` |
+| 互斥 | 同时 **仅一项** 展开 |
+| 点击已开项 | **不收起** — 须切换到另一题 |
+| 键盘 | Enter/Space 切换 |
+
+#### Checklist
+
+- [ ] 外壳 A **或** B  
+- [ ] `.faq-layout` 38/62；左 `.faq-head` + 右 `.faq-accordion`  
+- [ ] §8.27 单开 + 默认首项；R20
+
+### 4.13 Accordion + visual sync floor — 信息折叠 + 视觉联动  ★
+
+居中标题 → **左 `+` 折叠列表** + **右大视觉**（随选中项 cross-fade）。参考：**Choose Your Arena** — MemoryAgent · EdgeAgent · AI Showrunner。
+
+```
+Choose Your Arena（居中）
+左 ~42% 折叠列表          右 ~58% radius-lg 视觉
+MemoryAgent            +    ┌─────────────────┐
+──────────────────            │  cover media    │
+AI Showrunner (open)          │  is-active      │
+  描述 body-sm…               └─────────────────┘
+```
+
+| 对比 | §2.8 hero Mode B | §4.12 FAQ | **§4.13** |
+|------|------------------|-----------|-----------|
+| 位置 | `.hero-visual` 420px | 左标题+右问答 | 居中标题+左右分栏 |
+| 右侧 | 同盒预览 | 无视觉 | **独立大视觉** |
+
+```scss
+.arena-sync-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 64px);
+}
+.arena-sync-visual {
+  position: relative;
+  min-height: 400px;
+  border-radius: var(--pt-cn-radius-lg);
+  overflow: hidden;
+  background: var(--pt-cn-color-neutral-100);
+  box-shadow: none;
+}
+.arena-sync-visual-panel {
+  position: absolute; inset: 0; opacity: 0;
+  transition: opacity var(--pt-cn-motion-normal) ease;
+  &.is-active { opacity: 1; }
+}
+```
+
+- **R21** 左栏：与 R20 类似 — `line-100` 分割、标题 + `+`、`body-sm` 描述；`data-arena-panel="n"`
+- **§8.28**：互斥单开（同 §8.27）+ 同步 `.arena-sync-visual-panel[data-panel="n"].is-active`
+- 容器：**`.layout-max-inner`**；首项与首面板默认展开
+- 移动：手风琴在上，视觉在下 `min-height 280–320px`
+
+#### Checklist
+
+- [ ] Pattern A 居中标题 + `.arena-sync-layout` 42/58  
+- [ ] §8.28 折叠与视觉联动；R21  
+- [ ] 视觉 `radius-lg`、无阴影；非 §2.8 hero 内嵌
 
 ---
 
@@ -410,7 +1286,7 @@ Same typography; flex-start alignment. Right side carries a one-line description
 
 ### Pattern C — Two-column panel head  *(faq, ai-powered-product)*
 
-Heading owns left column, content (accordion / cards) owns right. The whole floor sits in a card-wash panel.
+左标题 + 右内容双栏。营销 FAQ 完整规范见 **§4.12**（外壳 A/B、§8.27 互斥单开）。下文为 legacy 渐变 wash 面板配方。
 
 ```scss
 .<floor>-panel {
@@ -471,13 +1347,26 @@ All grids snap to a small set of column×gap combinations. Pull from one row of 
 | Block | Columns | Gap (px) | Notes |
 |-------|---------|---------:|-------|
 | Featured model stack | 1 (stacking-card) | 14 | Inside the card: 2-col flex, main `flex: 0 0 45%` |
-| Agent-builder | `repeat(2, minmax(0,1fr))` | 18 | Mobile → 1fr |
+| **Media duo / agent-builder** | `repeat(2, minmax(0,1fr))` | 18 | Borderless; `align-items: start`; §4.5 |
 | Industry / quick cards | `repeat(4, minmax(0,1fr))` | 36 | Mobile → 1fr; gap 18 |
 | Analyst (asymmetric 2/1/1) | `2fr 1fr 1fr` | 24 | Mobile → 1fr; gap 16 |
 | Reliability 2×2 | `repeat(2, minmax(0,1fr))` | col 114 / row 64 | Each item itself `100px 1fr; gap 48` |
-| Customer logo strip | `repeat(7, minmax(0,1fr))` | `6vw` | Mobile → `repeat(3, …); gap 18` |
-| Pricing offer (centered) | `repeat(2, clamp(320px, 30vw, 400px))` | 24 | `justify-content: center` |
-| Tools / logo tiles | `repeat(4, minmax(0,1fr))` | 12 | 64-px tall tile, `--pt-cn-radius-xs` |
+| **Partner logo strip** (无边) | flex center 或 `repeat(6–8, 1fr)` | `clamp(32px, 6vw, 64px)` | §4.8 **变体 B** |
+| Customer logo strip (legacy) | `repeat(7, minmax(0,1fr))` | `6vw` | 优先 §4.8 B flex |
+| Pricing offer (centered 2-up) | `repeat(2, clamp(320px, 30vw, 400px))` | 24 | `justify-content: center` |
+| **Card row 3-up** (pricing / prize) | `repeat(3, minmax(0, 1fr))` | 24 | Equal stretch; §4.4; no shadow |
+| **Card row 4-up** (token / credit plans) | `repeat(4, minmax(0, 1fr))` | 24 | + optional §8.4 toggle; §4.4 |
+| **Simple card 3-up** (step / skill) | `repeat(3, minmax(0, 1fr))` | 24 | `line-100`, no shadow; §4.6 |
+| **Simple card 2-up** (step pair) | `repeat(2, minmax(0, 1fr))` | 24 | §4.6 variant A |
+| **Text-card 4-up** (secondary) | `repeat(4, minmax(0, 1fr))` | 24 / 32 | Bottom line-100 only; §4.7 |
+| **Text-card 3-up** (secondary) | `repeat(3, minmax(0, 1fr))` | 24 / 32 | §4.7 |
+| **Logo matrix** | `repeat(4, minmax(0,1fr))` | 12 | §4.8 **变体 A** |
+| Tools / logo tiles | `repeat(4, minmax(0,1fr))` | 12 | `.coding-plan-tools-item` = §4.8 A |
+| **Site footer nav** | `repeat(3, minmax(0, 1fr))` in 65% col | 32 / 48 | §4.10 R16 |
+| **Site footer main** | `35fr 65fr` | 48 / 64 | §4.10 |
+| **Carousel toggle track** | flex 横滑；卡宽 380–420 | 24 | 100vw breakout · §4.11 |
+| **FAQ 双栏** | `38% 1fr` `.faq-layout` | 48–120 | §4.12 |
+| **Arena sync** | `42% 1fr` `.arena-sync-layout` | 40–64 | §4.13 |
 | Models marketplace | `repeat(auto-fill, minmax(260px, 1fr))` | 24 | Card 340-px tall, `--pt-cn-radius-sm` |
 | Models compare | `repeat(3, minmax(0,1fr))` | 24 | Mobile → 1fr |
 | Models detail io / context | `repeat(2, minmax(0,1fr))` | 12 | ≤1280 → 1fr |
@@ -525,6 +1414,8 @@ Active: `background: var(--pt-cn-color-primary-50); color: var(--pt-cn-color-pri
 ### 8.3 Pill tab (with leading dot when active)
 
 Same pill shape. Active tab gets a 6-px primary dot rendered as `::before { margin-right: 6px }`.
+
+次级楼层 flat tabs → **§8.20**（5px 圆点 + `neutral-150` active）。
 
 ### 8.4 Pill segmented control
 
@@ -685,6 +1576,149 @@ font-size: var(--pt-cn-body-font-size-sm);
 ```
 
 Key (left): color `--pt-cn-color-neutral-650`. Value (right): color `--pt-cn-color-neutral-950`, mono if numeric.
+
+### 8.16 Icon + text feature row  *(inside card-row ZONE C)*
+
+Typography carries hierarchy — **no grey boxes.**
+
+```
+display: grid;
+grid-template-columns: 16px 1fr;
+column-gap: 12px;
+align-items: start;
+```
+
+```scss
+.card-feature-row {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: start;
+  margin-bottom: 14px;
+
+  .card-feature-icon {
+    width: 16px; height: 16px; margin-top: 2px;
+    color: var(--pt-cn-color-neutral-750);
+  }
+  .card-feature-text {
+    font-size: var(--pt-cn-body-font-size-md);
+    font-family: var(--pt-cn-font-semibold);
+    color: var(--pt-cn-color-neutral-950);
+  }
+  .card-feature-sub {
+    margin-top: 4px;
+    font-size: var(--pt-cn-body-font-size-sm);
+    color: var(--pt-cn-color-neutral-650);
+    font-family: var(--pt-cn-font-regular);
+  }
+}
+```
+
+Nested list: `padding-left: 14px`; 3 px `primary-550` dot `::before`; `body-sm` `neutral-650`.
+
+Icons: `check-mark-outlined`, `notification-outlined`, `sparkle-outlined` (manifest). Used in §4.4 ZONE C, `components.md` §07.
+
+### 8.17 Step tag pill  *(§4.6 A)*
+
+```scss
+.step-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 12px;
+  border-radius: var(--pt-cn-radius-full);
+  background: var(--pt-cn-color-primary-50);
+  font-size: var(--pt-cn-body-font-size-sm);
+  font-family: var(--pt-cn-font-medium);
+  color: var(--pt-cn-color-neutral-800);
+  &::before {
+    content: ''; width: 6px; height: 6px; border-radius: 999px;
+    background: var(--pt-cn-color-primary-550);
+  }
+}
+```
+
+### 8.18 Price-text row  *(§4.6 B)*
+
+```scss
+.simple-card-price {
+  display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px;
+  font-size: var(--pt-cn-body-font-size-sm);
+  font-family: var(--pt-cn-font-mono);
+  color: var(--pt-cn-color-neutral-650);
+}
+```
+
+无灰底包裹。与 `ui-price-text` 语义一致。
+
+### 8.19 Modality chip
+
+```scss
+.modality-chip {
+  padding: 6px 10px; border-radius: var(--pt-cn-radius-full);
+  border: 1px solid var(--pt-cn-color-primary-150);
+  background: transparent;
+  font-size: var(--pt-cn-body-font-size-sm);
+  color: var(--pt-cn-color-primary-550);
+}
+.simple-card-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+```
+
+单行展示，超出 `+N`。
+
+### 8.20 Secondary tabs  *(§4.7)*
+
+`.secondary-tabs` / `.secondary-tab` — inactive 透明；active `neutral-150` + **5px** `primary-550` 圆点。无轨道、无阴影。详见 §4.7。
+
+### 8.21 Text-card link affordance
+
+`.text-card-link` + `arrow-up-right-outlined` 14px；`margin-top: auto`；hover `primary-550`。整卡可包 `<a class="text-card">`。
+
+### 8.22 Text-card carousel pager  *(§4.7 变体 B)*
+
+```scss
+.text-card-pager {
+  display: flex; justify-content: center; gap: 12px; margin-top: 48px;
+}
+.text-card-pager-btn {
+  width: 40px; height: 40px; border-radius: var(--pt-cn-radius-full);
+  border: 1px solid var(--pt-cn-color-line-100);
+  background: transparent; box-shadow: none;
+  color: var(--pt-cn-color-neutral-550);
+  &:disabled { opacity: 0.4; }
+}
+```
+
+`chevron-left-outlined` / `chevron-right-outlined` 16px。
+
+### 8.23 Floor-head subtitle inline link  *(§4.8)*
+
+`.floor-head-link-desc` 居中 `body-lg` `neutral-750` + `.floor-head-inline-link` `primary-550` + `arrow-up-right-outlined` 12px。
+
+### 8.24 Site footer social row  *(§4.10)*
+
+`.page-footer-social` — icon **20×20**，`neutral-950`，gap **16–20**，无描边/底/阴影。Tabler `brand-x` / `brand-github` / `brand-linkedin` / `brand-discord`。
+
+### 8.25 Tail-visual kicker  *(§4.9)*
+
+`.tail-visual-kicker` — `body-md` `neutral-750`；紫色行动复用 `.floor-head-inline-link`（§8.23），非 pill。
+
+### 8.26 Carousel toggle pager  *(§4.11)*
+
+`.carousel-pager` + `.carousel-pager-btn` — 40px 圆钮，`line-100` 描边、无阴影。`chevron-left/right-outlined` 16px。
+
+| 位置 | 类名 |
+|------|------|
+| 轨道下方居中 | `.carousel-pager--centered`（变体 A） |
+| 标题行右上 | `.carousel-pager--head-inline`（变体 B） |
+
+**Next** 强调态：`.carousel-pager-btn--next` — `neutral-950` 实心底 + 浅色 icon（有更多页时）。禁用态 `opacity: 0.4`。无圆点轨道。
+
+### 8.27 FAQ accordion — 互斥单开  *(§4.12)*
+
+`.faq-accordion` / `.faq-item`：**首项默认展开**；点击它项时关闭其余；**不允许全部收起**；`+` 展开后隐藏（非旋转 ×）。与 §2.8 hero、**§4.13** `.arena-sync-*` 区分。
+
+### 8.28 Arena sync — 折叠 + 视觉联动  *(§4.13)*
+
+在 §8.27 基础上：`data-arena-panel="n"` ↔ `.arena-sync-visual-panel[data-panel="n"]`；切换项时 cross-fade 右栏；`aria-live="polite"`。
 
 ---
 
@@ -876,10 +1910,12 @@ Featured cards **never** get a shadow; the rim does the work.
 | `.customers-say-card` 670×424 | `border-radius: --pt-cn-radius-md; background: cover image; ::before linear-gradient(0deg, rgba(7,8,14,0.1) → transparent) for legibility; .customers-say-overlay absolute top:12 right:12 w:44% min:337 — a borderless nested card on neutral-50, radius-sm, padding 30 20 24 20, holding quote (h36 bold) + p (body-sm neutral-750) + signature + logo bottom-right` |
 | `.models-hero-card` 588×244 | `border-radius: --pt-cn-radius-xs (mobile: 18); padding 12 outer; .models-hero-card-main is a 270×220 right-anchored borderless panel on neutral-50 holding logo (24×24) + title-sm + 2-line clamp + tag row` |
 | `.skills-detail-hero` | `border-radius: --pt-cn-radius-lg; bg: neutral-100 + cover image; padding 24; centered glass command box inside (see G)` |
-| `.era-hero-shell` 780h | `border-radius: --pt-cn-radius-lg; absolute video media; centered content with h2 72/76 bold + animated-rim email input (variant C)` |
-| `.agent-builder-visual` h248 | `border-radius: --pt-cn-radius-xs; 1px line-100 (bordered!); absolute video cover; icon top-left 20×20 white` |
+| `.era-hero-shell` / `.tail-visual--tall` 790h | `radius-lg · absolute media · R15 居中栈 · §4.9` |
+| `.tail-visual--compact` 370h | `同上 · h2 44 · 社区/Hackathon 收尾 · §4.9` |
+| `.media-duo-visual` / marketing agent-builder | `radius-md; **no border**; **no shadow**; 16:10 or h 248–280; icon 20×20 top-left; §4.5` |
+| `.agent-builder-visual` (§08 gallery only) | `radius-xs; 1px line-100; h248` — marketing floors use §4.5 borderless |
 
-**Pattern:** the heading sits **outside** the media card (above it, in `.layout-max-inner`), not over it (§2). The only text on the media is the overlay panel itself (which is a separate borderless sub-card).
+**Pattern:** floor-head 在网格上方；卡片标题在配图**下方**，不压在照片上 (§2)。
 
 #### E — Compact tiles (logo tiles, mini-cards, chips-as-cards)
 
@@ -897,7 +1933,7 @@ Featured cards **never** get a shadow; the rim does the work.
 |-----------|----------|
 | **Stacking model cards** (`.afm-full-stack-section`) | `height: 180vh` container; `.afm-full-stack-sticky position: sticky; top: 120`; stack cards `position: absolute; inset: 0; transform-origin: center top; will-change: transform`. Scroll drives 3D stack via custom props (`--stack-scale`, `--stack-y`, `--stack-shadow-opacity` 0–0.08). Mobile: degrades to a normal vertical grid. |
 | **Horizontal scroll-jacked carousel** (`.customers-say-track`) | `.customers-say-sticky position: sticky; top: 150`; inline-flex track translated via JS. Mobile: becomes native `overflow-x: auto; scroll-snap-type: x mandatory`. |
-| **Synced preview pair** (`.coding-plan-intro-showcase`) | 2-col `1fr 1fr; gap: 64`; left accordion controls right preview via absolute `.coding-plan-preview-panel` with `.is-active` fade. Locked `height: 380`. |
+| **Synced preview pair** (`.hero-visual--showcase` / `.coding-plan-intro-showcase`) | 2-col `1fr 1fr; gap: 64`; accordion + `.hero-visual-preview-panel.is-active` fade. Locked **`height: 420`**. |
 | **Coupled left fixed + right expandable** (`.prod-shell`) | 2-col `1fr 1.35fr; gap: 36`. Left = title + pill. Right = `.prod-group` list whose expand-state reveals a `.prod-app-list` 2-col sub-grid. |
 | **3-col sticky reading** (`.models-detail-layout`) | `grid-template-columns: 240 1fr 240; gap: 48`; both rails `position: sticky; top: calc(84 + 36)`; anchor highlights as you scroll. |
 
@@ -1017,6 +2053,84 @@ font-family: --pt-cn-font-mono;
 font-size: body-sm;
 ```
 Used by: `.tagline-skills-command-wrap`, `.docs-next-center`, `.skills-detail-code-block` inner.
+
+**R9. Card-row tier interior** *(3-up / 4-up — §4.4)*
+```
+ZONE A: name + Hot? · price + period · meta (body-sm neutral-650)
+ZONE B: full-width pill — btn--secondary | btn--primary (featured)
+ZONE C: border-top line-100 · §8.16 icon rows · nested bullets
+```
+Chrome: `neutral-50` · `radius-sm` · pad 32 · `line-100` or gradient rim · **shadow: none**.
+
+Used by: `.card-row-item`, `.coding-plan-offer-card`, `.tier`.
+
+**R10. Media duo interior** *(2-up borderless — §4.5)*
+```
+item: border 0 · shadow none · pad 0
+ZONE 1 visual: radius-md · 16:10 or h 248–280 · cover · 20px icon · NO border
+ZONE 2 body: left-align · title-md · desc 2-line clamp · mt 20–24
+ZONE 3 link: text + arrow-up-right-outlined · ink or .is-accent
+```
+
+**R11. Skill / model simple card** *(§4.6 B)*
+```
+head + tag-hot · desc clamp · chips §8.19 · price §8.18 · divider line-100 · 2-col metrics
+```
+
+**R12. Step simple card** *(§4.6 A)*
+```
+step-tag §8.17 · title · desc · floor btn--primary
+```
+
+**R13. Text-card variant A** *(§4.7)*
+```
+border-bottom line-100 only · icon+name · desc · chips? · arrow
+```
+
+**R13b. Text-card minimal variant B** *(§4.7 无 tabs)*
+```
+same chrome · name · desc · arrow · pager §8.22
+```
+
+**R14. Logo matrix tile** *(§4.8 A)*
+```
+line-100 · radius-xs · h 64 · transparent · icon 24 + name body-sm · hover border only
+```
+
+**R19. Borderless logo strip item** *(§4.8 B)*
+```
+无 chrome · logo h 40–48 · object-fit contain · 品牌色保留 · hover opacity only
+```
+
+**R20. FAQ accordion row** *(§4.12)*
+```
+line-100 底部分割 · 问题+右 + · 答案 body-sm · §8.27 单开
+```
+
+**R21. Arena sync accordion row** *(§4.13)*
+```
+同 R20 行级 chrome · data-arena-panel=n · §8.28 联动右栏视觉
+```
+
+**R15. Tail visual content stack** *(§4.9)*
+```
+layout-max-wide · radius-lg · h 790|370 · 居中：kicker? · h2 · 副标题 · L1+L3 按钮
+```
+
+**R16. Footer link column** *(§4.10)*
+```
+title body-sm semibold · list gap 12 · link body-sm neutral-650
+```
+
+**R17. Testimonial carousel card** *(§4.11 A)*
+```
+carousel-card · radius-lg · pad 32 · quote · body 3–4 行 · avatar+署名
+```
+
+**R18. Criteria carousel card** *(§4.11 B)*
+```
+metric title-lg · title body-lg · ul body-sm neutral-650
+```
 
 ### 11.3 Ten "clean & flat" signals
 
@@ -1677,8 +2791,22 @@ When building a models-like data page:
 
 ## 18. Layout review checklist
 
+- [ ] **Marketing flat (§1.6):** 营销楼层无阴影；色阶交替；无灰底嵌套
+- [ ] **长页编排：** 符合 §4.0 recipe（首页 / Token Plan / Hackathon）
 - [ ] Picked the right container layer (inner default; outer only for framed visuals; reader for prose)
 - [ ] Hero is exactly one of A–I; ≤1 gradient word; heading sits on canvas (`neutral-50`/`100`), **never** over a photo or video (except §2.3 era exception)
+- [ ] **Home opener (variant B):** centered h1; **L1 `btn--primary` + L3 `btn--outline`**; **48–64 px** before `.hero-visual` (§2.7)
+- [ ] **`.hero-visual`:** one mode — **A** 450–480 px **or** **B** 420 px showcase (§2.8)
+- [ ] **Card row floor (§4.4):** 3/4-up; no shadow; `line-100` or one gradient rim; R9 + §8.16
+- [ ] **Media duo (§4.5):** 2-up borderless; visual `radius-md`; text-link CTA; no pill buttons
+- [ ] **Simple card (§4.6):** `line-100` no shadow; A step+floor CTA or B R11+price-text+chips
+- [ ] **Secondary showcase (§4.7):** A tabs+R13 or B stacked head+R13b+pager; bottom hairline only
+- [ ] **Logo floor (§4.8):** A 矩阵 R14 **或** B `.logo-strip` R19 无边透明
+- [ ] **Tail visual (§4.9):** 790 or 370 px; R15; L1+L3; footer flush
+- [ ] **Site footer (§4.10):** 35/65; R16; §8.24 social; legal line-100 bar
+- [ ] **Carousel toggle (§4.11):** 100vw track; bordered or filled; §8.26; R17 or R18
+- [ ] **FAQ (§4.12):** shell A/B；38/62；§8.27 单开；R20
+- [ ] **Arena sync (§4.13):** 42/58；§8.28；R21
 - [ ] Floor backgrounds alternate canvas / tinted / card-wash — no two adjacent floors with the same tint
 - [ ] Floor-head matches pattern A/B/C/D; subtitle respects §9.4 width caps
 - [ ] Grid pulls a row from the §7 grid table — column count + gap + mobile collapse all match

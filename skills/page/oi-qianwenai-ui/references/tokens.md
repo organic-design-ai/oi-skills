@@ -4,25 +4,45 @@ Source: brand guideline (`:root` / `html[data-prefers-color='dark']`). All varia
 
 ## Design stance
 
-扁平、克制、安静。层级靠背景色阶区分，不靠阴影。边框极少——仅在结构必须时用发丝线。品牌色只在交互态出现（hover、链接、渐变文字），不作为默认装饰。
+扁平、克制、安静。层级靠 **neutral 色阶**（`50` ↔ `100` ↔ `150`）区分，不靠阴影。边框极少——仅在结构必须时用 `line-100` 发丝线。
 
-Default shadows exist but marketing surfaces stay flat — use `--pt-cn-shadow-*` only when Guideline specimens require legibility.
+**营销长页默认 `box-shadow: none`** — 与 Guideline Token Plan / 首页 / Hackathon 参考一致。`--pt-cn-shadow-*` 仅用于：分段控件选中 thumb、卡片 hover lift（数据页）、compare bar、FAB、搜索下拉。
+
+**千问云 vs 国际站色感：** 交互主色为 **蓝紫** `primary-550`；标题渐变优先 **蓝绿青** 谱系（`gradient-1/2/3/8/9`），而非国际站的纯紫粉渐变。
 
 ---
 
 ## Colors
 
-### Primary (`--pt-cn-color-primary-*`)
+### Primary (`--pt-cn-color-primary-*`) — 蓝紫主色
 
-10 stops. Accent: `550` `#5B58FF` (light). Dark remaps `550` → `#714FFC`.
+10 stops（Guideline 注释：Primary blue-violet ramp CN）。
 
-Key stops: `50` `#F0F3FF` · `550` `#5B58FF` · `650` `#4500F3` · `950` `#000153`
+| Stop | Light hex | Role |
+|------|-----------|------|
+| `50` | `#F0F3FF` | Secondary CTA 浅底、链接 hover 衬底 |
+| `150` | `#E7EAFF` | Secondary hover |
+| `550` | `#5B58FF` | **默认强调** — 链接、hover、`+` 图标、chip tint |
+| `650` | `#4500F3` | Link hover |
+| `950` | `#000153` | 深色文字上的反色场景 |
+
+Dark mode remaps: `550` → `#714FFC` · `650` → `#653AFF`.
 
 ### Neutral (`--pt-cn-color-neutral-*`)
 
-19 stops. Roles invert in dark mode (`50` canvas ↔ near-black, `950` ink ↔ near-white).
+19 stops. **Light 与 Guideline 一致**；dark mode 角色反转（`50` 近黑画布 ↔ `950` 近白字）。
 
-Common roles: canvas `100` · surface `50` / `150` · text `950` · secondary `650`/`600` · placeholder `450`
+| Stop | Light hex | Marketing role |
+|------|-----------|----------------|
+| **`50`** | **`#FFFFFF`** | **画布 canvas** — 页面底、默认楼层、卡片内底 |
+| **`100`** | **`#F9FAFD`** | **Tinted floor** — 每隔 1–2 楼层、FAQ 宽面板、bulletin |
+| `150` | `#F2F4F8` | Segmented track、chip、legal note |
+| `200` | `#E6E9EF` | → `line-100` 发丝线 |
+| `300` | `#D1D7E2` | → `line-200` outline 按钮 |
+| `650`–`750` | — | 副文案 `body` secondary |
+| `950` | `#0B0C0F` | 主标题、primary CTA 填充（light） |
+
+**常见误用：** 不要把 `neutral-100` 当画布 — 画布是 **`neutral-50`（白）**；`100` 是极浅灰台阶。
 
 ### Lines (use sparingly)
 
@@ -59,11 +79,25 @@ Links: `--pt-cn-color-link-default` → `primary-550` · hover → `primary-650`
 
 Light primary button: near-black rest, purple hover.
 
-### Gradients
+### Gradients — 9 个签名渐变（千问云独有 `gradient-9`）
 
-9 tokens (`--pt-cn-gradient-1` … `9`). Text-fill only — one word per screen. `gradient-9` is CN-only. Not for buttons, cards, or backgrounds.
+**用途：** 仅 **标题 clip 一词/短语**（`background-clip: text`）；每屏 ≤1 处。禁止用于按钮底、卡片底、大面积背景（背景用 `gradient-card-bg` 或 neutral 台阶）。
 
-Card wash: `--pt-cn-gradient-card-bg` — `135deg`, `neutral-150` → `neutral-50`.
+| Token | 色感 | 典型场景 |
+|-------|------|----------|
+| **`gradient-1`** | 蓝 → 青绿 → 紫 `#4897FE → #40EBDA → #14C8C7 → #5B58FF` | **默认营销标题**、hero 渐变词、featured pricing rim |
+| **`gradient-2`** | 紫 → 蓝 → 青 `#5B58FF → #4897FE → #14C8C7` | 次级标题、pricing rim 备选 |
+| **`gradient-3`** | 蓝 → 青 → 绿 `#4897FE → #67E9E9 → #40DB5F` | 偏 **蓝绿** 的 campaign 标题 |
+| `gradient-4` | 紫 → 品红 → 橙 | 高饱和促销（慎用） |
+| `gradient-5` | 品红 → 紫 | 偏紫粉强调 |
+| `gradient-6` | 锥形 青 → 紫 | 动效 rim（featured、搜索 focus） |
+| `gradient-7` | 径向蓝紫 | 装饰 / era 视觉 |
+| **`gradient-8`** | 径向 **青 → 绿** `#14C8C7 → #22CA95 → #008D26` | **蓝绿** tail visual、自然/增长主题 |
+| **`gradient-9`** | 青 → 绿 → 金 **（仅 CN）** | 国内专属标题、活动 kicker |
+
+Card wash: `--pt-cn-gradient-card-bg` — `135deg`, `neutral-150` → `neutral-50` — hero showcase、panel-as-card；几乎看不出色带。
+
+**与国际站差异：** 国际站 `oi-qwencloud-ui` 渐变偏紫粉（`#653AFF` 系）；千问云优先 **蓝绿青**（`#14C8C7` / `#4897FE` / `#40EBDA`）混入 `gradient-1–3/8/9`。
 
 ---
 

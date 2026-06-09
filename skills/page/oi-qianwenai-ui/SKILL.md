@@ -121,13 +121,36 @@ Reference specs: `references/` (`tokens.md`, `components.md`, `layouts.md`, `ico
 | Model cards | 2-col; `gradient-card-bg` vs `neutral-50` |
 | Model strip | 横向 `model-strip` + `model-card`; FAB `arrow-up-right-outlined` |
 | Agent cards | 2-col `agent-card`; 底部 glass 四层面板 |
-| Pricing | 3-up; featured gradient-1 rim; `check-mark-outlined` |
-| Hero | `qwen-model-*` 在视觉段落；标题 72/86 on canvas |
+| Pricing | 3-up; featured **`gradient-1`** rim（蓝绿青）；`check-mark-outlined` |
+| Headline gradient | 优先 **`gradient-1/2/3/8/9`**（蓝绿主色感）— 见 `tokens.md` |
+| Hero | `qwen-model-*` 在视觉段落；标题 72/86 on **`neutral-50`** 画布 |
 | Reader | **640 px** (`--pt-cn-layout-max-read-box`) |
 
 ### 2.3 Layout
 
-`references/layouts.md` — 三层容器、heroes A–I、§08/§19 组件画廊、§11 卡片体系、§17 数据页交互。桌面留白 **70px**，移动 **10px**。
+`references/layouts.md` — **§1.6 营销平面契约**、**§4.0 长页楼层编排**、三层容器、**§2.7–§2.8 首页 hero**（居中标题 + L1/L3 按钮 + `.hero-visual` 双模式）、heroes A–I、§08/§19 组件画廊、§11 卡片体系、§17 数据页交互。桌面留白 **70px**，移动 **10px**。
+
+**首页 hero 要点：** 标题段在 inner 画布上居中 → `btn--primary` + `btn--outline`（非 secondary）→ 间距 48–64 px → outer 大圆角 `.hero-visual`：**Mode A** 配图 450–480 px（`qwen-model-*`）；**Mode B** 信息折叠 + 右侧预览 420 px（Token Plan）。字不压视觉。
+
+**卡片横排楼层（§4.4）：** 3 卡或 4 卡等宽横排；无阴影；默认 `line-100` 描边，至多一张 `is-featured` 渐变 rim；内部纯色 `neutral-50`；ZONE A 价目 → ZONE B 全宽 CTA（普通 secondary / 推荐 primary）→ ZONE C `icon+文字`（§8.16）；禁止功能行灰底嵌套。
+
+**视觉双列楼层（§4.5）：** 1 行 2 列 **无描边** 配图卡（Agent builder）；上 `radius-md` 大图/视频，下左对齐标题+描述+**文字链 CTA**（`arrow-up-right-outlined`）；禁止 pill 按钮与 visual 描边/阴影。
+
+**简洁卡片楼层（§4.6）：** 3 卡横排 `line-100` 无阴影 — **A** 步骤流（`step-tag` + 标题描述 + 楼层居中 `btn--primary`）或 **B** 模型/技能行（名称、modality chip、**price-text**、分隔线、双列 metrics，R11）。
+
+**次级展示楼层（§4.7）：** 共享纯字卡（**仅** `border-bottom line-100`）。**A：** tabs + R13 + 可选 outline。**B（无 tabs）：** 双行左标题（渐变行 + 黑字行）+ R13b + §8.22 圆钮分页 ‹›（如 AI and Cloud / ECS）。
+
+**Logo 楼层（§4.8）：** **A 描边矩阵** — 4×N `.logo-matrix-tile`（`line-100`，icon+名，R14），如 Supported AI Tools。**B 无边透明条** — `.logo-strip` 横排品牌 Logo（无描边/底/阴影，R19），如 Our Partners。
+
+**尾部大视觉（§4.9）：** Footer 前最后一块 — **790 px** 或 **370 px** 大圆角面板（`radius-lg`）；居中 h2（≤1 渐变短语）+ 副标题 + **L1 primary + L3 outline**（R15）。如 Co-Build Future / Join the community。
+
+**页脚（§4.10）：** **35%** 左社交 icon（§8.24，无框）+ **65%** 右三列文字链（R16）；底栏 `line-100` 顶线 — 版权左、管理 Cookie 右。紧贴 §4.9 下方。
+
+**横滑切换楼层（§4.11）：** **100vw** 通栏卡片轨 — 全轨统一 `line-100` 描边 **或** `neutral-100` 灰底（`radius-lg`，无阴影）。**A：** 居中标题 + 底部分页 ‹›（§8.26，R17 证言）。**B：** 左标题 + 右上分页（R18 评分项）。点击切换，无 autoplay/圆点。
+
+**FAQ（§4.12）：** 左标题留白 + 右 `+` 手风琴（R20）。**A：** `neutral-50` + `layout-inner`。**B：** `neutral-100` `radius-lg` + `layout-max-wide`。§8.27：**首项默认展开**，**始终仅一项打开**。
+
+**信息折叠 + 视觉联动（§4.13）：** 居中标题 → 左 R21 折叠列表 + 右 `radius-lg` 大视觉（cross-fade）。§8.28 联动 `data-arena-panel`。如 **Choose Your Arena**（页中楼层，非 §2.8 hero 420px 内嵌）。
 
 ### 2.4 Icons & assets (CDN)
 

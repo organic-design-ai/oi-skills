@@ -43,7 +43,7 @@ CTA icon: **`arrow-up-right-outlined`** via `.qc-icon`.
 
 ## §05 Gradients
 
-9 tokens (`--pt-cn-gradient-1` … `9`). Text clip only. One word per screen. `gradient-9` is CN-only.
+9 tokens (`--pt-cn-gradient-1` … `9`). Text clip only. One word per screen. **默认 `gradient-1`（蓝绿青）**；`gradient-9` 仅 CN。详见 `tokens.md` 渐变表。
 
 ---
 
@@ -62,11 +62,25 @@ Inner: `mf-name` · `mf-desc` · `mf-tag` · `mf-price-row` · `mf-divider` · `
 
 Pricing checkmarks: **`check-mark-outlined`** (not `check-outlined`).
 
+营销 **3-up 模型行**（无 hover-reveal）：`layouts.md` **§4.6 变体 B** + **R11** — `line-100`、`radius-sm`、pad 24、`price-text` §8.18、`modality-chip` §8.19、分隔线、双列 metrics。
+
+**Logo 楼层：** `layouts.md` **§4.8** — **A：** `.logo-matrix-tile`（R14，`line-100`）。**B：** `.logo-strip` / `.logo-strip-item`（R19，无边透明横排，logo h 40–48）。
+
+**页尾大视觉 + Footer：** `layouts.md` **§4.9–§4.10** — `.tail-visual`（790/370 px，R15）+ `.page-footer`（35/65，R16，§8.24）。页面级 chrome，非 §08 卡片标本。
+
+**横滑切换楼层：** `layouts.md` **§4.11** + **§8.26** — `.carousel-card`、100vw `.carousel-floor-track`、R17/R18、`.carousel-pager` ‹›。
+
+**FAQ 楼层：** `layouts.md` **§4.12** + **§8.27** — `.faq-layout`、`.faq-item`/R20；外壳 A（inner）或 B（`.faq-panel`）。§08 `ui-accordion` 标本对齐 token，营销页须接 §8.27 互斥单开。
+
+**Arena 联动楼层：** `layouts.md` **§4.13** + **§8.28** — `.arena-sync-layout`、`.arena-sync-item`/R21、`.arena-sync-visual` 面板切换。
+
 ---
 
 ## §07 Pricing Tiers
 
-3-up grid. Featured `.tier.is-featured`: gradient-1 border rim only.
+3-up or **4-up** card row — floor spec: `layouts.md` **§4.4** (R9 zones, §8.16 icon rows).
+
+`.card-row-item` / `.tier`: `neutral-50`, `line-100`, `radius-sm`, pad 32, **no shadow**. Featured: gradient rim; CTA `btn--secondary` → featured `btn--primary`. Features: `check-mark-outlined` + §8.16.
 
 ---
 

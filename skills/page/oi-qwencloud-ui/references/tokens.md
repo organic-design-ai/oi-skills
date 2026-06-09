@@ -22,13 +22,18 @@ Key stops: `50` `#F1EDFF` · `550` `#653AFF` · `650` `#5229E6` · `950` `#11044
 
 19 stops. Same hex ladder; roles invert in dark mode (`50` white → near-black canvas, `950` ink → near-white text).
 
-Full ramp in `Guideline.html`. Common roles:
+Full ramp in `Guideline.html`. Common roles (light):
 
-- Canvas: `100` / body bg
-- Surface: `50`, `150`
-- Text primary: `950`
-- Text secondary: `650`, `600`
-- Placeholder: `450`
+| Stop | Hex | Role |
+|------|-----|------|
+| **`50`** | `#FFFFFF` | **Canvas** — page bg, default floor, card interior |
+| **`100`** | `#F9FAFD` | **Tinted floor** — alternate section step |
+| `150` | `#F2F4F8` | Segmented track, chips |
+| `200` | `#E6E9EF` | Resolves to `line-100` |
+| `950` | `#0B0C0F` | Headings, primary CTA fill (light) |
+| `650`–`600` | — | Secondary body copy |
+
+Do not use `neutral-100` as canvas — canvas is **`neutral-50` (white)**.
 
 ### Lines (use sparingly)
 
@@ -63,13 +68,22 @@ Links: `--pt-color-link-default` → `primary-550` · hover → `primary-650`
 
 Light primary button: near-black rest, purple hover. No purple fill at rest in light mode.
 
-### Gradients
+### Gradients — 8 signature (purple-forward)
 
-8 tokens (`--pt-gradient-1` … `8`). Text-fill only — one word per screen. Not for buttons, cards, or backgrounds.
+Text-fill only — **one clipped phrase per screen**. Not for button fills, card bodies, or full-bleed backgrounds.
 
-Card wash: `--pt-gradient-card-bg` — `135deg`, `neutral-150` → `neutral-50`. Almost flat; no visible gradient band.
+| Token | Character | Typical use |
+|-------|-----------|-------------|
+| `gradient-1` | Purple → magenta → blue | Default marketing headline word |
+| `gradient-2` | Purple → pink → coral | Featured pricing rim, secondary headline |
+| `gradient-3` | Purple → cyan → blue | Tech / product titles |
+| `gradient-4`–`8` | Mixed neon / radial | Accents, animated rims, era visuals |
+
+Card wash: `--pt-gradient-card-bg` — `135deg`, `neutral-150` → `neutral-50` — hero showcase, panel floors; reads almost flat.
 
 Decoration accents (`--pt-color-accent-mint` etc.): stat dots only.
+
+**vs 千问云 (`oi-qianwenai-ui`):** CN kit uses **9** gradients with **blue-teal-green** stops (`#14C8C7`, `#4897FE`) — do not copy CN gradient literals onto international pages.
 
 ---
 

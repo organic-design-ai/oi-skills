@@ -73,13 +73,27 @@ Primary CTAs: primary + outline. Secondary card: secondary + text.
 
 Guideline also demos **`models-card`** + **`models-sidebar`** in §08 (console model browser).
 
+Marketing **3-up model row** (no hover-reveal): `layouts.md` **§4.6 variant B** + **R11** — `line-100`, `radius-sm`, pad 24, `price-text` §8.18, `modality-chip` §8.19, divider, metrics grid.
+
+**Logo floor:** `layouts.md` **§4.8** — **A:** `.logo-matrix-tile` / `.coding-plan-tools-item` (R14, `line-100`, 4-col). **B:** `.logo-strip` / `.logo-strip-item` (R19, borderless partner row, flex center, logo h 40–48).
+
+**Page tail + footer:** `layouts.md` **§4.9–§4.10** — `.tail-visual` (790 / 370 px, R15) then `.page-footer` (35/65 grid, R16, §8.24 social). Not a §08 card specimen — page chrome only.
+
+**Carousel toggle floor:** `layouts.md` **§4.11** + **§8.26** — `.carousel-card--bordered` / `--filled`, `.carousel-floor-track` 100vw, R17/R18 interiors, `.carousel-pager` ‹ ›.
+
+**FAQ floor:** `layouts.md` **§4.12** + **§8.27** — `.faq-layout` (38/62), `.faq-item` / R20, shell A (`layout-inner`) or B (`.faq-panel` `neutral-100`). `ui-accordion` specimen in §08 — reuse tokens, wire §8.27 single-open for marketing pages.
+
+**Arena sync floor:** `layouts.md` **§4.13** + **§8.28** — `.arena-sync-layout` (42/58), `.arena-sync-item` / R21 + `.arena-sync-visual` cross-fade panels. Mid-page Choose Your Arena pattern — distinct from §2.8 hero showcase.
+
 ---
 
 ## §07 Pricing Tiers
 
-3-up grid. Tier: `neutral-50` fill, `line-100` hairline, `radius-md`, no shadow.
+3-up or **4-up** card row on canvas — full floor spec: `layouts.md` **§4.4** (grid, chrome, R9 zones, §8.16 icon rows).
 
-Featured (`.tier.is-featured`): gradient-1 border rim only — no ribbon, no extra shadow. Checkmarks: `check-outlined`.
+Tier / `.card-row-item`: `neutral-50` fill, `line-100` hairline, `radius-sm`, pad 32, **no shadow**, no hover lift.
+
+Featured (`.tier.is-featured` / `.card-row-item.is-featured`): gradient rim only (§11.1 C) — no ribbon, no shadow. Default CTA `btn--secondary`; featured CTA `btn--primary`. Checkmarks / features: `check-outlined` + §8.16.
 
 ---
 

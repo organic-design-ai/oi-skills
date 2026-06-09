@@ -196,11 +196,24 @@ Use `--pt-*` from `references/tokens.md` verbatim. **Spacing is literal px on a 
 
 Page-level composition lives in `references/layouts.md`. Highlights:
 
+- **Marketing flat contract (§1.6):** all §4 floors — `shadow: none`, bg-step separation (`neutral-50` ↔ `100` ↔ `gradient-card-bg`), no nested grey sub-cards, hero/tail L1+L3 only.
+- **Canonical page stacks (§4.0):** Home · Token Plan · Hackathon recipes — pick one; Token Plan accordion = §2.8 Mode B in hero, **not** §4.13.
 - **Three container layers** (§1): `.layout-max-wide` (outer, ~140 px viewport gutter, for framed visuals) → `.layout-max-inner-wrap > .layout-max-inner` (inner, ~280 px gutter, **default** for headings/grids/copy) → reader (768 px cap, for prose). Never bypass.
-- **Heading on white, never on imagery** (§2): giant H1/H2 sits on `--pt-color-neutral-50` (canvas) or `--pt-color-neutral-100` (tinted floor). Photos/videos sit in their *own* framed panel below or beside. Only exception: era closing CTA (§2.3).
+- **Heading on white, never on imagery** (§2): giant H1/H2 sits on `--pt-color-neutral-50` (canvas) or `--pt-color-neutral-100` (tinted floor). Photos/videos sit in their *own* framed panel below or beside. Only exception: era closing CTA (§2.5).
+- **Homepage hero** (§2.7–§2.8, variant B): centered h1 + subtitle on canvas → **Level 1 `btn--primary` + Level 3 `btn--outline`** → **48–64 px** gap → `.hero-visual` (`radius-lg`). Visual **Mode A:** hero image **450–480 px** + optional 4-up metrics (Hackathon). **Mode B:** accordion + preview **420 px** (`gradient-card-bg`, Token Plan). 字不压视觉 — title never inside the visual block.
 - **9 hero variants A–I** (§3); **3 floor-head patterns A/B/C** + asymmetric D (§5); grid table at §7 — pull a row, don't invent.
 - **§08 component gallery** (§19): 53 production cards + `ui-*` primitives — open CDN `Guideline.html` §08 or `components.md` §08 before building console/dashboard surfaces.
-- **Card system** (§11): two equally first-class flavors — bordered (hairline `--pt-color-line-100` on canvas) and **borderless** (bg-step separation when sitting on a stepped panel). Decision tree §11.4. Eight internal recipes §11.2. Ten clean-flat signals §11.3.
+- **Card row floor** (§4.4): 3-up or 4-up pricing/prize/token tiers — flat cards (`shadow: none`), `line-100` hairline or **one** featured gradient rim, R9 interior (price → CTA → icon feature list §8.16); no grey feature sub-cards.
+- **Media duo floor** (§4.5): 2-up **borderless** visual cards (Agent builder) — large `radius-md` media frame on top, left-aligned title + 2-line desc, **text-link CTA** + `arrow-up-right-outlined` (not pill buttons); no border/shadow on visual or card shell.
+- **Simple card floor** (§4.6): 3-up **`line-100` no-shadow** cards — **A** step flow (`step-tag` + title + desc + centered floor `btn--primary`) or **B** skill/model row (name, chips, **price-text**, divider, 2-col metrics per R11).
+- **Secondary showcase** (§4.7): **次级楼层** — shared **text-cards** (only `border-bottom line-100`). **A:** tabs §8.20 + R13 + optional `btn--outline`. **B (no tabs):** two-line left head + R13b + §8.22 carousel pager — e.g. AI and Cloud / ECS solutions row.
+- **Logo floor** (§4.8): **A — matrix** — 4×N `.logo-matrix-tile` (`line-100`, icon + name, R14). **B — borderless strip** — `.logo-strip` row of brand logos on canvas only (no border/bg/shadow, R19). E.g. Supported AI Tools vs Our Partners.
+- **Tail visual CTA** (§4.9): last marketing band before footer — **790 px** tall or **370 px** compact in `.layout-max-wide` (`radius-lg`); centered h2 (one gradient phrase) + subtitle + **Level 1 primary + Level 3 outline** (R15). E.g. Co-Build Future / Join the community.
+- **Site footer** (§4.10): **35%** aside (flat social icons §8.24) + **65%** three-column link groups (R16); legal bar with `line-100` top rule — copyright left, Manage Cookies right. Flush under tail visual.
+- **Carousel toggle** (§4.11): **100vw** horizontal card track — `line-100` bordered **or** `neutral-100` filled cards (`radius-lg`, no shadow). **A:** centered head + bottom ‹ › (§8.26, R17 testimonials). **B:** left head + pager in title row (R18 criteria). Click to slide; no autoplay/dots.
+- **FAQ** (§4.12): two-column — left title + whitespace, right `+` accordion (R20). **Shell A:** `neutral-50` in `layout-inner`. **Shell B:** `neutral-100` `radius-lg` panel in `layout-max-wide`. §8.27: **first item open**, **single-open only** (always exactly one expanded).
+- **Accordion + visual sync** (§4.13): centered head → **left** `+` fold list (R21) + **right** `radius-lg` preview (`min-height 400+`, cross-fade). §8.28 links `data-arena-panel` ↔ visual panel. E.g. **Choose Your Arena**. Not §2.8 hero Mode B (that's under `.hero-visual` 420 px).
+- **Card system** (§11): two equally first-class flavors — bordered (hairline `--pt-color-line-100` on canvas) and **borderless** (bg-step separation when sitting on a stepped panel). Decision tree §11.4. Nine internal recipes §11.2 (incl. R9 card-row). Ten clean-flat signals §11.3.
 - **Radius vocabulary (5):** `full · xs · sm · md · lg` → 999 / 12 / 18 / 24 / 36 (§15).
 - **Section rhythm:** top-of-floor `96 / 122 / 138`; heading→body `48 / 60 / 64` (§1.5).
 - **Sticky offset:** `calc(var(--pt-nav-backdrop-offset) + 12px)` for rails; nav is 84 px desktop / 62 px mobile.
