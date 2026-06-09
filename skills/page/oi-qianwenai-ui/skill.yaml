@@ -1,0 +1,34 @@
+# Metadata for this skill only (not installed to agents). Used by repo scripts + docs.
+name: oi-qianwenai-ui
+category: page
+status: stable
+author: Alibaba Cloud Design
+
+description: >-
+  千问云 brand UI — simple flat surfaces, weak borders, light shadow; CN typography
+  (Inter + PingFang); icons/photos from CDN Icons.json / Images.json only. TRIGGER when
+  user asks for 千问云, qianwenai, or oi-qianwenai-ui.
+description_zh: >-
+  千问云品牌 UI：简洁平白、弱描边、淡阴影；中文排版与配图/图标必须从 CDN Icons.json / Images.json 抽取
+
+triggers:
+  - oi-qianwenai-ui
+  - qianwenai-ui
+  - qianwenai ui
+  - qianwenai style
+  - qianwenai design
+  - 千问云
+  - 千问云风格
+  - 千问云设计系统
+  - 千问云 UI
+  - qianwen ai ui
+  - Qianwen AI style
+  - Qianwen AI design
+
+requires: []
+
+usage: >-
+  `oi-qianwenai-ui` — read SKILL.md; load references/{tokens,components,layouts,icons,assets}.md;
+  brand kit on CDN (Guideline.html, Icons.json, Images.json) per references/assets.md.
+usage_zh: >-
+  用户问 usage/怎么用 时，朗读 SKILL.md 的 Usage 小节；仅在被点名千问云 / qianwenai 风格时使用。

@@ -199,6 +199,7 @@ Page-level composition lives in `references/layouts.md`. Highlights:
 - **Three container layers** (§1): `.layout-max-wide` (outer, ~140 px viewport gutter, for framed visuals) → `.layout-max-inner-wrap > .layout-max-inner` (inner, ~280 px gutter, **default** for headings/grids/copy) → reader (768 px cap, for prose). Never bypass.
 - **Heading on white, never on imagery** (§2): giant H1/H2 sits on `--pt-color-neutral-50` (canvas) or `--pt-color-neutral-100` (tinted floor). Photos/videos sit in their *own* framed panel below or beside. Only exception: era closing CTA (§2.3).
 - **9 hero variants A–I** (§3); **3 floor-head patterns A/B/C** + asymmetric D (§5); grid table at §7 — pull a row, don't invent.
+- **§08 component gallery** (§19): 53 production cards + `ui-*` primitives — open CDN `Guideline.html` §08 or `components.md` §08 before building console/dashboard surfaces.
 - **Card system** (§11): two equally first-class flavors — bordered (hairline `--pt-color-line-100` on canvas) and **borderless** (bg-step separation when sitting on a stepped panel). Decision tree §11.4. Eight internal recipes §11.2. Ten clean-flat signals §11.3.
 - **Radius vocabulary (5):** `full · xs · sm · md · lg` → 999 / 12 / 18 / 24 / 36 (§15).
 - **Section rhythm:** top-of-floor `96 / 122 / 138`; heading→body `48 / 60 / 64` (§1.5).
@@ -248,9 +249,9 @@ All brand assets live on CDN — **not** in `<skill-dir>`. See `references/asset
 2. **Ask mode** — light or dark
 3. **Load tokens** — `references/tokens.md`
 4. **Pick layout** — `references/layouts.md`: page shell (§1) → hero variant (§2) → section header pattern (§3) → grid from the §4 table → filter/reader if needed (§5–6)
-5. **Compose components** — `references/components.md` (buttons, model card, pricing, forms, customer card, sub-blocks)
+5. **Compose components** — `references/components.md` (§01–07 marketing blocks; **§08** production cards + `ui-*` primitives; §09–10 tags & customer cards)
 6. **Manifests** — fetch `Icons.json` + `Images.json`; bind all photos to manifest URLs (required); icons from manifest or Tabler fallback
-7. **Guideline** — open `Guideline.html` for visual QA on unfamiliar sections
+7. **Guideline** — open `Guideline.html` for visual QA; **§08** for console card gallery (`Scripts/ui.js` on CDN per `assets.md`)
 8. **Review** — checklist below + `layouts.md` §18
 
 ---
@@ -260,8 +261,8 @@ All brand assets live on CDN — **not** in `<skill-dir>`. See `references/asset
 | File | Path | Scope |
 |------|------|-------|
 | Tokens | `<skill-dir>/references/tokens.md` | Color, type, radius, motion, width tokens (`--pt-*`) |
-| Components | `<skill-dir>/references/components.md` | Buttons, cards, pricing, forms, customer card |
-| Layouts | `<skill-dir>/references/layouts.md` | Container layers, heading-on-white rule, heroes A–I, floor taxonomy, headers A/B/C, grids, sub-blocks, typography, card archetypes (bordered/borderless/featured-rim/media/tile/composite/form/overlay), data-page interaction |
+| Components | `<skill-dir>/references/components.md` | §01–10: heroes, buttons, model/pricing cards, **§08 gallery (53 cards + ui primitives)**, tags, customer cards |
+| Layouts | `<skill-dir>/references/layouts.md` | Container layers, heading-on-white rule, heroes A–I, floor taxonomy, headers A/B/C, grids, sub-blocks, typography, card archetypes, data-page interaction, **§19 preview gallery** |
 | Icons | `<skill-dir>/references/icons.md` | Manifest + Tabler fallback rules |
 | CDN assets | `<skill-dir>/references/assets.md` | Image / icon manifest URLs |
 

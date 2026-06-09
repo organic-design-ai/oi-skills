@@ -113,22 +113,47 @@ Each size has a matching `--pt-{heading|title|body}-line-height-*` and `--pt-{he
 
 ## Spacing
 
-**No spacing tokens.** This kit writes spacing as literal px on a 2-px rhythm. Pick from the working set:
+**2-px rhythm.** Prefer `--pt-spacing-N` tokens (N × 2 px) or semantic aliases; literal px from the working set is still valid when no token exists.
 
-`4 · 6 · 8 · 10 · 12 · 14 · 16 · 18 · 20 · 24 · 28 · 32 · 36 · 40 · 44 · 48 · 56 · 64 · 72 · 96 · 122`
+### Spacing scale (`--pt-spacing-N` = N × 2 px)
+
+| Token | px | Token | px | Token | px |
+|-------|---:|-------|---:|-------|---:|
+| `--pt-spacing-1` | 2 | `--pt-spacing-8` | 16 | `--pt-spacing-20` | 40 |
+| `--pt-spacing-2` | 4 | `--pt-spacing-9` | 18 | `--pt-spacing-22` | 44 |
+| `--pt-spacing-3` | 6 | `--pt-spacing-10` | 20 | `--pt-spacing-24` | 48 |
+| `--pt-spacing-4` | 8 | `--pt-spacing-11` | 22 | `--pt-spacing-28` | 56 |
+| `--pt-spacing-5` | 10 | `--pt-spacing-12` | 24 | `--pt-spacing-32` | 64 |
+| `--pt-spacing-6` | 12 | `--pt-spacing-13` | 26 | `--pt-spacing-36` | 72 |
+| `--pt-spacing-7` | 14 | `--pt-spacing-14` | 28 | `--pt-spacing-40` | 80 |
+| | | `--pt-spacing-15` | 30 | `--pt-spacing-44` | 88 |
+| | | `--pt-spacing-16` | 32 | `--pt-spacing-48` | 96 |
+| | | `--pt-spacing-18` | 36 | `--pt-spacing-57` | 114 |
+| | | | | `--pt-spacing-61` | 122 |
+| | | | | `--pt-spacing-69` | 138 |
+| | | | | `--pt-spacing-77` | 154 |
+
+### Semantic aliases (prefer in component CSS)
+
+| Token | Resolves to |
+|-------|-------------|
+| `--pt-margin-sm` / `md` / `lg` | `spacing-12` / `spacing-18` / `spacing-24` |
+| `--pt-padding-sm` / `md` / `lg` | `14px` / `18px` / `spacing-12` |
+| `--pt-gap-sm` / `md` / `lg` | `spacing-6` / `14px` / `spacing-9` |
 
 Typical defaults (full table in `layouts.md` §9):
 
-| Context | px |
+| Context | px / token |
 |---------|---:|
-| Chip / inline gap | 8 |
-| Card inner row gap | 12 / 14 |
-| Grid card gap | 24 (default) · 18 (dense) · 36 (loose 4-col) |
+| Chip / inline gap | 8 (`spacing-4`) |
+| Card inner row gap | 12 / 14 (`spacing-6` / `spacing-7`) |
+| Grid card gap | 24 (`spacing-12`) · 18 · 36 |
 | Card padding | 24 / 28 / 32 |
 | Panel padding (gradient-card) | 60 44 desktop · 32 20 mobile |
 | Heading → grid | 48 / 60 |
-| Section → next section | 96 / 122 / 138 |
+| Section → next section | 96 / 122 / 138 (`spacing-48` / `61` / `69`) |
 | Outer page gutter | 36 desktop · 20 mobile (utilities) |
+| Preview gallery gap | 32 (`spacing-16`) |
 
 ---
 
@@ -179,7 +204,33 @@ Shadows exist as tokens but guideline runs flat (`none`). If depth is needed, st
 
 Breakpoint: 1024px. Mobile gutters 20 px via the container utilities.
 
-Full page-composition spec — including hero variants A–H, section header patterns A/B/C, the grid table, sidebar widths, reader column, and sub-block vocabulary — lives in `layouts.md`.
+### Z-index stack (`--pt-z-*`)
+
+Use tokenized layers — do not invent z-index literals on overlays.
+
+| Token | Value | Use |
+|-------|------:|-----|
+| `--pt-z-hide` | -1 | Hidden layers |
+| `--pt-z-base` | 0 | Default |
+| `--pt-z-popup-inline` | 50 | Inline popovers |
+| `--pt-z-sticky` | 100 | Sticky section heads |
+| `--pt-z-fixed` | 200 | Fixed bars |
+| `--pt-z-sidebar` | 300 | Side rails |
+| `--pt-z-float-widget` | 500 | FABs |
+| `--pt-z-sub-nav` | 900 | Sub-navigation |
+| `--pt-z-top-nav` | 1000 | Guideline / site nav |
+| `--pt-z-top-banner` | 1050 | Announcement strip |
+| `--pt-z-dropdown` | 1100 | Menus |
+| `--pt-z-popover` | 1200 | Popovers |
+| `--pt-z-tooltip` | 1300 | Tooltips |
+| `--pt-z-drawer-backdrop` | 1400 | Drawer scrim |
+| `--pt-z-drawer` | 1410 | Drawer panel |
+| `--pt-z-dialog-backdrop` | 1500 | Modal scrim |
+| `--pt-z-dialog` | 1510 | Modal content |
+| `--pt-z-notification` | 1600 | Toasts |
+| `--pt-z-max` | 2000 | Hard cap |
+
+Full page-composition spec — including hero variants A–I, section header patterns A/B/C, the grid table, sidebar widths, reader column, preview gallery (§19), and sub-block vocabulary — lives in `layouts.md`.
 
 ---
 

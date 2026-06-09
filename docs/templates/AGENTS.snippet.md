@@ -19,6 +19,7 @@ Each skill installs separately under `{skill-dir}/oi-<name>/` (e.g. `~/.agents/s
 | oi-text-effect | oi-text-effect, text effect, text animate, typewriter effect, typing animation, 文字动效, 打字机动画, 文字逐字显示 | `{skill-dir}/oi-text-effect/SKILL.md` |
 | oi-neat-ui | oi-neat-ui, neat-ui, neat style, neat design, Neat style, Neat design, Neat 风格, Neat 设计系统 | `{skill-dir}/oi-neat-ui/SKILL.md` |
 | oi-qwencloud-ui | oi-qwencloud-ui, qwencloud-ui, qwen cloud ui, qwen cloud style, qwen cloud design, qwencloud style, qwencloud design, Qwen Cloud style, Qwen Cloud design, QwenCloud style, QwenCloud design, Qwen Cloud 风格, Qwen Cloud 设计系统 | `{skill-dir}/oi-qwencloud-ui/SKILL.md` |
+| oi-qianwenai-ui | oi-qianwenai-ui, qianwenai-ui, qianwenai style, qianwenai design, 千问云, 千问云风格, 千问云设计系统, 千问云 UI, Qianwen AI style, Qianwen AI design | `{skill-dir}/oi-qianwenai-ui/SKILL.md` |
 
 > `{skill-dir}` = e.g. `~/.agents/skills`, `~/.cursor/skills`, or `~/.claude/skills`.
 
